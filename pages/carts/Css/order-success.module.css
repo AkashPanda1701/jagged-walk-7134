@@ -1,0 +1,79 @@
+.successMessage {
+  padding: 25px 15px;
+  background-color: #10847e;
+  background-image: url(https://assets.pharmeasy.in/web-assets/dist/02ee764b.svg);
+  background-repeat: no-repeat;
+  background-position: top;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.successMessage > h1,
+.successMessage > div > h1 {
+  font-size: 16px;
+  color: #ffffff;
+  margin: 10px;
+}
+.successMessage > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90.98deg, #49cfa1 13.07%, #29aba4 99.77%);
+  border-radius: 10px;
+}
+
+.offerButton {
+  background-color: #10847e;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+.successDetails > div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: 50px;
+}
+.successDetails > div > h1 {
+  font-size: 16px;
+  color: #4f5854;
+  margin-top: 20px;
+}
+.successDetails > div > p {
+  font-size: 16px;
+  color: #8897a2;
+  margin-top: 20px;
+}
+.appMobile > h1 {
+  font-size: 19px;
+  color: #4f5854;
+}
+.appMobile > div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 25px;
+}
+.appMobile > div > button {
+  width: 175px;
+  height: 56px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #4f5854;
+  padding: 10px 15px;
+  margin: 0px 20px 0px 0px;
+  border-radius: 10px;
+}
+.appMobile > div > button > p {
+  font-size: 12px;
+}
+.appMobile > div  :hover{
+  background-color: #7b837f;
+}

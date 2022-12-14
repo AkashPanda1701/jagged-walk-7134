@@ -1,0 +1,44 @@
+.paymentMethod {
+  margin: auto;
+  font-family: sans-serif;
+  margin-top: 20px;
+}
+.paymentMethod > div:nth-child(1) {
+  margin: auto;
+}
+.offersHeading {
+  color: #4f4f4f;
+  font-size: 26px;
+  padding: 0px 0px 20px;
+  font-weight: bold;
+}
+.offerContent {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.offerContent > div:nth-child(2) > h1 {
+  font-size: 16px;
+  color: #4f585e;
+}
+.offerContent > div:nth-child(2) > p {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #8897a2;
+}
+.offerButton {
+  background-color: #10847e;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+.upi {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.upi > img {
+  margin-left: 10px;
+}
