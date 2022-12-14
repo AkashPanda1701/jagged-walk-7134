@@ -15,7 +15,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useEffect, useState } from "react";
 
 export default function WithCartItem({ item }) {
-    console.log('item:', item)
+    // console.log('item:', item)
     const [day, setDay] = useState("");
     const [month, setMonth] = useState("");
     const toast = useToast();
@@ -34,6 +34,7 @@ export default function WithCartItem({ item }) {
     const handleQuantity = (e) => {
         console.log(e.target.value);
     };
+
     useEffect(() => {
         DeliveryDate();
     }, []);
@@ -95,6 +96,7 @@ export default function WithCartItem({ item }) {
             templateColumns="repeat(10, 1fr)"
             gap={4}
             className={styles.individualItem}
+            key={item.title}
         >
             <GridItem colSpan={{ base: 10, sm: 10, md: 2 }}>
                 <Image
@@ -107,7 +109,7 @@ export default function WithCartItem({ item }) {
             <GridItem colSpan={{ base: 10, sm: 10, md: 8 }}>
                 <Box>
                     <Heading maxW="401px" as="h1">
-                       {item.title}
+                        {item.title}
                     </Heading>
                     <button onClick={handleDelete}>
                         <AiOutlineDelete color="red" />
@@ -136,6 +138,6 @@ export default function WithCartItem({ item }) {
                     </Heading>
                 </Box>
             </GridItem>
-        </Grid>
+        </Grid >
     );
 }

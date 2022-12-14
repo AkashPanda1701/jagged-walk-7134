@@ -57,7 +57,7 @@ export default function Cart() {
         }
         // console.log('saving:', saving)
         // console.log("itemTotal Payment Method:", itemTotal);
-    }, [itemTotal, flag, saving, discount, MRP]);
+    }, []);
 
     return (
         <Box maxW="1349px" className={styles.cart}>
