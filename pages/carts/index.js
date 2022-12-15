@@ -25,6 +25,7 @@ const getData = async (url) => {
         let data = await res.json();
         return data;
     } catch (e) {
+        return []
         console.log(e.message)
     }
 };
@@ -61,8 +62,8 @@ export default function Cart() {
         }
         // console.log('saving:', saving)
         // console.log("itemTotal Payment Method:", itemTotal);
-    }, [itemTotal, flag, saving, discount, MRP]);
-
+    }, []);
+    console.log(data)
     return (
         <Box maxW="1349px" className={styles.cart}>
             <Box maxW="1269px" className={styles.heading}>
