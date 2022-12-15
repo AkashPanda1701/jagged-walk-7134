@@ -20,9 +20,13 @@ import WithCartItem from "../../Components/Cart_Checkout/WithCartItem";
 import AddAddress from "../../Components/Cart_Checkout/AddAddress";
 
 const getData = async (url) => {
-    let res = await fetch(url);
-    let data = await res.json();
-    return data;
+    try {
+        let res = await fetch(url);
+        let data = await res.json();
+        return data;
+    } catch (e) {
+        console.log(e.message)
+    }
 };
 
 export default function Cart() {
