@@ -5,6 +5,9 @@ import {
     GridItem,
     Heading,
     Image,
+    List,
+    ListIcon,
+    ListItem,
     Select,
     SimpleGrid,
     Text,
@@ -12,37 +15,35 @@ import {
 import styles from "./Css/cart.module.css";
 import Link from "next/link";
 import { BsChevronRight } from "react-icons/bs";
-import { IoLocationSharp } from "react-icons/io5";
+import { GoPrimitiveDot } from "react-icons/go";
 import { useEffect, useState } from "react";
 import BillSummary from "../../Components/Cart_Checkout/BillSummary";
 import EmptyCart from "../../Components/Cart_Checkout/EmptyCart";
 import WithCartItem from "../../Components/Cart_Checkout/WithCartItem";
 import AddAddress from "../../Components/Cart_Checkout/AddAddress";
-
-const getData = async (url) => {
-    try {
-        let res = await fetch(url);
-        let data = await res.json();
-        return data;
-    } catch (e) {
-        return []
-        console.log(e.message)
-    }
-};
+import { useDispatch, useSelector } from "react-redux";
+import { getAllItem, getCart } from "../../redux/cart/action";
+import LoadingItem from "../../Components/Cart_Checkout/LoadingItem";
+import ReactElasticCarousel from "../../Components/Cart_Checkout/React-Elastic-Carousel";
+import ApplyCoupons from "../../Components/Cart_Checkout/ApplyCoupons";
 
 export default function Cart() {
-    const [data, setData] = useState([]);
     const [flag, setFlag] = useState(false);
     const [itemTotal, setItemTotal] = useState(0);
     const [saving, setSaving] = useState(0);
     const [MRP, setMRP] = useState(0);
     const [discount, setDiscount] = useState(0);
 
+    const dispatch = useDispatch();
+    const { data, loading, error, allData } = useSelector((store) => store.cart);
+
+    useEffect(() => {
+        dispatch(getCart());
+        dispatch(getAllItem());
+    }, [])
+    
     let count = 1;
     useEffect(() => {
-        getData(`http://localhost:2707/cart`).then((res) => {
-            setData(res);
-        });
         //finding total
         let Price = 0;
         let MRP = 0;
@@ -56,14 +57,14 @@ export default function Cart() {
         setSaving((MRP - Price).toFixed(2));
         setDiscount(per);
 
-        if (itemTotal === 0 || saving === 0 || MRP === 0 || discount === 0) {
-            setFlag(!flag);
-            count++;
-        }
+        // if (itemTotal === 0 || saving === 0 || MRP === 0 || discount === 0) {
+        //     setFlag(!flag);
+        //     count++;
+        // }
         // console.log('saving:', saving)
-        // console.log("itemTotal Payment Method:", itemTotal);
-    }, []);
-    console.log(data)
+        console.log("itemTotal Payment Method:", itemTotal);
+    }, [flag, loading, error]);
+
     return (
         <Box maxW="1349px" className={styles.cart}>
             <Box maxW="1269px" className={styles.heading}>
@@ -81,8 +82,8 @@ export default function Cart() {
             </Box>
             <Box maxW="1269px" m="auto" className={styles.totalItem}>
                 <Grid
-                    h="680px"
-                    templateRows="repeat(2, 1fr)"
+                    h="auto "
+                    templateRows="repeat(1, 1fr)"
                     templateColumns="repeat(5, 1fr)"
                     gap="37px"
                 >
@@ -105,7 +106,11 @@ export default function Cart() {
                                 {data &&
                                     data.map((item) => (
                                         <>
-                                            <WithCartItem item={item} />
+                                            {loading ? (
+                                                <LoadingItem />
+                                            ) : (
+                                                <WithCartItem key={item._id} item={item} />
+                                            )}
                                         </>
                                     ))}
                             </Box>
@@ -138,7 +143,8 @@ export default function Cart() {
                                         maxW="371px"
                                         h="52px"
                                     >
-                                        <Heading as="h1">Apply Coupons</Heading>
+                                        {/* <Heading as="h1">Apply Coupons</Heading> */}
+                                        <ApplyCoupons/>
                                         <BsChevronRight />
                                     </Box>
                                 </Box>
@@ -186,6 +192,29 @@ export default function Cart() {
                 </Grid>
             </Box>
 
+            {
+                data.length > 0 ? <ReactElasticCarousel heading={"Customers who bought above items also bought"} /> : null
+
+            }
+            {
+                data.length > 0 ? <ReactElasticCarousel heading={"Previously Browsed Items"} /> : null
+            }
+            <Box className={styles.termCondition} maxW="1248px" m="auto" mt="50px">
+                <List spacing={3}>
+                    <ListItem>
+                        <ListIcon as={GoPrimitiveDot} color='green.500' />
+                        A licensed pharmacy would be delivering your order basis availability of product & fastest delivery.
+                    </ListItem>
+                    <ListItem>
+                        <ListIcon as={GoPrimitiveDot} color='green.500' />
+                        Prices are indicative and may change after billing.
+                    </ListItem>
+                    <ListItem>
+                        <ListIcon as={GoPrimitiveDot} color='green.500' />
+                        PharmEasy is a technology platform to connect sellers and buyers and is not involved in sales of any product. Offer for sale on the products and services are provided/sold by the sellers only. For detail read Terms and Conditions
+                    </ListItem>
+                </List>
+            </Box>
         </Box>
     );
 }

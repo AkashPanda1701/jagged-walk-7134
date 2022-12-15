@@ -13,18 +13,22 @@ import styles from "../../pages/carts/Css/cart.module.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteCart } from "../../redux/cart/action";
 
 export default function WithCartItem({ item }) {
-    console.log('item:', item)
+    // console.log('item:', item)
     const [day, setDay] = useState("");
     const [month, setMonth] = useState("");
     const toast = useToast();
+    const dispatch = useDispatch();
 
     const handleDelete = () => {
         console.log("Item get Delete");
+        dispatch(deleteCart(item));
         toast({
             title: "Item Delete Successfully",
-            status: "success",
+            status: "error",
             duration: 9000,
             isClosable: true,
             position: "top",
@@ -90,6 +94,7 @@ export default function WithCartItem({ item }) {
 
     return (
         <Grid
+            key={item._id}
             h={{ base: "350px", sm: "350px", md: "200px", lg: "200px" }}
             templateRows="repeat(2, 1fr)"
             templateColumns="repeat(10, 1fr)"
@@ -107,7 +112,7 @@ export default function WithCartItem({ item }) {
             <GridItem colSpan={{ base: 10, sm: 10, md: 8 }}>
                 <Box>
                     <Heading maxW="401px" as="h1">
-                       {item.title}
+                        {item.title}
                     </Heading>
                     <button onClick={handleDelete}>
                         <AiOutlineDelete color="red" />

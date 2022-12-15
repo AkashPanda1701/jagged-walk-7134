@@ -1,32 +1,27 @@
 .cart {
-  /* background-color: red; */
   margin: auto;
 }
 .heading {
   margin: auto;
 }
 .heading > div {
-  /* background-color: aquamarine; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .heading > div > h1:nth-child(1),
 .heading > div > h1:nth-child(3) {
-  /* background-color: aqua; */
   color: #10847e;
   font-weight: bold;
   font-size: 14px;
   margin: 26px auto;
 }
 .heading > div > h1:nth-child(3) {
-  /* background-color: red; */
   color: #4f5853;
 }
 
 .cartList > div:nth-child(1),
 .cartTotal > div:nth-child(1) {
-  /* background-color: palegreen; */
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border: 1px solid #e2e4e6;
@@ -47,7 +42,6 @@
 
 /* Empty */
 .emptyCart2 {
-  /* background-color: peachpuff; */
   border: 1px solid #e2e4e6;
   border-bottom: 0px solid white;
   display: flex;
@@ -73,7 +67,6 @@
   color: #10847e;
 }
 .emptyCart3 {
-  /* background-color: olive; */
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   border: 1px solid #e2e4e6;
@@ -114,7 +107,6 @@
 .individualItem > div:nth-child(2) > div > h1 {
   margin: 10px 0px;
   font-size: 20px;
-  /* background-color: #10847e; */
 }
 .individualItem > div:nth-child(2) > div > button {
   width: 30px;
@@ -172,7 +164,6 @@
   padding: 24px;
 }
 .cartTotal > div:nth-child(2) {
-  /* background-color: darkcyan; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -181,8 +172,6 @@
   border: 1px solid #e2e4e6;
 }
 .cartTotal > div:nth-child(2) > button {
-  /* padding: 25px 140px; */
-
   font-size: 16px;
   color: gray;
 }
@@ -221,21 +210,30 @@
 .billSummary > h1:nth-child(1) {
   font-size: 18px;
 }
-.billSummary > div:nth-child(2),
+.billSummary > div:nth-child(2) {
+  border-bottom: 1px solid #e2e4e6;
+}
+.billSummary > div:nth-child(2) > div,
 .billSummary > div:nth-child(3) {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.billSummary > div:nth-child(2) {
-  margin-top: 10px;
-  border-bottom: 1px solid #e2e4e6;
-  padding: 24px 0px 12px;
+.billSummary > div:nth-child(2) > div {
+  /* margin-top: 10px; */
+  /* border-bottom: 1px solid #e2e4e6; */
+  padding: 2px 0px 12px;
 }
-.billSummary > div:nth-child(2) > h1 {
+.billSummary > div:nth-child(2) > div > h1 {
   font-size: 14px;
-  color: #6e787e;
+  /* color: #6e787e; */
   font-weight: 500;
+}
+.charges > span:nth-child(1) {
+  color: #6e787e;
+}
+.freeCharges {
+  color: #10847e;
 }
 .crossSaving {
   text-decoration: line-through;

@@ -14,18 +14,62 @@ import {
     Input,
     Radio,
     RadioGroup,
+    Select,
     Stack,
     Text,
     useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
-import { BsArrowLeft } from "react-icons/bs";
+import axios from "axios";
+import Link from "next/link";
+import React, { useState } from "react";
 import styles from "../../pages/carts/Css/cart.module.css";
 
+const initialState = {
+    deliverTo: "",
+    mobileNo: "",
+    pinCode: "",
+    houseNumber: "",
+    streetName: "",
+    addressType: "",
+};
+
 export default function AddAddress() {
+    const [disable, setDisable] = useState(false);
+
+    const [address, setAddress] = useState(initialState);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
 
+    const handleChange = (e) => {
+        const { value, name } = e.target;
+        setAddress({ ...address, [name]: value });
+
+        if (
+            address.deliverTo !== "" &&
+            address.mobileNo !== "" &&
+            address.pinCode !== "" &&
+            address.houseNumber !== "" &&
+            address.streetName !== "" &&
+            address.addressType !== ""
+        ) {
+            setDisable(true);
+        }
+
+    };
+    const handleAddress = async () => {
+        console.log("Address Details:", address);
+        const payload = address;
+        try {
+            let res = await axios.post(`http://localhost:2707/address`, payload);
+        } catch (e) {
+            console.log(e.message);
+        }
+        setAddress(initialState);
+    };
+
+    const { deliverTo, mobileNo, pinCode, houseNumber, streetName, addressType } =
+        address;
+    console.log("disable:", disable);
     return (
         <>
             <Button
@@ -49,52 +93,73 @@ export default function AddAddress() {
                 <DrawerContent>
                     <DrawerCloseButton />
                     <DrawerHeader className={styles.addressHead}>
-
-                        <Heading as="h1">
-                            {" "}
-                            Add Address
-                        </Heading>
+                        <Heading as="h1"> Add Address</Heading>
                     </DrawerHeader>
 
                     <DrawerBody className={styles.addressContent}>
                         <FormControl isRequired>
                             <FormLabel> Deliver to</FormLabel>
-                            <Input placeholder="Deliver to" />
+                            <Input
+                                placeholder="Deliver to"
+                                value={deliverTo}
+                                name="deliverTo"
+                                onChange={handleChange}
+                            />
                         </FormControl>
                         <FormControl>
                             <FormLabel>Mobile Number</FormLabel>
-                            <Input placeholder="Mobile Number" />
+                            <Input
+                                placeholder="Mobile Number"
+                                value={mobileNo}
+                                name="mobileNo"
+                                onChange={handleChange}
+                                type="number"
+                            />
                             <FormHelperText>
                                 For all delivery related communication
                             </FormHelperText>
                         </FormControl>
                         <FormControl isRequired>
                             <FormLabel>Pincode</FormLabel>
-                            <Input placeholder="Pincode" />
+                            <Input
+                                placeholder="Pincode"
+                                value={pinCode}
+                                name="pinCode"
+                                onChange={handleChange}
+                                type="number"
+                            />
                         </FormControl>
                         <FormControl isRequired>
                             <FormLabel>House number</FormLabel>
-                            <Input placeholder="House number and building" />
+                            <Input
+                                placeholder="House number and building"
+                                value={houseNumber}
+                                name="houseNumber"
+                                onChange={handleChange}
+                            />
                         </FormControl>
                         <FormControl isRequired>
                             <FormLabel>Street Name </FormLabel>
-                            <Input placeholder="Street Name" />
+                            <Input
+                                placeholder="Street Name"
+                                value={streetName}
+                                name="streetName"
+                                onChange={handleChange}
+                            />
                         </FormControl>
                         <FormControl isRequired>
                             <FormLabel>Address Type </FormLabel>
-                            <RadioGroup defaultValue="1">
-                                <Stack spacing={5} direction="row">
-                                    <Radio colorScheme="green" value="1">
-                                        Home
-                                    </Radio>
-                                    <Radio colorScheme="green" value="2">
-                                        Work
-                                    </Radio>
-                                    <Radio colorScheme="green" value="3">
-                                        Others
-                                    </Radio>
-                                </Stack>
-                            </RadioGroup>
+
+                            <Select
+                                onChange={handleChange}
+                                name="addressType"
+                                colorScheme="green"
+                            >
+                                <option value="-">Address Type</option>
+                                <option value="Home">Home</option>
+                                <option value="Work">Work</option>
+                                <option value="Others">Others</option>
+                            </Select>
                         </FormControl>
                     </DrawerBody>
 
@@ -107,8 +172,14 @@ export default function AddAddress() {
                         >
                             Cancel
                         </Button>
-                        <Button colorScheme="green" variant="outline">
-                            Save and Continue
+                        <Button
+                            onClick={handleAddress}
+                            colorScheme="green"
+                            variant="outline"
+                            disabled={!disable ? true : false}
+                        >
+
+                            <Link href="/carts/payment-method"> Save and Continue</Link>
                         </Button>
                     </DrawerFooter>
                 </DrawerContent>
