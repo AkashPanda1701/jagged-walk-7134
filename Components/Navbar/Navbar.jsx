@@ -158,7 +158,7 @@ export default function Navbar() {
                 color="black"
                 rightIcon={<ChevronDownIcon />}
               >
-                Actions
+                Health care
               </MenuButton>
               <MenuList>
                 <Link>
