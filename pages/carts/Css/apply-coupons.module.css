@@ -1,0 +1,42 @@
+.couponsLists {
+  border-radius: 10px;
+}
+.couponsLists > div:nth-child(1) {
+  padding: 15px 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 10px;
+  border: 1px solid #e2e4e6;
+}
+.couponsHeading {
+  color: #4f584f;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.couponHeading > h1:nth-child(1) {
+  font-size: 16px;
+  font-weight: bold;
+}
+.couponHeading > h1:nth-child(2) {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 300;
+}
+.couponsLists > div:nth-child(2) {
+  border-radius: 10px;
+  padding: 15px;
+  color: #4f584f;
+  border: 1px solid #e2e4e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.couponsLists > div:nth-child(2) > h1 {
+  font-size: 14px;
+}
+.couponsLists > div:nth-child(2) > h1 > span {
+  font-weight: 400;
+}

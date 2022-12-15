@@ -12,16 +12,17 @@ import Link from "next/link";
 import styles from "./Css/order-success.module.css";
 
 export default function OrderSuccess() {
+
     return (
         <Box maxW="1349px" m="auto" mt="50px">
             <Box maxW="1024px" m="auto">
                 <Grid
-                  
+
                     templateRows="repeat(2, 1fr)"
                     templateColumns="repeat(5, 1fr)"
                     gap="80px"
                 >
-                    <GridItem  colSpan={{ base: 5, sm: 5, md: 3 }}>
+                    <GridItem colSpan={{ base: 5, sm: 5, md: 3 }}>
                         <Box className={styles.successMessage} h="201px">
                             <Image
                                 src="https://assets.pharmeasy.in/web-assets/dist/bd093b97.svg"
@@ -64,7 +65,7 @@ export default function OrderSuccess() {
                     maxW="700px"
                     h="auto"
                     m="auto"
-                    mt={{base:"-60px",sm:"-60px",lg:"-200px"}}
+                    mt={{ base: "-60px", sm: "-60px", lg: "-200px" }}
                     columns={{ base: 1, sm: 2, md: 3 }}
                     spacing="40px"
                     className={styles.successDetails}

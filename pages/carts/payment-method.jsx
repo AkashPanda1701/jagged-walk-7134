@@ -19,9 +19,13 @@ import BillSummary from "../../Components/Cart_Checkout/BillSummary";
 import styles from "./Css/payment-method.module.css";
 
 const getData = async (url) => {
-  let res = await fetch(url);
-  let data = await res.json();
-  return data;
+  try {
+    let res = await fetch(url);
+    let data = await res.json();
+    return data;
+  } catch (e) {
+    return []
+  }
 };
 export default function paymentMethod() {
   const [data, setData] = useState([]);
