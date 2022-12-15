@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { BiSearchAlt } from "react-icons/bi";
 import { Adslider } from "./adSlider";
+import { Details } from "./Details";
 import { FrequentlyBookedLabTest } from "./FrequentlyBookeTest";
 import MultipleItems, { LabTest } from "./labTest";
 import { NewLaunches } from "./NewLaunches";
@@ -230,7 +231,8 @@ export const Homecomp = () => {
         <ShopByConcern/>
         {/* Frequently Booked lab test */}
       {/* <FrequentlyBookedLabTest/> */}
-    
+    {/* Details ... of app */}
+    <Details/>
       </Box>
     </>
   );
