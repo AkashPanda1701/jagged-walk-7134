@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { BiSearchAlt } from "react-icons/bi";
 import { Adslider } from "./adSlider";
+import { FrequentlyBookedLabTest } from "./FrequentlyBookeTest";
 import MultipleItems, { LabTest } from "./labTest";
 import { NewLaunches } from "./NewLaunches";
 import { OffersJustforYou } from "./Offerts";
@@ -19,6 +20,7 @@ import { PaymentOffers } from "./PaymentOffers";
 import { PlusMember } from "./Plus member";
 
 import { ShopByCategory } from "./Shopbycategory";
+import { ShopByConcern } from "./ShopbyConcern";
 import { TrendingNearMe } from "./TrendingNear";
 
 export const Homecomp = () => {
@@ -223,6 +225,12 @@ export const Homecomp = () => {
 
             {/* plus member iamge */}
         <PlusMember/>
+
+        {/* shop by concern */}
+        <ShopByConcern/>
+        {/* Frequently Booked lab test */}
+      {/* <FrequentlyBookedLabTest/> */}
+    
       </Box>
     </>
   );
