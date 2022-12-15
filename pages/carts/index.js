@@ -40,8 +40,8 @@ export default function Cart() {
     useEffect(() => {
         dispatch(getCart());
         dispatch(getAllItem());
-    }, [])
-    
+    }, []);
+
     let count = 1;
     useEffect(() => {
         //finding total
@@ -104,14 +104,10 @@ export default function Cart() {
                             <Box className={styles.withCartItem}>
                                 {/* Mapping of Data Over Here */}
                                 {data &&
-                                    data.map((item) => (
-                                        <>
-                                            {loading ? (
-                                                <LoadingItem />
-                                            ) : (
-                                                <WithCartItem key={item._id} item={item} />
-                                            )}
-                                        </>
+                                    data.map((item, index) => (
+                                        <div key={index}>
+                                            {loading ? <LoadingItem /> : <WithCartItem item={item} />}
+                                        </div>
                                     ))}
                             </Box>
                         )}
@@ -144,7 +140,7 @@ export default function Cart() {
                                         h="52px"
                                     >
                                         {/* <Heading as="h1">Apply Coupons</Heading> */}
-                                        <ApplyCoupons/>
+                                        <ApplyCoupons />
                                         <BsChevronRight />
                                     </Box>
                                 </Box>
@@ -192,26 +188,31 @@ export default function Cart() {
                 </Grid>
             </Box>
 
-            {
-                data.length > 0 ? <ReactElasticCarousel heading={"Customers who bought above items also bought"} /> : null
-
-            }
-            {
-                data.length > 0 ? <ReactElasticCarousel heading={"Previously Browsed Items"} /> : null
-            }
+            {data.length > 0 ? (
+                <ReactElasticCarousel
+                    heading={"Customers who bought above items also bought"}
+                />
+            ) : null}
+            {data.length > 0 ? (
+                <ReactElasticCarousel heading={"Previously Browsed Items"} />
+            ) : null}
             <Box className={styles.termCondition} maxW="1248px" m="auto" mt="50px">
                 <List spacing={3}>
                     <ListItem>
-                        <ListIcon as={GoPrimitiveDot} color='green.500' />
-                        A licensed pharmacy would be delivering your order basis availability of product & fastest delivery.
+                        <ListIcon as={GoPrimitiveDot} color="green.500" />A licensed
+                        pharmacy would be delivering your order basis availability of
+                        product & fastest delivery.
                     </ListItem>
                     <ListItem>
-                        <ListIcon as={GoPrimitiveDot} color='green.500' />
+                        <ListIcon as={GoPrimitiveDot} color="green.500" />
                         Prices are indicative and may change after billing.
                     </ListItem>
                     <ListItem>
-                        <ListIcon as={GoPrimitiveDot} color='green.500' />
-                        PharmEasy is a technology platform to connect sellers and buyers and is not involved in sales of any product. Offer for sale on the products and services are provided/sold by the sellers only. For detail read Terms and Conditions
+                        <ListIcon as={GoPrimitiveDot} color="green.500" />
+                        PharmEasy is a technology platform to connect sellers and buyers and
+                        is not involved in sales of any product. Offer for sale on the
+                        products and services are provided/sold by the sellers only. For
+                        detail read Terms and Conditions
                     </ListItem>
                 </List>
             </Box>

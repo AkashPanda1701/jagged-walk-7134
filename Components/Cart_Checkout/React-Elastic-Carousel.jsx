@@ -40,8 +40,8 @@ export default function ReactElasticCarousel({ heading }) {
             </Box>
             <Carousel breakPoints={breakPoints}>
                 {allData &&
-                    allData.map((item) => (
-                        <>
+                    allData.map((item,index) => (
+                        <Box key={index}>
                             {" "}
                             {loading ? (
                                 <SkeletonCarousel />
@@ -67,7 +67,7 @@ export default function ReactElasticCarousel({ heading }) {
                                     </Box>
                                 </Box>
                             )}
-                        </>
+                        </Box>
                     ))}
             </Carousel>
         </Box>

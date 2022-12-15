@@ -94,7 +94,7 @@ export default function WithCartItem({ item }) {
 
     return (
         <Grid
-            key={item._id}
+        
             h={{ base: "350px", sm: "350px", md: "200px", lg: "200px" }}
             templateRows="repeat(2, 1fr)"
             templateColumns="repeat(10, 1fr)"

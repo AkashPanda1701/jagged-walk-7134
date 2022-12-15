@@ -93,42 +93,44 @@ export default function ApplyCoupons() {
                     </DrawerHeader>
 
                     <DrawerBody className={styles.addressContent}>
-                        {couponsArr &&
-                            couponsArr.map((coupon) => (
-                                <>
-                                    <Box
-                                        key={coupon.id}
-                                        maxW="373px"
-                                        h="204px"
-                                        className={stylesC.couponsLists}
-                                    >
-                                        <Box h="153px" >
-                                            <Box>
-                                                <Image
-                                                    maxW="60px"
-                                                    h="60px"
-                                                    src={coupon.images}
-                                                    alt=""
-                                                />
-                                            </Box>
-                                            <Box maxW="261px" className={stylesC.couponHeading}>
-                                                <Heading as="h1"> {coupon.title}</Heading>
-                                                <Heading as="h1"> {coupon.desc}</Heading>
-                                            </Box>
-                                        </Box>
-                                        <Box h="51px" >
-                                            <Heading as="h1">
-                                                {" "}
-                                                <span>Code:</span> {coupon.Code}
-                                            </Heading>
-                                            <Button colorScheme="white" bg="white">
-                                                <Text color="teal">APPLY </Text>
-                                            </Button>
-                                        </Box>
 
+                        {couponsArr &&
+                            couponsArr.map((coupon, index) =>
+                                <Box
+                                    key={index}
+                                    maxW="373px"
+                                    h="204px"
+                                    className={stylesC.couponsLists}
+                                >
+                                    <Box h="153px" >
+                                        <Box>
+                                            <Image
+                                                maxW="60px"
+                                                h="60px"
+                                                src={coupon.images}
+                                                alt=""
+                                            />
+                                        </Box>
+                                        <Box maxW="261px" className={stylesC.couponHeading}>
+                                            <Heading as="h1"> {coupon.title}</Heading>
+                                            <Heading as="h1"> {coupon.desc}</Heading>
+                                        </Box>
                                     </Box>
-                                </>
-                            ))}
+                                    <Box h="51px" >
+                                        <Heading as="h1">
+                                            {" "}
+                                            <span>Code:</span> {coupon.Code}
+                                        </Heading>
+                                        <Button colorScheme="white" bg="white">
+                                            <Text color="teal">APPLY </Text>
+                                        </Button>
+                                    </Box>
+
+                                </Box>
+
+
+                            )}
+
                     </DrawerBody>
 
                     <DrawerFooter>
