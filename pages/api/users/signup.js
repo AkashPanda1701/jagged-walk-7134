@@ -2,9 +2,13 @@
 import User from "../../../models/user.model";
 import connectDB from "../../../middleware/connectDB";
 import jwt from 'jsonwebtoken';
+import sendMail from '../../../middleware/mail';
 
 const Signup = async (req, res) => {
     await connectDB();
+    if(req.method === "GET") {
+        return  res.send({ message: 'GET method not allowed' })
+    }
     if(req.method === "POST") {
         return  usersignup(req, res)
     }
@@ -21,15 +25,22 @@ async function usersignup(req, res) {
         console.log('user: ', user);
         
         if (user) {
-            
             const token = jwt.sign({ _id: user._id,name:user.name,role:user.role }, 'abcd', { expiresIn: '1h' });
+            
             return res.status(200).send({ message: 'Login successful' , token,user : user.name});
+        }
+
+        if(!name || !email || !password || !phone){
+        
+            return res.status(404).send({ message: 'Please fill all the fields for registration' });
         }
         
 
         
-        await User.create({ name,email, password ,role,phone});
-        return res.status(201).send({ message : 'User Registered Successfully' });
+        const newUser=await User.create({ name,email, password ,role,phone});
+        const token = jwt.sign({ _id: newUser._id,name:newUser.name,role:newUser.role }, 'abcd', { expiresIn: '1h' });
+        sendMail(email,  name);
+        return res.status(201).send({ message : 'User Registered Successfully'  , token,user : newUser.name});
         
         
 
