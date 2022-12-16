@@ -1,6 +1,6 @@
 import { Box, Button, Heading, Image, useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
-// import Carousel from "react-elastic-carousel";
+import Carousel from "react-elastic-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../pages/carts/Css/react-elastic-carousel.module.css";
 import { addItemCart, getAllItem } from "../../redux/cart/action";
