@@ -8,7 +8,7 @@ export default function Footer () {
       <Box pt={10} m="auto" w="90%" bg="#eef4ff" className="footerdiv">
         <Box className="footercategories">
           <SimpleGrid p={5} m="auto" w="86%" columns={[2, 2, 3, 4]}>
-            <Box>
+            <Box fontSize={"14px"}>
               <Heading as="h6" size="sm">
                 Company
               </Heading>
@@ -18,7 +18,7 @@ export default function Footer () {
               <Box>Parter with PharmEasy</Box>
               <Box>Sell at PharmEasy</Box>
             </Box>
-            <Box>
+            <Box fontSize={"14px"}>
               <Heading as="h6" size="sm">
                 Featured Categories
               </Heading>
@@ -31,7 +31,7 @@ export default function Footer () {
               <Box>Health Condition</Box>
               <Box>Top Products</Box>
             </Box>
-            <Box>
+            <Box fontSize={"14px"}>
               <Heading as="h6" size="sm">
                 Need Help
               </Heading>
@@ -163,7 +163,9 @@ export default function Footer () {
               />
             </Box>
           </Flex>
-          <Box pt='30px' pb={10} fontSize="14px" >© 2022 PharmEasy. All Rights Reserved</Box>
+          <Box pt="30px" pb={10} fontSize="14px">
+            © 2022 PharmEasy. All Rights Reserved
+          </Box>
         </Box>
       </Box>
     </>

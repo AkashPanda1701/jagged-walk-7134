@@ -1,8 +1,13 @@
+import SidebarWithHeader from "../../Components/Admin/Sidebar"
+import Display from "../../Components/Admin/Display"
+
+
 function admin(){
     return (
-        <div>
-            <h1>Admin</h1>
-        </div>
+        <>
+
+           
+        </>
     )
 }
 
