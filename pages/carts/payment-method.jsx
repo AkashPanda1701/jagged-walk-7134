@@ -59,7 +59,7 @@ export default function paymentMethod() {
     }
     // console.log('saving:', saving)
     // console.log("itemTotal:", itemTotal);
-  }, [itemTotal, flag, saving, discount, MRP]);
+  }, []);
 
   return (
     <Box maxW="1349px" className={styles.paymentMethod}>
@@ -426,15 +426,15 @@ export default function paymentMethod() {
                 <Text>Shipping Address</Text>
                 <Box>
                   {/* deliverTo */}
-                  <Text>YashWant Colony , Gm Motors</Text>
+                  {/* <Text>YashWant Colony , Gm Motors</Text> */}
                   {/* streetName */}
-                  <Text>nagpur road</Text>
+                  {/* <Text>nagpur road</Text> */}
                   {/* pinCode */}
-                  <Text>442001</Text>
+                  {/* <Text>442001</Text> */}
                   {/* MoobileNO */}
-                  <Text>+91-{8668794790}</Text>
+                  {/* <Text>+91-{8668794790}</Text> */}
                   {/* addressType */}
-                  <Text>Address Type:{"Home"}</Text>
+                  {/* <Text>Address Type:{"Home"}</Text> */}
                 </Box>
               </Box>
               <Box>
