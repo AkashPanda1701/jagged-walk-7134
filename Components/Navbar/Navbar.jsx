@@ -16,24 +16,33 @@ import {
   useDisclosure,
   Image,
   Heading,
+
   Tabs,
   TabList,
   Tab,
   TabPanels,
   TabPanel
+
 } from "@chakra-ui/react";
+
+import Login from "../Login/Login";
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import {FaRegUser} from 'react-icons/fa'
-import {BsCart2} from "react-icons/bs"
-
-import { Menu, MenuButton, MenuItem,MenuList } from "@chakra-ui/react";
+import { FaRegUser } from "react-icons/fa";
+import { BsCart2 } from "react-icons/bs";
 
 
+
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -76,7 +85,10 @@ export default function Navbar() {
             gap={3}
           >
             <Text
-              textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              textAlign={useBreakpointValue({
+                base: "center",
+                md: "left",
+              })}
               fontFamily={"heading"}
               color={useColorModeValue("gray.800", "white")}
             >
@@ -87,7 +99,10 @@ export default function Navbar() {
               />
             </Text>
 
-            <Flex display={{ base: "none", md: "flex" }} ml={10}>
+            <Flex
+              display={{ base: "none", md: "flex" }}
+              ml={10}
+            >
               <DesktopNav />
             </Flex>
           </Flex>
@@ -104,16 +119,7 @@ export default function Navbar() {
               <Text mt="5px">
                 <FaRegUser />
               </Text>
-              <Button
-                //   leftIcon={}
-                fontSize={{ base: 0, md: "md" }}
-                fontWeight={500}
-                variant={"link"}
-                href={"/login"}
-                color="black"
-              >
-                Hello, Login
-              </Button>
+              <Login />
             </Box>
             <Box display="flex" gap={2}>
               <Text mt="5px">
@@ -263,11 +269,16 @@ export default function Navbar() {
 }
 
 const DesktopNav = () => {
-
   return (
     <>
       <Stack direction={"row"} spacing={4}>
-        <Box ml={-7} mt="10px" bg="#8897a2" h="35px" w="1px"></Box>
+        <Box
+          ml={-7}
+          mt="10px"
+          bg="#8897a2"
+          h="35px"
+          w="1px"
+        ></Box>
         <Box pt="15px" fontSize="14px" display="flex">
           <Image
             mt="3px"
@@ -277,9 +288,7 @@ const DesktopNav = () => {
           Express Delivery
         </Box>
       </Stack>
-      <Box>
-        {/* <DesktopSubNav /> */}
-      </Box>
+      <Box>{/* <DesktopSubNav /> */}</Box>
     </>
   );
 };
@@ -367,18 +376,29 @@ const MobileNavItem = ({ label, children, href }) => {
         )}
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+      <Collapse
+        in={isOpen}
+        animateOpacity
+        style={{ marginTop: "0!important" }}
+      >
         <Stack
           mt={2}
           pl={4}
           borderLeft={1}
           borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
+          borderColor={useColorModeValue(
+            "gray.200",
+            "gray.700"
+          )}
           align={"start"}
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link
+                key={child.label}
+                py={2}
+                href={child.href}
+              >
                 {child.label}
               </Link>
             ))}
