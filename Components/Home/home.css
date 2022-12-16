@@ -3,8 +3,17 @@
   overflow: hidden;
   margin-top: 20px  ;
 }
+.slideshow2 {
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 20px  ;
+}
 
 .slideshowSlider {
+  white-space: nowrap;
+  transition: ease 400ms;
+}
+.slideshowSlider2 {
   white-space: nowrap;
   transition: ease 400ms;
 }
@@ -12,6 +21,10 @@
 .slide {
   display: inline-block;
   width: 40%;
+}
+.slide2 {
+  display: inline-block;
+  width: 25%;
 }
 
 .container {

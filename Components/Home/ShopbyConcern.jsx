@@ -34,7 +34,7 @@ const db = [
 export const ShopByConcern=()=>{
     return (
       <>
-        <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
+        <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={10}>
           Shop by Concern
         </Heading>
         <Text ml="83px" mt={3} color={"grey"}>

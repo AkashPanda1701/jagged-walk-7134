@@ -12,6 +12,9 @@ import {
 } from "@chakra-ui/react";
 import { BiSearchAlt } from "react-icons/bi";
 import { Adslider } from "./adSlider";
+import { Adslider2 } from "./AdsSlider2";
+import { Details } from "./Details";
+import { DownloadApp } from "./Downloadapp";
 import { FrequentlyBookedLabTest } from "./FrequentlyBookeTest";
 import MultipleItems, { LabTest } from "./labTest";
 import { NewLaunches } from "./NewLaunches";
@@ -22,6 +25,7 @@ import { PlusMember } from "./Plus member";
 import { ShopByCategory } from "./Shopbycategory";
 import { ShopByConcern } from "./ShopbyConcern";
 import { TrendingNearMe } from "./TrendingNear";
+import { WhyChooseUs } from "./WhyChoose";
 
 export const Homecomp = () => {
   return (
@@ -229,8 +233,22 @@ export const Homecomp = () => {
         {/* shop by concern */}
         <ShopByConcern/>
         {/* Frequently Booked lab test */}
-      {/* <FrequentlyBookedLabTest/> */}
-    
+      <FrequentlyBookedLabTest/>
+          
+
+          {/* Ads Slider 2-- */}
+
+          <Adslider2/>
+
+        {/*Why choose us------ details  */}
+          <WhyChooseUs/>
+
+        {/* Download app-- banner */}
+        <DownloadApp/>
+
+
+    {/* Details ... of app */}
+    <Details/>
       </Box>
     </>
   );
