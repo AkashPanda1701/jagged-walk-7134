@@ -15,20 +15,24 @@ import {
   useBreakpointValue,
   useDisclosure,
   Image,
-  Heading
+  Heading,
 } from "@chakra-ui/react";
+import Login from "../Login/Login";
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import {FaRegUser} from 'react-icons/fa'
-import {BsCart2} from "react-icons/bs"
+import { FaRegUser } from "react-icons/fa";
+import { BsCart2 } from "react-icons/bs";
 
-import { Menu, MenuButton, MenuItem,MenuList } from "@chakra-ui/react";
-
-
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -40,7 +44,7 @@ export default function Navbar() {
           //   color={useColorModeValue("gray.600", "white")}
           minH={"60px"}
           py={{ base: 2 }}
-          px={{ base: 2}}
+          px={{ base: 2 }}
           //   borderBottom={2}
           borderStyle={"solid"}
           borderBottom={"1px solid lightgrey"}
@@ -65,13 +69,16 @@ export default function Navbar() {
             />
           </Flex>
           <Flex
-            ml={{base:"0px",md:'40px'}}
+            ml={{ base: "0px", md: "40px" }}
             flex={{ base: 1 }}
             justify={{ base: "center", md: "start" }}
             gap={3}
           >
             <Text
-              textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              textAlign={useBreakpointValue({
+                base: "center",
+                md: "left",
+              })}
               fontFamily={"heading"}
               color={useColorModeValue("gray.800", "white")}
             >
@@ -82,33 +89,27 @@ export default function Navbar() {
               />
             </Text>
 
-            <Flex display={{ base: "none", md: "flex" }} ml={10}>
+            <Flex
+              display={{ base: "none", md: "flex" }}
+              ml={10}
+            >
               <DesktopNav />
             </Flex>
           </Flex>
 
           <Stack
-          ml={10}
+            ml={10}
             flex={{ base: 1, md: 0 }}
             justify={"flex-end"}
             direction={"row"}
             spacing={{ base: 0, md: 6 }}
-            pr={{base:"0px",md:"60px"}}
+            pr={{ base: "0px", md: "60px" }}
           >
             <Box display="flex" gap={{ base: 0, md: 3 }}>
               <Text mt="5px">
                 <FaRegUser />
               </Text>
-              <Button
-                //   leftIcon={}
-                fontSize={{ base: 0, md: "md" }}
-                fontWeight={500}
-                variant={"link"}
-                href={"/login"}
-                color="black"
-              >
-                Hello, Login
-              </Button>
+              <Login />
             </Box>
             <Box display="flex" gap={2}>
               <Text mt="5px">
@@ -134,12 +135,12 @@ export default function Navbar() {
         </Collapse>
       </Box>
       <Box
-      w="100%"
+        w="100%"
         borderBottom="1px solid lightgrey"
         display={{ base: "none", md: "flex" }}
       >
         <Flex
-        //   ml={{ base: "5px", sm: "180px", lg: "380px" }}
+          //   ml={{ base: "5px", sm: "180px", lg: "380px" }}
           className="categoriesnav"
         >
           <Heading fontWeight={500} size="xs">
@@ -195,11 +196,16 @@ export default function Navbar() {
 }
 
 const DesktopNav = () => {
-
   return (
     <>
       <Stack direction={"row"} spacing={4}>
-        <Box ml={-7} mt="10px" bg="#8897a2" h="35px" w="1px"></Box>
+        <Box
+          ml={-7}
+          mt="10px"
+          bg="#8897a2"
+          h="35px"
+          w="1px"
+        ></Box>
         <Box pt="15px" fontSize="14px" display="flex">
           <Image
             mt="3px"
@@ -209,9 +215,7 @@ const DesktopNav = () => {
           Express Delivery
         </Box>
       </Stack>
-      <Box>
-        {/* <DesktopSubNav /> */}
-      </Box>
+      <Box>{/* <DesktopSubNav /> */}</Box>
     </>
   );
 };
@@ -299,18 +303,29 @@ const MobileNavItem = ({ label, children, href }) => {
         )}
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+      <Collapse
+        in={isOpen}
+        animateOpacity
+        style={{ marginTop: "0!important" }}
+      >
         <Stack
           mt={2}
           pl={4}
           borderLeft={1}
           borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
+          borderColor={useColorModeValue(
+            "gray.200",
+            "gray.700"
+          )}
           align={"start"}
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link
+                key={child.label}
+                py={2}
+                href={child.href}
+              >
                 {child.label}
               </Link>
             ))}
