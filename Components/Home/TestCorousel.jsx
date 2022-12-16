@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Image } from "@chakra-ui/image";
-import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/layout";
+import { Box, Heading, SimpleGrid} from "@chakra-ui/layout";
 import Slider from "react-slick";
 
 const db = [
@@ -81,9 +81,9 @@ export default class Responsive extends Component {
       <div>
         <h2> Responsive </h2>
         <Slider {...settings}>
-          {db.map((ele) => {
+          {db.map((ele,index) => {
             return (
-              <Box width={130}>
+            <Box key={index} width={130}>
                 <Image
                   borderRadius={8}
                   border={"1px solid lightgrey"}
@@ -96,10 +96,10 @@ export default class Responsive extends Component {
                   height="120px"
                   src={ele.img}
                 />
-                <Text mt={4}>{ele.des}</Text>
-                <Text mt={2} color="grey">
+                <Box mt={4}>{ele.des}</Box>
+                <Box mt={2} color="grey">
                   {ele.mrp}
-                </Text>
+                </Box>
               </Box>
             );
           })}

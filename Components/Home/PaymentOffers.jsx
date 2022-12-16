@@ -14,16 +14,16 @@ const db = [
 ];
 
 
-export const PaymentOffers=()=>{
+export default function PaymentOffers(){
     return (
       <>
         <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
           Payment Offers
         </Heading>
         <SimpleGrid columnGap={5} m="auto" w="85%" columns={[1, 2, 3]}>
-          {db.map((ele) => {
+          {db.map((ele,index) => {
             return (
-              <Box mt={10}>
+              <Box key={index} mt={10}>
                 <Image width={"380px"} src={ele.img} />
               </Box>
             );

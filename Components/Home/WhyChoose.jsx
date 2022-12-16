@@ -1,7 +1,7 @@
 import { Image } from "@chakra-ui/image";
 import { Box } from "@chakra-ui/layout";
 
-export const WhyChooseUs = () => {
+export default function WhyChooseUs  ()  {
   return (
     <>
       <Box p={10}>

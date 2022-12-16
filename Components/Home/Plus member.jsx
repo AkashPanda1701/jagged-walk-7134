@@ -1,7 +1,7 @@
 import { Image } from "@chakra-ui/image"
 import { Box } from "@chakra-ui/layout"
 
-export const PlusMember=()=>{
+export default function PlusMember(){
     return (
       <>
         <Box p={10}>

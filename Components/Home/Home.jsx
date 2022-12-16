@@ -1,33 +1,32 @@
 import {
-  Box,
   Heading,
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
   Button,
   Input,
-  Text,
+  Box,
   Image,
   SimpleGrid,
 } from "@chakra-ui/react";
 import { BiSearchAlt } from "react-icons/bi";
-import { Adslider } from "./adSlider";
-import { Adslider2 } from "./AdsSlider2";
-import { Details } from "./Details";
-import { DownloadApp } from "./Downloadapp";
-import { FrequentlyBookedLabTest } from "./FrequentlyBookeTest";
-import MultipleItems, { LabTest } from "./labTest";
-import { NewLaunches } from "./NewLaunches";
-import { OffersJustforYou } from "./Offerts";
-import { PaymentOffers } from "./PaymentOffers";
-import { PlusMember } from "./Plus member";
+import  Adslider  from "./adSlider";
+import  Adslider2  from "./AdsSlider2";
+import  Details  from "./Details";
+import  DownloadApp from "./Downloadapp";
+import  FrequentlyBookedLabTest  from "./FrequentlyBookeTest";
+import  LabTest from "./LabTest";
+import  NewLaunches  from "./NewLaunches";
+import OffersJustforYou  from "./Offerts";
+import  PaymentOffers  from "./PaymentOffers";
+import  PlusMember  from "./Plus member";
 
-import { ShopByCategory } from "./Shopbycategory";
-import { ShopByConcern } from "./ShopbyConcern";
-import { TrendingNearMe } from "./TrendingNear";
-import { WhyChooseUs } from "./WhyChoose";
+import  ShopByCategory  from "./Shopbycategory";
+import ShopByConcern  from "./ShopbyConcern";
+import TrendingNearMe  from "./TrendingNear";
+import WhyChooseUs  from "./WhyChoose";
 
-export const Homecomp = () => {
+export default function Homecomp  ()  {
   return (
     <>
       <Box h="50px"></Box>
@@ -93,7 +92,7 @@ export const Homecomp = () => {
         {/* categories     -------- */}
         <SimpleGrid
           pt={10}
-          textAlign={"center"}
+          textAlign="center"
           w="85%"
           m="auto"
           gap={9}
@@ -110,10 +109,10 @@ export const Homecomp = () => {
               src="https://assets.pharmeasy.in/apothecary/images/medicine_ff.webp?dim=256x0"
             />
 
-            <Text>Medicine</Text>
-            <Text color={"red"} fontSize="12px" fontWeight={600}>
+            <Box>Medicine</Box>
+            <Box color={"red"} fontSize="12px" fontWeight={600}>
               UPTO 20% OFF
-            </Text>
+            </Box>
           </Box>
           <Box
             p={2}
@@ -125,10 +124,10 @@ export const Homecomp = () => {
               width={40}
               src="https://assets.pharmeasy.in/apothecary/images/labtest_ff.webp?dim=256x0"
             />
-            <Text>Lab Tests</Text>
-            <Text color={"red"} fontSize="12px" fontWeight={600}>
+            <Box>Lab Tests</Box>
+            <Box color={"red"} fontSize="12px" fontWeight={600}>
               UPTO 70% OFF
-            </Text>
+            </Box>
           </Box>
           <Box
             p={2}
@@ -140,10 +139,10 @@ export const Homecomp = () => {
               width={40}
               src="https://assets.pharmeasy.in/apothecary/images/healthcare_ff.webp?dim=256x0"
             />
-            <Text>Healthcare</Text>
-            <Text color={"red"} fontSize="12px" fontWeight={600}>
+            <Box>Healthcare</Box>
+            <Box color={"red"} fontSize="12px" fontWeight={600}>
               UPTO 60% OFF
-            </Text>
+            </Box>
           </Box>
           <Box
             p={2}
@@ -155,8 +154,8 @@ export const Homecomp = () => {
               width={40}
               src="https://assets.pharmeasy.in/apothecary/images/health_blogs_ff.webp?dim=256x0"
             />
-            <Text>Health Blogs</Text>
-            <Text color={"red"} fontSize="12px" fontWeight={600}></Text>
+            <Box>Health Blogs</Box>
+            <Box color={"red"} fontSize="12px" fontWeight={600}></Box>
           </Box>
           <Box
             p={2}
@@ -168,10 +167,10 @@ export const Homecomp = () => {
               width={40}
               src="https://assets.pharmeasy.in/apothecary/images/plus_ff.webp?dim=256x0"
             />
-            <Text>PLUS</Text>
-            <Text color={"red"} fontSize="12px" fontWeight={600}>
+            <Box>PLUS</Box>
+            <Box color={"red"} fontSize="12px" fontWeight={600}>
               SAVE 5% EXTRA
-            </Text>
+            </Box>
           </Box>
           <Box
             p={2}
@@ -186,7 +185,7 @@ export const Homecomp = () => {
               width={40}
               src="https://assets.pharmeasy.in/apothecary/images/offers_ff.webp?dim=256x0"
             />
-            <Text>Offers</Text>
+            <Box>Offers</Box>
             <Heading></Heading>
           </Box>
           <Box
@@ -202,12 +201,12 @@ export const Homecomp = () => {
               width={40}
               src="https://assets.pharmeasy.in/apothecary/images/offers_1_ff.webp?dim=256x0"
             />
-            <Text>Surgeries</Text>
+            <Box>Surgeries</Box>
             <Heading></Heading>
           </Box>
         </SimpleGrid>
         {/* ads slider */}
-        <Adslider />
+        {/* <Adslider /> */}
 
         {/* labtests */}
         <LabTest />
@@ -227,28 +226,26 @@ export const Homecomp = () => {
         {/* Trending Near me */}
         <TrendingNearMe />
 
-            {/* plus member iamge */}
-        <PlusMember/>
+        {/* plus member iamge */}
+        <PlusMember />
 
         {/* shop by concern */}
         <ShopByConcern/>
         {/* Frequently Booked lab test */}
-      <FrequentlyBookedLabTest/>
-          
+        <FrequentlyBookedLabTest/>
 
-          {/* Ads Slider 2-- */}
+        {/* Ads Slider 2-- */}
 
-          <Adslider2/>
+        <Adslider2 />
 
         {/*Why choose us------ details  */}
-          <WhyChooseUs/>
+        <WhyChooseUs />
 
         {/* Download app-- banner */}
-        <DownloadApp/>
+        <DownloadApp />
 
-
-    {/* Details ... of app */}
-    <Details/>
+        {/* Details ... of app */}
+        <Details />
       </Box>
     </>
   );
