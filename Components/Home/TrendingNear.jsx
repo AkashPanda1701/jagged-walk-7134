@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/image";
-import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/layout";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/layout";
 const db = [
   {
     img: "https://cdn01.pharmeasy.in/dam/products_otc/I05582/dr-morepen-gluco-one-bg-03-glucometer-test-strips-box-of-50-1-1669655233.jpg?dim=1440x0",
@@ -38,15 +38,15 @@ const db = [
   },
 ];
 
-export const TrendingNearMe = () => {
+export default function TrendingNearMe () {
   return (
     <>
       <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
         Trending Near You
       </Heading>
-      <Text ml={'86px'} mt={3} color={"grey"}>
-         Popular in your city
-      </Text>
+      <Box ml={"86px"} mt={3} color={"grey"}>
+        Popular in your city
+      </Box>
       <SimpleGrid
         pt={10}
         textAlign={"center"}
@@ -55,9 +55,9 @@ export const TrendingNearMe = () => {
         w="85%"
         columns={[2, 3, 7]}
       >
-        {db.map((ele) => {
+        {db.map((ele, index) => {
           return (
-            <Box width={130}>
+            <Box key={index} width={130}>
               <Image
                 borderRadius={8}
                 border={"1px solid lightgrey"}
@@ -70,10 +70,10 @@ export const TrendingNearMe = () => {
                 height="120px"
                 src={ele.img}
               />
-              <Text mt={4}>{ele.des}</Text>
-              <Text mt={2} color="grey">
+              <Box mt={4}>{ele.des}</Box>
+              <Box mt={2} color="grey">
                 {ele.mrp}
-              </Text>
+              </Box>
             </Box>
           );
         })}

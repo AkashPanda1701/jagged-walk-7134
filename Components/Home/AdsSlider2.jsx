@@ -1,4 +1,4 @@
-import { Container, Image } from "@chakra-ui/react";
+import { Container, Image,Box } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
 const Ads = [
@@ -37,7 +37,7 @@ const Ads = [
 ];
 const delay = 3000;
 
-export const Adslider2 = () => {
+export default function  Adslider2  ()  {
   const [index, setIndex] = useState(0);
   const timeoutRef = useRef(null);
 
@@ -65,12 +65,12 @@ export const Adslider2 = () => {
         className="slideshow2"
         maxW={{ base: "95%", md: "80%", lg: "100%" }}
       >
-        <div
+        <Box
           className="slideshowSlider2"
           style={{ transform: `translate3d(${-index * 15}%, 0, 0)` }}
         >
           {Ads.map((backgroundColor, index) => (
-            <div className="slide2" key={backgroundColor.id}>
+            <Box className="slide2" key={backgroundColor.id}>
               <Image
             //   p={10}
                 borderRadius="10px"
@@ -79,9 +79,9 @@ export const Adslider2 = () => {
                 src={backgroundColor.img}
                 w={{ base: "90%", md: "80%" }}
               />
-            </div>
+            </Box>
           ))}
-        </div>
+        </Box>
       </Container>
     </>
   );

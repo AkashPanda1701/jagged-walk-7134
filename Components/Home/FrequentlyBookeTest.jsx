@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/image";
-import { Heading, SimpleGrid,Box, Text, Flex } from "@chakra-ui/layout";
+import { Heading, SimpleGrid, Box, Flex } from "@chakra-ui/layout";
 
 const db = [
   {
@@ -36,59 +36,64 @@ const db = [
   },
 ];
 
-
-export const FrequentlyBookedLabTest=()=>{
-    return (
-      <>
-        <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
-          Frequently Booked Lab Test
-        </Heading>
-        <SimpleGrid
-          pt={10}
-          textAlign={"center"}
-          columnGap={10}
-          m="auto"
-          w="85%"
-          columns={[2, 3, 4]}
-        >
-          {db.map((ele) => {
-            return (
-              <Box cursor={'pointer'} padding={4} background={"#f1fafe"} width={60}>
-                <Box
-                  width={20}
-                  color="white"
-                  padding={1}
-                  borderRadius={4}
-                  background={"#f47779"}
-                >
-                  {ele.off}
-                </Box>
-                <Heading mt={3} as={"h5"} size="sm">
-                  {ele.title}
-                </Heading>
-                <Text mt={3} color={"grey"} fontSize={14}>
-                  {ele.des}
-                </Text>
-                <Flex mt={3}>
-                  <Box>
-                    <Heading
-                      color={"grey"}
-                      textDecoration={"line-through"}
-                      as={"hg"}
-                      size="md"
-                    >
-                      {ele.mrp}
-                    </Heading>
-                    <Heading as={"h5"} size="lg">
-                      {ele.offer}
-                    </Heading>
-                  </Box>
-                  <Image ml={7} width={24} src={ele.img} />
-                </Flex>
+export default function FrequentlyBookedLabTest  () {
+  return (
+    <>
+      <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
+        Frequently Booked Lab Test
+      </Heading>
+      <SimpleGrid
+        pt={10}
+       textAlign={"center"}
+        columnGap={10}
+        m="auto"
+        w="85%"
+        columns={[2, 3, 4]}
+      >
+        {db.map((ele, index) => {
+          return (
+            <Box
+              key={index}
+              cursor={"pointer"}
+              padding={4}
+              background={"#f1fafe"}
+              width={60}
+            >
+              <Box
+                width={20}
+                color="white"
+                padding={1}
+                borderRadius={4}
+                background={"#f47779"}
+              >
+                {ele.off}
               </Box>
-            );
-          })}
-        </SimpleGrid>
-      </>
-    );
-}
+              <Heading mt={3} as={"h5"} size="sm">
+                {ele.title}
+              </Heading>
+              <Box mt={3} color={"grey"} fontSize={14}>
+                {ele.des}
+              </Box>
+              <Flex mt={3}>
+                <Box>
+                  <Heading
+                    color={"grey"}
+                    textDecoration={"line-through"}
+                    as={"hg"}
+                    size="md"
+                  >
+                    {ele.mrp}
+                  </Heading>
+                  <Heading as={"h5"} size="lg">
+                    {ele.offer}
+                  </Heading>
+                </Box>
+                <Image ml={7} width={24} src={ele.img} />
+              </Flex>
+            </Box>
+          );
+        })}
+      </SimpleGrid>
+    </>
+  );
+};

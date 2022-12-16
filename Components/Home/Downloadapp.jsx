@@ -1,7 +1,7 @@
 import { Image } from "@chakra-ui/image";
 import { Box } from "@chakra-ui/layout";
 
-export const DownloadApp = () => {
+export  default function DownloadApp () {
   return (
     <>
       <Box p={10}>

@@ -1,4 +1,4 @@
-import { SimpleGrid,Image,Box,Heading } from "@chakra-ui/react"
+import { SimpleGrid,Image,Box,Heading, Grid } from "@chakra-ui/react"
 
 const db = [
   {
@@ -24,21 +24,23 @@ const db = [
   },
 ];
 
-export const LabTest=()=>{
+export default function LabTest(){
     return (
       <>
-        <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
-         Lab Test by Health Concern
-        </Heading>
-        <SimpleGrid pt={10} w="85%" m="auto" gap={9} columns={[3, 4, 4, 7]}>
-          {db.map((ele) => {
-            return (
-              <Box>
-                <Image src={ele.img} />
-              </Box>
-            );
-          })}
-        </SimpleGrid>
+   
+          <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
+            Lab Test by Health Concern
+          </Heading>
+          <SimpleGrid pt={10} w="85%" m="auto" gap={9} columns={[3, 4, 4, 7]}>
+            {db.map((ele,index) => {
+              return (
+                <Box key={index}>
+                  <Image src={ele.img} />
+                </Box>
+              );
+            })}
+          </SimpleGrid>
+      
       </>
     );
 

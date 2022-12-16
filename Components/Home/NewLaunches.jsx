@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/image";
-import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/layout"
+import { Box, Heading, SimpleGrid } from "@chakra-ui/layout";
 const db = [
   {
     img: "https://cdn01.pharmeasy.in/dam/products_otc/J64776/prohance-hp-high-protein-sugar-free-powder-vanilla-400g-2-1641794045.jpg?dim=1440x0",
@@ -38,46 +38,46 @@ const db = [
   },
 ];
 
-export const NewLaunches=()=>{
-    return (
-      <>
-        <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
-          New Launches
-        </Heading>
-        <Text ml={20} mt={3} color={"grey"}>
-          New wellness range just for you!
-        </Text>
-        <SimpleGrid
-         pt={10}
-          textAlign={"center"}
-          columnGap={10}
-          m="auto"
-          w="85%"
-          columns={[2, 3, 7]}
-        >
-          {db.map((ele) => {
-            return (
-              <Box width={130}>
-                <Image
-                  borderRadius={8}
-                  border={"1px solid lightgrey"}
-                  p={5}
-                  _hover={{
-                    boxShadow:
-                      "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;",
-                  }}
-                  width={"auto"}
-                  height="120px"
-                  src={ele.img}
-                />
-                <Text mt={4}>{ele.des}</Text>
-                <Text mt={2} color="grey">
-                  {ele.mrp}
-                </Text>
+export default function NewLaunches  ()  {
+  return (
+    <>
+      <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
+        New Launches
+      </Heading>
+      <Box ml={20} mt={3} color={"grey"}>
+        New wellness range just for you!
+      </Box>
+      <SimpleGrid
+        pt={10}
+        textAlign={"center"}
+        columnGap={10}
+        m="auto"
+        w="85%"
+        columns={[2, 3, 7]}
+      >
+        {db.map((ele, index) => {
+          return (
+            <Box key={index} width={130}>
+              <Image
+                borderRadius={8}
+                border={"1px solid lightgrey"}
+                p={5}
+                _hover={{
+                  boxShadow:
+                    "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;",
+                }}
+                width={"auto"}
+                height="120px"
+                src={ele.img}
+              />
+              <Box mt={4}>{ele.des}</Box>
+              <Box mt={2} color="grey">
+                {ele.mrp}
               </Box>
-            );
-          })}
-        </SimpleGrid>
-      </>
-    );
-}
+            </Box>
+          );
+        })}
+      </SimpleGrid>
+    </>
+  );
+};

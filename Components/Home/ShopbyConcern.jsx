@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/image";
-import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/layout";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/layout";
 const db = [
   {
     img: "https://cms-contents.pharmeasy.in/homepage_top_categories_images/923a665cc6f-Skin_care.png?dim=128x0",
@@ -31,44 +31,44 @@ const db = [
   },
 ];
 
-export const ShopByConcern=()=>{
-    return (
-      <>
-        <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={10}>
-          Shop by Concern
-        </Heading>
-        <Text ml="83px" mt={3} color={"grey"}>
-          Products are handpicked by experts!
-        </Text>
-        <SimpleGrid
-          pt={10}
-          textAlign={"center"}
-          columnGap={10}
-          m="auto"
-          w="85%"
-          columns={[2, 3,4, 7]}
-        >
-          {db.map((ele) => {
-            return (
-              <Box width={130}>
-                <Image
-                    p={5}
-                  _hover={{
-                    boxShadow:
-                      "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;",
-                  }}
-                  borderRadius={8}
-                  width={130}
-                  src={ele.img}
-                />
+export default function  ShopByConcern () {
+  return (
+    <>
+      <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={10}>
+        Shop by Concern
+      </Heading>
+      <Box ml="83px" mt={3} color={"grey"}>
+        Products are handpicked by experts!
+      </Box>
+      <SimpleGrid
+        pt={10}
+        textAlign={"center"}
+        columnGap={10}
+        m="auto"
+        w="85%"
+        columns={[2, 3, 4, 7]}
+      >
+        {db.map((ele, index) => {
+          return (
+            <Box key={index} width={130}>
+              <Image
+                p={5}
+                _hover={{
+                  boxShadow:
+                    "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;",
+                }}
+                borderRadius={8}
+                width={130}
+                src={ele.img}
+              />
 
-                <Text mt={4} textAlign={"center"}>
-                  {ele.title}
-                </Text>
+              <Box mt={4} textAlign={"center"}>
+                {ele.title}
               </Box>
-            );
-          })}
-        </SimpleGrid>
-      </>
-    );
-}
+            </Box>
+          );
+        })}
+      </SimpleGrid>
+    </>
+  );
+};
