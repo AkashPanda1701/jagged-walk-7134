@@ -1,8 +1,11 @@
+import Admin from "../../Components/Admin/Admin"
+
 function admin(){
     return (
-        <div>
-            <h1>Admin</h1>
-        </div>
+        <>
+         
+            
+        </>
     )
 }
 

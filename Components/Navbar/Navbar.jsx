@@ -15,7 +15,12 @@ import {
   useBreakpointValue,
   useDisclosure,
   Image,
-  Heading
+  Heading,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -40,7 +45,7 @@ export default function Navbar() {
           //   color={useColorModeValue("gray.600", "white")}
           minH={"60px"}
           py={{ base: 2 }}
-          px={{ base: 2}}
+          px={{ base: 2 }}
           //   borderBottom={2}
           borderStyle={"solid"}
           borderBottom={"1px solid lightgrey"}
@@ -65,7 +70,7 @@ export default function Navbar() {
             />
           </Flex>
           <Flex
-            ml={{base:"0px",md:'40px'}}
+            ml={{ base: "0px", md: "40px" }}
             flex={{ base: 1 }}
             justify={{ base: "center", md: "start" }}
             gap={3}
@@ -88,12 +93,12 @@ export default function Navbar() {
           </Flex>
 
           <Stack
-          ml={10}
+            ml={10}
             flex={{ base: 1, md: 0 }}
             justify={"flex-end"}
             direction={"row"}
             spacing={{ base: 0, md: 6 }}
-            pr={{base:"0px",md:"60px"}}
+            pr={{ base: "0px", md: "60px" }}
           >
             <Box display="flex" gap={{ base: 0, md: 3 }}>
               <Text mt="5px">
@@ -134,12 +139,12 @@ export default function Navbar() {
         </Collapse>
       </Box>
       <Box
-      w="100%"
+        w="100%"
         borderBottom="1px solid lightgrey"
         display={{ base: "none", md: "flex" }}
       >
         <Flex
-        //   ml={{ base: "5px", sm: "180px", lg: "380px" }}
+          //   ml={{ base: "5px", sm: "180px", lg: "380px" }}
           className="categoriesnav"
         >
           <Heading fontWeight={500} size="xs">
@@ -160,22 +165,85 @@ export default function Navbar() {
               >
                 Health care
               </MenuButton>
-              <MenuList>
-                <Link>
-                  <MenuItem>Health care</MenuItem>
-                </Link>
-                <Link>
-                  <MenuItem>Personal care</MenuItem>
-                </Link>
-                <Link>
-                  <MenuItem>Skin care</MenuItem>
-                </Link>
-                <Link>
-                  <MenuItem>Home care</MenuItem>
-                </Link>
-                <Link>
-                  <MenuItem>Health Food & Drinks</MenuItem>
-                </Link>
+              <MenuList ml="-300px">
+                <Box p={10} w="850px" m="auto">
+                  <Tabs>
+                    <TabList>
+                      <Tab>Home care</Tab>
+                      <Tab>Skin care</Tab>
+                      <Tab>Personal care</Tab>
+                      <Tab>Health care</Tab>
+                      <Tab>Health Food & Drinks</Tab>
+                    </TabList>
+                    <TabPanels>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>Product 1</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Product 1</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Product 1</Box>
+                        </Link>
+                      </TabPanel>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>
+                            Fair And Lovely Advance Multivitamin Cream 25 Gm
+                          </Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>
+                            A2lite Skin Lightening And Brightening Cream - 20 Gm
+                          </Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Episoft Cleansing Lotion 125ml</Box>
+                        </Link>
+                      </TabPanel>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>Sensodent K Paste 100gm</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Senquel F Tooth Paste 100gm</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>
+                            Man code Beard Wash & Conditioner, 200ml
+                          </Box>
+                        </Link>
+                      </TabPanel>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>
+                            Accu-Chek Instant S Glucometer With 10 Strips
+                          </Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Beato Blood Glucose Test Strip</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Pharmeasy Digital Thermometer</Box>
+                        </Link>
+                      </TabPanel>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>Everherb Karela Jamun Juice</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>
+                            B-Protin Chocolate Nutrition Supplement Bottle
+                          </Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>"Protinex Vanilla Nutrition Drink</Box>
+                        </Link>
+                      </TabPanel>
+                    </TabPanels>
+                  </Tabs>
+                </Box>
               </MenuList>
             </Menu>
           </Heading>
