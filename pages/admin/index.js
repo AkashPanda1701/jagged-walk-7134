@@ -1,10 +1,12 @@
-import Admin from "../../Components/Admin/Admin"
+import SidebarWithHeader from "../../Components/Admin/Sidebar"
+import Display from "../../Components/Admin/Display"
+
 
 function admin(){
     return (
         <>
-         
-            
+
+           
         </>
     )
 }
