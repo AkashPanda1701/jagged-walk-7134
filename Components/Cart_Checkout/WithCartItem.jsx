@@ -5,23 +5,31 @@ import {
     GridItem,
     Heading,
     Image,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
     Select,
+    useDisclosure,
     useToast,
 } from "@chakra-ui/react";
-import Head from "next/head";
 import styles from "../../pages/carts/Css/cart.module.css";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteCart } from "../../redux/cart/action";
+import { deleteCart, getCart, patchCart } from "../../redux/cart/action";
 
-export default function WithCartItem({ item }) {
-    // console.log('item:', item)
+export default function WithCartItem({ item, handleQuantity }) {
+    // console.log('item:', item.price)
+    const [quantity, setQuantity] = useState(item.quantity);
     const [day, setDay] = useState("");
     const [month, setMonth] = useState("");
     const toast = useToast();
     const dispatch = useDispatch();
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const handleDelete = () => {
         console.log("Item get Delete");
@@ -29,18 +37,20 @@ export default function WithCartItem({ item }) {
         toast({
             title: "Item Delete Successfully",
             status: "error",
-            duration: 9000,
+            duration: 2000,
             isClosable: true,
             position: "top",
         });
     };
 
-    const handleQuantity = (e) => {
-        console.log(e.target.value);
-    };
     useEffect(() => {
         DeliveryDate();
-    }, []);
+        // console.log("quantity:", quantity);
+        // itemUpdate
+        // console.log("quantity:", quantity);
+        dispatch(patchCart({ item, quantity }))
+        handleQuantity(quantity);   
+    }, [quantity]);
 
     function DeliveryDate() {
         const months = [
@@ -92,9 +102,10 @@ export default function WithCartItem({ item }) {
         setDay(day);
     }
 
+
     return (
         <Grid
-        
+
             h={{ base: "350px", sm: "350px", md: "200px", lg: "200px" }}
             templateRows="repeat(2, 1fr)"
             templateColumns="repeat(10, 1fr)"
@@ -114,25 +125,73 @@ export default function WithCartItem({ item }) {
                     <Heading maxW="401px" as="h1">
                         {item.title}
                     </Heading>
-                    <button onClick={handleDelete}>
+                    <button onClick={onOpen}>
                         <AiOutlineDelete color="red" />
                     </button>
+                    <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent>
+                            <ModalHeader>Remove from Cart?</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                                <Grid
+
+                                    h="auto"
+                                    templateRows="repeat(1, 1fr)"
+                                    templateColumns="repeat(10, 1fr)"
+                                    gap={4}
+                                    className={styles.individualItem}
+                                >
+                                    <GridItem colSpan={{ base: 10, sm: 10, md: 3 }}>
+                                        <Image
+                                            maxW="105px"
+                                            h="105px"
+                                            src={item.images[0]}
+                                            alt=""
+                                        />
+                                    </GridItem>
+                                    <GridItem colSpan={{ base: 10, sm: 10, md: 7 }}>
+                                        <Box>
+                                            <Heading maxW="401px" as="h1">
+                                                {item.title}
+                                            </Heading>
+                                        </Box>
+                                        <Box className={styles.priceMRP}>
+                                            <Box w="256px" maxW="300px">
+                                                <Heading as="h1">
+                                                    MRP <span>{`₹${(item.mrp).toFixed(2)}*`}</span>
+                                                </Heading>
+                                                <Heading as="h1">{`₹${item.price}*`}</Heading>
+                                                <Heading as="h1">{`${item.discount} OFF`}</Heading>
+                                            </Box>
+                                        </Box>
+                                    </GridItem>
+                                </Grid>
+                                <ModalFooter mt="-25px">
+                                    <Button onClick={handleDelete} variant='outline'>Remove</Button>
+                                    <Button ml="10px" variant='outline' colorScheme='teal' mr={3} onClick={onClose}>
+                                        Close
+                                    </Button>
+                                </ModalFooter>
+                            </ModalBody>
+
+
+                        </ModalContent>
+                    </Modal>
+
                 </Box>
                 <Box className={styles.priceMRP}>
                     <Box w="256px" maxW="300px">
                         <Heading as="h1">
                             MRP <span>{`₹${(item.mrp).toFixed(2)}*`}</span>
                         </Heading>
-                        <Heading as="h1">{`₹${item.price}.00*`}</Heading>
+                        <Heading as="h1">{`₹${item.price}*`}</Heading>
                         <Heading as="h1">{`${item.discount} OFF`}</Heading>
                     </Box>
                     <Box>
-                        <Select onChange={handleQuantity} placeholder="Oty">
-                            <option value="1">Oty 1</option>
-                            <option value="2">Oty 2</option>
-                            <option value="3">Oty 3</option>
-                            <option value="4">Oty 4</option>
-                        </Select>
+                        <Button disabled={quantity === 1} onClick={() => (setQuantity(quantity - 1))}>-</Button>
+                        <Button>{quantity}</Button>
+                        <Button disabled={quantity >= 6} onClick={() => (setQuantity(quantity + 1))}>+</Button>
                     </Box>
                 </Box>
                 <Box>

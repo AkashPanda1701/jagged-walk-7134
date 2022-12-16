@@ -1,17 +1,18 @@
 import { Box, Heading } from "@chakra-ui/react";
 import styles from "../../pages/carts/Css/cart.module.css";
-
+import stylesP from "../../pages/carts/Css/payment-method.module.css"
 
 export default function BillSummary({ data, itemTotal, MRP }) {
+    console.log('data:', data)
 
     itemTotal = Number(itemTotal).toFixed(2);
     const AmountToBePaid = (Number(itemTotal) + 75 + 25).toFixed(2);
-    localStorage.setItem("totalPrice", AmountToBePaid);
+
 
     return (
         <Box h="auto" className={styles.billSummary}>
             <Heading as="h1">Bill Summary</Heading>
-            <Box>
+            <Box className={stylesP.paymentMethodCss}>
                 <Box mt="20px">
                     <Heading as="h1">Cart Value</Heading>
                     <Heading as="h1" className={styles.charges}>
