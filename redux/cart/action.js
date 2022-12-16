@@ -41,6 +41,7 @@ export const deleteCart = (payload) => async (dispatch) => {
 };
 
 export const patchCart = ({ item, quantity }) => async (dispatch) => {
+    console.log('item:', item);
     const payload = {
         "quantity": quantity
     }
