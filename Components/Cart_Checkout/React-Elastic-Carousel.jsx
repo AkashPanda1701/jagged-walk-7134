@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Carousel from "react-elastic-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../pages/carts/Css/react-elastic-carousel.module.css";
-import { addItemCart, getAllItem } from "../../redux/cart/action";
+import { addItemCart } from "../../redux/cart/action";
 import SkeletonCarousel from "./SkeletonCarousel";
 
 const breakPoints = [
@@ -15,8 +15,8 @@ const breakPoints = [
 ];
 
 export default function ReactElasticCarousel({ heading }) {
-    const { allData, loading, error } = useSelector((store) => store.cart);
-    // console.log('allData for Carousel:', allData);
+
+    const { allData, loading, } = useSelector((store) => store.cart);
     const toast = useToast();
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ export default function ReactElasticCarousel({ heading }) {
         toast({
             title: "Item Added in Cart Successfully",
             status: "success",
-            duration: 9000,
+            duration: 2000,
             isClosable: true,
             position: "top",
         });
@@ -40,7 +40,7 @@ export default function ReactElasticCarousel({ heading }) {
             </Box>
             <Carousel breakPoints={breakPoints}>
                 {allData &&
-                    allData.map((item,index) => (
+                    allData.map((item, index) => (
                         <Box key={index}>
                             {" "}
                             {loading ? (
@@ -55,11 +55,11 @@ export default function ReactElasticCarousel({ heading }) {
                                             Accu-Chek Active Glucometer Test Strips Strip Of 25
                                         </Heading>
                                         <Heading as="h2">
-                                            MRP <span>₹{325}</span>
+                                            MRP <span>₹{item.mrp}</span>
                                         </Heading>
                                         <Heading as="h3">
-                                            <span>₹{"179"}</span>
-                                            <span>{"45"}% OFF</span>
+                                            <span>₹{item.price}</span>
+                                            <span>{item.discount}% OFF</span>
                                         </Heading>
                                     </Box>
                                     <Box>

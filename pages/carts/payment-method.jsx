@@ -44,8 +44,8 @@ export default function paymentMethod() {
     let Price = 0;
     let MRP = 0;
     for (let i = 0; i < data.length; i++) {
-      Price += data[i].price;
-      MRP += data[i].mrp;
+      Price += Number(((data[i].price) * (data[i].quantity)).toFixed(2));
+      MRP += Number(((data[i].mrp) * (data[i].quantity)).toFixed(2));
     }
     let per = (((MRP - Price) / MRP) * 100).toFixed(2);
     setItemTotal(Price);
@@ -59,7 +59,7 @@ export default function paymentMethod() {
     }
     // console.log('saving:', saving)
     // console.log("itemTotal:", itemTotal);
-  }, [itemTotal, flag, saving, discount, MRP]);
+  }, []);
 
   return (
     <Box maxW="1349px" className={styles.paymentMethod}>
@@ -411,11 +411,38 @@ export default function paymentMethod() {
             className={styles.cartTotal}
             bg=""
           >
-            {/* Billing Summary */}
-            {data.length > 0 ? (
-              <BillSummary data={data} itemTotal={itemTotal} MRP={MRP} />
-            ) : null}
-            {/* Billing Summary */}
+            <Box>
+              {/* Billing Summary */}
+              {data.length > 0 ? (
+                <BillSummary data={data} itemTotal={itemTotal} MRP={MRP} />
+              ) : null}
+              {/* Billing Summary */}
+
+            </Box>
+            {/* details of address */}
+            <Box>
+              <Heading>Others Details</Heading>
+              <Box>
+                <Text>Shipping Address</Text>
+                <Box>
+                  {/* deliverTo */}
+                  {/* <Text>YashWant Colony , Gm Motors</Text> */}
+                  {/* streetName */}
+                  {/* <Text>nagpur road</Text> */}
+                  {/* pinCode */}
+                  {/* <Text>442001</Text> */}
+                  {/* MoobileNO */}
+                  {/* <Text>+91-{8668794790}</Text> */}
+                  {/* addressType */}
+                  {/* <Text>Address Type:{"Home"}</Text> */}
+                </Box>
+              </Box>
+              <Box>
+                <Text>Patient Details</Text>
+                <Text>Ashish Kohad</Text>
+              </Box>
+            </Box>
+            {/* details of address */}
           </GridItem>
         </Grid>
       </Box>

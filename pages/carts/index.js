@@ -28,19 +28,20 @@ import ReactElasticCarousel from "../../Components/Cart_Checkout/React-Elastic-C
 import ApplyCoupons from "../../Components/Cart_Checkout/ApplyCoupons";
 
 export default function Cart() {
-    const [flag, setFlag] = useState(false);
+    const [flag, setFlag] = useState(0);
     const [itemTotal, setItemTotal] = useState(0);
     const [saving, setSaving] = useState(0);
     const [MRP, setMRP] = useState(0);
     const [discount, setDiscount] = useState(0);
 
     const dispatch = useDispatch();
-    const { data, loading, error, allData } = useSelector((store) => store.cart);
+    const { data, loading, error } = useSelector((store) => store.cart);
+    // console.log('loading, error:', loading, error)
 
     useEffect(() => {
         dispatch(getCart());
         dispatch(getAllItem());
-    }, []);
+    }, [flag]);
 
     let count = 1;
     useEffect(() => {
@@ -48,8 +49,8 @@ export default function Cart() {
         let Price = 0;
         let MRP = 0;
         for (let i = 0; i < data.length; i++) {
-            Price += Number(data[i].price.toFixed(2));
-            MRP += data[i].mrp;
+            Price += Number(((data[i].price) * (data[i].quantity)).toFixed(2));
+            MRP += Number(((data[i].mrp) * (data[i].quantity)).toFixed(2));
         }
         let per = (((MRP - Price) / MRP) * 100).toFixed(2);
         setItemTotal(Price.toFixed(2));
@@ -57,13 +58,14 @@ export default function Cart() {
         setSaving((MRP - Price).toFixed(2));
         setDiscount(per);
 
-        // if (itemTotal === 0 || saving === 0 || MRP === 0 || discount === 0) {
-        //     setFlag(!flag);
-        //     count++;
-        // }
-        // console.log('saving:', saving)
-        console.log("itemTotal Payment Method:", itemTotal);
-    }, [flag, loading, error]);
+        // console.log("itemTotal Payment Method:", itemTotal);
+    }, [loading, error]);
+
+    const handleQuantity = (quantity) => {
+        console.log('quantity in Cart from WithCartItem:', quantity)
+        setFlag(quantity)
+        console.log(flag);
+    }
 
     return (
         <Box maxW="1349px" className={styles.cart}>
@@ -106,7 +108,7 @@ export default function Cart() {
                                 {data &&
                                     data.map((item, index) => (
                                         <div key={index}>
-                                            {loading ? <LoadingItem /> : <WithCartItem item={item} />}
+                                            {loading ? <LoadingItem /> : <WithCartItem handleQuantity={handleQuantity} item={item} />}
                                         </div>
                                     ))}
                             </Box>
@@ -193,9 +195,11 @@ export default function Cart() {
                     heading={"Customers who bought above items also bought"}
                 />
             ) : null}
+
             {data.length > 0 ? (
                 <ReactElasticCarousel heading={"Previously Browsed Items"} />
             ) : null}
+
             <Box className={styles.termCondition} maxW="1248px" m="auto" mt="50px">
                 <List spacing={3}>
                     <ListItem>

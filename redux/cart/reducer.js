@@ -11,9 +11,9 @@ import {
     GET_CART_ERROR,
     GET_CART_LOADING,
     GET_CART_SUCCESS,
-    POST_CART_ERROR,
-    POST_CART_LOADING,
-    POST_CART_SUCCESS,
+    PATCH_CART_ERROR,
+    PATCH_CART_LOADING,
+    PATCH_CART_SUCCESS,
 } from "./type";
 
 // Don't make any changes to this file.
@@ -50,15 +50,15 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             };
         }
 
-        case POST_CART_LOADING: {
-            // console.log("post loading");
+        case PATCH_CART_LOADING: {
+            console.log("post loading");
             return {
                 ...state,
                 loading: true,
                 error: false,
             };
         }
-        case POST_CART_SUCCESS: {
+        case PATCH_CART_SUCCESS: {
             return {
                 ...state,
                 data: payload,
@@ -66,7 +66,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
                 error: false,
             };
         }
-        case POST_CART_ERROR: {
+        case PATCH_CART_ERROR: {
             return {
                 ...state,
                 loading: false,
