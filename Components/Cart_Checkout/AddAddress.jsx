@@ -19,12 +19,14 @@ import {
     Text,
     useDisclosure,
 } from "@chakra-ui/react";
-import axios from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styles from "../../pages/carts/Css/cart.module.css";
+import { addAddress } from "../../redux/cart/action";
 
 const initialState = {
+    patientName: "",
     deliverTo: "",
     mobileNo: "",
     pinCode: "",
@@ -39,6 +41,7 @@ export default function AddAddress() {
     const [address, setAddress] = useState(initialState);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const { value, name } = e.target;
@@ -58,18 +61,12 @@ export default function AddAddress() {
     };
     const handleAddress = async () => {
         console.log("Address Details:", address);
-        const payload = address;
-        try {
-            let res = await axios.post(`http://localhost:2707/address`, payload);
-        } catch (e) {
-            console.log(e.message);
-        }
+        dispatch(addAddress(address));
         setAddress(initialState);
     };
 
-    const { deliverTo, mobileNo, pinCode, houseNumber, streetName, addressType } =
+    const { patientName, deliverTo, mobileNo, pinCode, houseNumber, streetName, addressType } =
         address;
-    console.log("disable:", disable);
     return (
         <>
             <Button
@@ -97,6 +94,15 @@ export default function AddAddress() {
                     </DrawerHeader>
 
                     <DrawerBody className={styles.addressContent}>
+                        <FormControl isRequired>
+                            <FormLabel>Patient Name</FormLabel>
+                            <Input
+                                placeholder="Patient Name"
+                                value={patientName}
+                                name="patientName"
+                                onChange={handleChange}
+                            />
+                        </FormControl>
                         <FormControl isRequired>
                             <FormLabel> Deliver to</FormLabel>
                             <Input
@@ -179,7 +185,7 @@ export default function AddAddress() {
                             disabled={!disable ? true : false}
                         >
 
-                            <Link href="/carts/payment-method"> Save and Continue</Link>
+                            <Link href=""> Save and Continue</Link>
                         </Button>
                     </DrawerFooter>
                 </DrawerContent>
