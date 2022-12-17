@@ -23,7 +23,8 @@ async function updateLabcartItems(req, res) {
         if (LabcartItem && LabcartItem.userId.toString() === userId) {
             
             const {  patients } = req.body;
-            const labcart = await Labcart.findByIdAndUpdate(id, { userId,testId:LabcartItem.testId, patients }, { new: true }).populate('testId').select('-userId');
+            const labcart = await Labcart.findByIdAndUpdate(id, { userId,testId:LabcartItem.testId, patients ,appointmentDate:LabcartItem.appointmentDate,bookedDate:LabcartItem.bookedDate},
+                 { new: true }).populate('testId').select('-userId');
             return res.status(200).send({ message: 'Labcart updated successfully', updatedItem: labcart });
     
         }

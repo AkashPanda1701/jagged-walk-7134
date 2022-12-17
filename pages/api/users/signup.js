@@ -25,7 +25,7 @@ async function usersignup(req, res) {
         console.log('user: ', user);
         
         if (user) {
-            const token = jwt.sign({ _id: user._id,name:user.name,role:user.role }, 'abcd', { expiresIn: '1d' });
+            const token = jwt.sign({ _id: user._id,name:user.name,role:user.role }, 'abcd', { expiresIn: '7days' });
             
             return res.status(200).send({ message: 'Login successful' , token,user : user.name});
         }
@@ -38,7 +38,7 @@ async function usersignup(req, res) {
 
         
         const newUser=await User.create({ name,email, password ,role,phone});
-        const token = jwt.sign({ _id: newUser._id,name:newUser.name,role:newUser.role }, 'abcd', { expiresIn: '1d' });
+        const token = jwt.sign({ _id: newUser._id,name:newUser.name,role:newUser.role }, 'abcd', { expiresIn: '7days' });
         sendMail(email,  name);
         return res.status(201).send({ message : 'User Registered Successfully'  , token,user : newUser.name});
         

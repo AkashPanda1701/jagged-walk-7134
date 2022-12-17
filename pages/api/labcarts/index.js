@@ -1,4 +1,4 @@
-
+import User from "../../../models/user.model";
 import Labcart from "../../../models/labcart.model";
 import connectDB from "../../../middleware/connectDB";
 import authMiddleware from "../../../middleware/authMiddleware";
@@ -10,6 +10,9 @@ if(req.method === "GET") {
 }
 if(req.method === "POST") {
     return  authMiddleware(addLabcartItem)(req, res)
+}
+if(req.method === "DELETE") {
+    return  authMiddleware(deleteLabcartItem)(req, res)
 }
 }
 
@@ -49,5 +52,17 @@ async function addLabcartItem(req, res) {
     }
 
 }
+
+async function deleteLabcartItem(req, res) {
+    const userId = req.userId
+    try {
+        await Labcart.deleteMany({userId});
+        return res.status(200).send({ message:`All Tests Booked from the Labcart` });
+    } catch (error) {
+        return res.status(404).send({ message: 'Something went wrong' });
+    }
+
+}
+
 
 export default LabcartItems;
