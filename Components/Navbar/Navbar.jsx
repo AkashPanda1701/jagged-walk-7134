@@ -96,7 +96,7 @@ export default function Navbar() {
                 <Image
                   h="58px"
                   w="165px"
-                  src="https://user-images.githubusercontent.com/97351159/207395646-47cbbbb8-e5d4-45c0-a42b-d62ad5123a3f.png"
+                  src="https://user-images.githubusercontent.com/97351159/208255522-22126415-4bf1-422b-9c54-d637ae7ecf91.png"
                 />
               </Link>
             </Text>
