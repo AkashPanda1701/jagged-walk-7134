@@ -94,7 +94,7 @@ export default function Products(params) {
 
           <Divider border='1px solid black' bg={'blackAlpha.200'} />
 
-          <Box h='auto' w='95%' m='3' alignItems='left'>
+          {/* <Box h='auto' w='95%' m='3' alignItems='left'>
             <Heading as={"h5"} size="sm" mb='5' color='gray.600' mt='5'>Sub Category</Heading>
             <RadioGroup onChange={setValue} value={value}>
               <Stack direction='column' mb='5'>
@@ -109,7 +109,7 @@ export default function Products(params) {
                 <Flex color='gray'>Hands & Feet Care <Radio value='9' mt='1.5' ml='8.5vh' border='3px solid black'></Radio></Flex>
               </Stack>
             </RadioGroup>
-          </Box>
+          </Box> */}
 
           <Divider border='1px solid black' bg={'blackAlpha.200'} maxW='sm' />
 
