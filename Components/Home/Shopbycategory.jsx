@@ -101,7 +101,7 @@ export default function ShopByCategory() {
             </Box>
           </GridItem>
           <GridItem>
-            <Box>
+            <Box width={130}>
               <Image
                 borderRadius={8}
                 border={"1px solid lightgrey"}
@@ -117,7 +117,7 @@ export default function ShopByCategory() {
             </Box>
           </GridItem>
           <GridItem>
-            <Box>
+            <Box width={130}>
               <Image
                 borderRadius={8}
                 border={"1px solid lightgrey"}
@@ -136,7 +136,7 @@ export default function ShopByCategory() {
           </GridItem>
 
           <GridItem>
-            <Box>
+            <Box width={130}>
               <Image
                 borderRadius={8}
                 border={"1px solid lightgrey"}
@@ -152,7 +152,7 @@ export default function ShopByCategory() {
             </Box>
           </GridItem>
           <GridItem>
-            <Box>
+            <Box width={130}>
               <Image
                 borderRadius={8}
                 border={"1px solid lightgrey"}
@@ -168,7 +168,7 @@ export default function ShopByCategory() {
             </Box>
           </GridItem>
           <GridItem>
-            <Box>
+            <Box width={130}>
               <Image
                 borderRadius={8}
                 border={"1px solid lightgrey"}
@@ -184,7 +184,7 @@ export default function ShopByCategory() {
             </Box>
           </GridItem>
           <GridItem>
-            <Box>
+            <Box width={130}>
               <Image
                 borderRadius={8}
                 border={"1px solid lightgrey"}
