@@ -94,11 +94,11 @@ export default function Footer () {
             </Box>
           </SimpleGrid>
         </Box>
-        <Box w="80%" ml={"110px"}>
+        <Box w="80%" >
           <Heading as="h6" size="md">
             Our Payment Partners
           </Heading>
-          <Flex pt={"20px"} gap={"20px"}>
+          <Flex w="60%" pt={"20px"} gap={"20px"}>
             <Box>
               <Image
                 w={"35px"}

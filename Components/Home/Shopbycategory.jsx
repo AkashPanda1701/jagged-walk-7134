@@ -70,17 +70,20 @@ export default function ShopByCategory() {
       <Box
         display={{ base: "-ms-inline-grid", md: "inline-grid", lg: "none" }}
         pt={10}
-        pl={{ base: "75px" }}
+        pl={{ base: "30px" }}
         m="auto"
-        w="95%"
+        w="100%"
       >
         <Grid
           fontSize={15}
           mt={10}
+          w="95%"
           m="auto"
+          gap={15}
           templateColumns={{
             base: "repeat(2, 1fr)",
-            sm: "repeat(4, 1fr)",
+            sm: "repeat(3, 1fr)",
+            md: "repeat(3, 1fr)",
             lg: "repeat(7, 1fr)",
           }}
         >

@@ -1,5 +1,8 @@
 import { Image } from "@chakra-ui/image";
-import { Box, Heading, SimpleGrid } from "@chakra-ui/layout";
+import { Box, Heading, SimpleGrid , useBreakpointValue,IconButton, } from "@chakra-ui/react";
+import { useState } from "react";
+import Slider from "react-slick";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 const db = [
   {
     img: "https://cdn01.pharmeasy.in/dam/products_otc/J64776/prohance-hp-high-protein-sugar-free-powder-vanilla-400g-2-1641794045.jpg?dim=1440x0",
@@ -39,6 +42,7 @@ const db = [
 ];
 
 export default function NewLaunches  ()  {
+
   return (
     <>
       <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
@@ -53,7 +57,7 @@ export default function NewLaunches  ()  {
         columnGap={10}
         m="auto"
         w="85%"
-        columns={[2, 3, 7]}
+        columns={[2, 3, 4, 7]}
       >
         {db.map((ele, index) => {
           return (

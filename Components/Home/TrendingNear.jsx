@@ -53,7 +53,7 @@ export default function TrendingNearMe () {
         columnGap={10}
         m="auto"
         w="85%"
-        columns={[2, 3, 7]}
+        columns={[2, 3,4, 7]}
       >
         {db.map((ele, index) => {
           return (

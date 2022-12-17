@@ -46,9 +46,10 @@ export default function FrequentlyBookedLabTest  () {
         pt={10}
        textAlign={"center"}
         columnGap={10}
+        rowGap={5}
         m="auto"
         w="85%"
-        columns={[2, 3, 4]}
+        columns={[1,2, 2, 4]}
       >
         {db.map((ele, index) => {
           return (

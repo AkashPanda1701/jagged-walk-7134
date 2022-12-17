@@ -66,11 +66,11 @@ export default function LabTest() {
         display={{ base: "inline-grid", md: "inline-grid", lg: "none" }}
         pt={10}
        
-        pl={{base:"75px"}}
-        w="95%"
+     pl={10}
+        w="90%"
       m={'auto'}
         gap={9}
-        columns={[3, 4, 4, 7]}
+        columns={[2, 3, 4, 7]}
       >
         {db.map((ele, index) => {
           return (

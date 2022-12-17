@@ -7,11 +7,15 @@ const Ads = [
     id: 1,
   },
   {
-    img: "https://cdn01.pharmeasy.in/dam/banner/banner/51e34800f6d-HURRAY.jpg",
+    img: "https://cdn01.pharmeasy.in/dam/banner/banner/1ef60ed33e9-VicksWinterBannerfinal.jpg",
     id: 2,
   },
   {
-    img: "https://cdn01.pharmeasy.in/dam/banner/banner/d37aa6a886e-Flash-Sale_634x274.jpg",
+    img: "https://cdn01.pharmeasy.in/dam/banner/banner/048facc8065-634x274a.jpg",
+    id: 3,
+  },
+  {
+    img: "https://cdn01.pharmeasy.in/dam/banner/banner/a7e04988fcc-YAYY550.jpg",
     id: 4,
   },
 ];
@@ -43,11 +47,11 @@ export default function Adslider  ()  {
       <Container
         mt={20}
         className="slideshow"
-        maxW={{ base: "95%", md: "80%", lg: "100%" }}
+        maxW={{ base: "100%", md: "90%", lg: "100%" }}
       >
         <Box
           className="slideshowSlider"
-          style={{ transform: `translate3d(${-index * 40}%, 0, 0)` }}
+          style={{ transform: `translate3d(${-index * 30}%, 0, 0)` }}
         >
           {Ads.map((backgroundColor, index) => (
             <Box className="slide" key={index}>
