@@ -5,9 +5,9 @@ export default function Footer () {
   return (
     <>
       <Box h="60px"></Box>
-      <Box pt={10} m="auto" w="90%" bg="#eef4ff" className="footerdiv">
+      <Box pt={10} m="auto" w="95%" bg="#eef4ff" className="footerdiv">
         <Box className="footercategories">
-          <SimpleGrid p={5} m="auto" w="86%" columns={[2, 2, 3, 4]}>
+          <SimpleGrid columnGap={10} p={5} m="auto" w="86%" columns={[2, 2, 3, 4]}>
             <Box fontSize={"14px"}>
               <Heading as="h6" size="sm">
                 Company
