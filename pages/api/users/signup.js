@@ -1,4 +1,3 @@
-
 import User from "../../../models/user.model";
 import connectDB from "../../../middleware/connectDB";
 import jwt from 'jsonwebtoken';

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   Drawer,
   DrawerBody,
@@ -19,6 +20,7 @@ import {
   Box,
   Img,
   useToast,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import Link from "next/link";
@@ -38,22 +40,24 @@ import {
 } from "../../redux/auth/action";
 
 import Timer from "./Timer";
-function Login(prop) {
+import Form from "./Form";
+function Login() {
   const dispatch = useDispatch();
   const auth = getAuth(app);
-  const [Number, setNumber] = useState("");
+  const [Number, setNumber] = useState("8532083765");
   const [Authinicated, setAuthinicated] = useState(false);
   const [otpSented, setOtpSented] = useState(true);
   const [Otp, setOtp] = useState("");
   const [otpVerification, setOtpVerification] =
     useState(false);
+  const [loading1, setLoading] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
   const { loading, error } = useSelector(
     (store) => store.auth
   );
   const toast = useToast();
-
+  console.log(loading1);
   const sendOtp = () => {
     dispatch(authLoading());
     if (
@@ -110,7 +114,7 @@ function Login(prop) {
   };
 
   const verifyCode = async () => {
-    dispatch(authLoading);
+    setLoading(true);
     if (Otp.length !== 6) {
       dispatch(authError(""));
       return;
@@ -127,68 +131,80 @@ function Login(prop) {
           status: "success",
         });
         const user = result.user;
+        console.log(user);
         setOtpVerification(true);
-        dispatch(authSuccess);
+        setLoading(false);
       })
       .catch((error) => {
         // dispatch({ type: AUTH_LOGIN_REQ_ERROR });
         toast({
-          title: `OTP Invalid`,
+          title: error,
           position: "top",
           isClosable: true,
           status: "error",
         });
-      
       });
+
+    
+    
   };
   const handleChange = (e) => {
     setOtp(e);
   };
-
+  const checkNoIndb = () => {
+    axios.post(`http://localhost:3000/api/user/signup?${Number}`).then((res) => {
+    
+  })
+}
   return (
     <>
-      {!otpVerification ? (
-        <div>
-          <div id="recaptcha-container"></div>
-          <Button
-            fontSize={{ base: 0, md: "md" }}
-            fontWeight={500}
-            variant={"link"}
-            color="black"
-            onClick={onOpen}
-          >
-            Hello, Log in
-          </Button>
-          <Drawer
-            size="sm"
-            isOpen={isOpen}
-            placement="right"
-            initialFocusRef={firstField}
-            onClose={onClose}
-          >
-            <DrawerOverlay />
+      <div>
+        <div id="recaptcha-container"></div>
+        <Button
+          fontSize={{ base: 0, md: "md" }}
+          fontWeight={500}
+          variant={"link"}
+          color="black"
+          onClick={onOpen}
+        >
+          Hello, Log in
+        </Button>
 
-            <DrawerContent>
-              <DrawerCloseButton
-                color="white"
-                right="var(--chakra-space-0)"
+        <Drawer
+          size="sm"
+          isOpen={isOpen}
+          placement="right"
+          initialFocusRef={firstField}
+          onClose={onClose}
+        >
+          <DrawerOverlay />
+
+          <DrawerContent>
+            <DrawerCloseButton
+              color="white"
+              right="var(--chakra-space-0)"
+            />
+            <DrawerHeader
+              display="flex"
+              bg={useColorModeValue("gray.50", "gray.800")}
+              gap="40px"
+              justifyContent={"space-between"}
+              alignItems="center"
+            >
+              <Img
+                w="250px"
+                padding={"30px"}
+                src="https://user-images.githubusercontent.com/97351159/207395646-47cbbbb8-e5d4-45c0-a42b-d62ad5123a3f.png"
               />
-              <DrawerHeader
-                display="flex"
-                bg="#10847E"
-                gap="40px"
-                justifyContent={"space-between"}
-                alignItems="center"
-              >
-                <Img src="https://assets.pharmeasy.in/web-assets/dist/fca22bc9.png?dim=256x0" />
-                <Img
-                  w="60px"
-                  h="50px"
-                  src="https://assets.pharmeasy.in/web-assets/dist/1fe1322a.svg?dim=256x0"
-                />
-              </DrawerHeader>
-
-              <DrawerBody>
+              <Img
+                paddingRight={"10px"}
+                w="80px"
+                src="https://assets.pharmeasy.in/web-assets/dist/1fe1322a.svg?dim=256x0"
+              />
+            </DrawerHeader>{" "}
+            <hr />
+            {!otpVerification ? (
+              <DrawerBody marginTop={"40px"}>
                 <Stack spacing="24px">
                   {otpSented ? (
                     !loading ? (
@@ -271,81 +287,115 @@ function Login(prop) {
                     )
                   ) : (
                     <Box>
-                      <FormLabel mb="30px">
-                        Enter OTP sent to +91{Number}
-                      </FormLabel>
-                      <PinInput
-                        otp
-                        type="number"
-                        placeholder=" "
-                        onChange={handleChange}
-                        size="lg"
-                        display={"flex"}
-                        justifyContent="center"
-                      >
-                        <PinInputField
-                          _focus={{
-                            border: "1px solid #10847E",
-                          }}
-                          autoComplete="off"
-                          mr={"20px"}
-                        />
-                        <PinInputField
-                          _focus={{
-                            border: "1px solid #10847E",
-                          }}
-                          autoComplete="off"
-                          mr={"20px"}
-                        />
-                        <PinInputField
-                          _focus={{
-                            border: "1px solid #10847E",
-                          }}
-                          autoComplete="off"
-                          mr={"20px"}
-                        />
-                        <PinInputField
-                          _focus={{
-                            border: "1px solid #10847E",
-                          }}
-                          autoComplete="off"
-                          mr={"20px"}
-                        />
-                        <PinInputField
-                          _focus={{
-                            border: "1px solid #10847E",
-                          }}
-                          autoComplete="off"
-                          mr={"20px"}
-                        />
-                        <PinInputField
-                          autoComplete="off"
-                          _focus={{
-                            border: "1px solid #10847E",
-                          }}
-                        />
-                      </PinInput>
-                      <br /> <br /> <br />
-                      <Button
-                        disabled={Otp.length !== 6}
-                        onClick={verifyCode}
-                        width="100%"
-                        height={"50px"}
-                        color="white"
-                        bg="#10847E"
-                        borderRadius={"3px"}
-                        _hover={{
-                          background: "#10847E",
-                          color: "white",
-                        }}
-                      >
-                        Continue
-                      </Button>
-                      <Timer setOtpSented={setOtpSented} />
+                      {loading1 ? (
+                        <Box>
+                          <Box
+                            display={"flex"}
+                            justifyContent="center"
+                            alignItems={"center"}
+                          >
+                            <Spinner
+                              thickness="5px"
+                              speed="1s"
+                              emptyColor="gray.200"
+                              color="#10847E"
+                              size="xl"
+                            />
+                            <br /> <br /> <br />
+                          </Box>
+                          <Box
+                            display={"flex"}
+                            justifyContent="center"
+                            alignItems={"center"}
+                            marginTop={"30px"}
+                            color="#10847E"
+                            fontWeight={"bold"}
+                          >
+                            <Text>Checking OTP</Text>
+                          </Box>
+                          <br />
+                        </Box>
+                      ) : (
+                        <Box>
+                          <FormLabel mb="30px">
+                            Enter OTP sent to +91{Number}
+                          </FormLabel>
+                          <PinInput
+                            otp
+                            type="number"
+                            placeholder=" "
+                            onChange={handleChange}
+                            size="lg"
+                            display={"flex"}
+                            justifyContent="center"
+                          >
+                            <PinInputField
+                              _focus={{
+                                border: "1px solid #10847E",
+                              }}
+                              autoComplete="off"
+                              mr={"20px"}
+                            />
+                            <PinInputField
+                              _focus={{
+                                border: "1px solid #10847E",
+                              }}
+                              autoComplete="off"
+                              mr={"20px"}
+                            />
+                            <PinInputField
+                              _focus={{
+                                border: "1px solid #10847E",
+                              }}
+                              autoComplete="off"
+                              mr={"20px"}
+                            />
+                            <PinInputField
+                              _focus={{
+                                border: "1px solid #10847E",
+                              }}
+                              autoComplete="off"
+                              mr={"20px"}
+                            />
+                            <PinInputField
+                              _focus={{
+                                border: "1px solid #10847E",
+                              }}
+                              autoComplete="off"
+                              mr={"20px"}
+                            />
+                            <PinInputField
+                              autoComplete="off"
+                              _focus={{
+                                border: "1px solid #10847E",
+                              }}
+                            />
+                          </PinInput>
+                          <br /> <br /> <br />
+                          <Button
+                            disabled={Otp.length !== 6}
+                            onClick={verifyCode}
+                            width="100%"
+                            height={"50px"}
+                            color="white"
+                            bg="#10847E"
+                            borderRadius={"3px"}
+                            _hover={{
+                              background: "#10847E",
+                              color: "white",
+                            }}
+                          >
+                            Continue
+                          </Button>
+                          <Timer
+                            setOtpSented={setOtpSented}
+                          />
+                        </Box>
+                      )}
                     </Box>
                   )}
                   <Box>
-                    {!loading ? (
+                    {!loading && !loading1 ? (
                       <Text>
                         By clicking continue, you agree with
                         our
@@ -361,10 +411,12 @@ function Login(prop) {
                   </Box>
                 </Stack>
               </DrawerBody>
-            </DrawerContent>
-          </Drawer>
-        </div>
-      ) : null}
+            ) : (
+              <Form Number={Number} />
+            )}
+          </DrawerContent>
+        </Drawer>
+      </div>
     </>
   );
 }
