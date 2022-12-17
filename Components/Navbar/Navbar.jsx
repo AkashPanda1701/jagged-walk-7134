@@ -23,6 +23,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import Login from '../Login/Login'
 import {FaRegUser} from 'react-icons/fa'
 import {BsCart2} from "react-icons/bs"
 
@@ -99,16 +100,7 @@ export default function Navbar() {
               <Text mt="5px">
                 <FaRegUser />
               </Text>
-              <Button
-                //   leftIcon={}
-                fontSize={{ base: 0, md: "md" }}
-                fontWeight={500}
-                variant={"link"}
-                href={"/login"}
-                color="black"
-              >
-                Hello, Login
-              </Button>
+             <Login/>
             </Box>
             <Box display="flex" gap={2}>
               <Text mt="5px">
