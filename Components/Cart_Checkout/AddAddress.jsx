@@ -185,7 +185,7 @@ export default function AddAddress() {
                             disabled={!disable ? true : false}
                         >
 
-                            <Link href=""> Save and Continue</Link>
+                            <Link href="/carts/payment-method"> Save and Continue</Link>
                         </Button>
                     </DrawerFooter>
                 </DrawerContent>

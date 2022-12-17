@@ -21,6 +21,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Image,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -37,11 +38,10 @@ import { ReactText } from "react";
 
 
 const LinkItems = [
-  { name: "Home", icon: FiHome },
-  { name: "Trending", icon: FiTrendingUp },
-  { name: "Explore", icon: FiCompass },
-  { name: "Favourites", icon: FiStar },
-  { name: "Settings", icon: FiSettings },
+  { "link": "#", name: "Home", icon: FiHome },
+  { "link": "/admin/productform", name: "Create Item", icon: FiTrendingUp },
+  { "link": "/", name: "Back", icon: FiCompass },
+  { "link": "#", name: "Users Details", icon: FiStar },
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -63,6 +63,7 @@ export default function SidebarWithHeader({ children }) {
       >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
+
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
@@ -75,6 +76,7 @@ export default function SidebarWithHeader({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
+
   return (
     <Box
       transition="3s ease"
@@ -87,24 +89,27 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+        <Image src="https://user-images.githubusercontent.com/97351159/207395646-47cbbbb8-e5d4-45c0-a42b-d62ad5123a3f.png" alt=""/>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} link={link.link}>
           {link.name}
         </NavItem>
       ))}
+      {/* <Link key="Home" icon={FiHome}>
+        Home
+      </Link> */}
     </Box>
+
   );
 };
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ link, icon, children, ...rest }) => {
+  console.log('icon:', icon)
   return (
     <Link
-      href="#"
+      href={link}
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
     >
@@ -194,7 +199,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Justina Clark</Text>
+                  {/* <Text fontSize="sm">Justina Clark</Text> */}
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>
