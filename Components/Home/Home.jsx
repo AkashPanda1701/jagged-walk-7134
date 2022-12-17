@@ -262,7 +262,7 @@ export default function Homecomp() {
           </Box>
         </SimpleGrid>
         {/* ads slider */}
-        {/* <Adslider /> */}
+        <Adslider />
 
         {/* labtests */}
         <LabTest />
