@@ -1,13 +1,13 @@
 import {
-  Box, Button, Center,
+  Box, Center,
   Container, Divider, Heading,
-  Img, Menu, MenuButton, MenuItem,
-  MenuList, Radio, RadioGroup,
+  Img, Radio, RadioGroup,
   SimpleGrid, Spacer, Stack,
   Text, Breadcrumb, BreadcrumbItem,
-  BreadcrumbLink,
+  BreadcrumbLink, Select,
+  Flex,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -17,6 +17,8 @@ export default function Products(params) {
 
   const [data, setData] = useState([]);
   const [value, setValue] = useState('0');
+  const [sortData, setSortData] = useState([]);
+  const [change, setChange] = useState(true);
 
   useEffect(() => {
     axios(
@@ -27,6 +29,28 @@ export default function Products(params) {
   }, []);
   //console.log(data);
 
+
+  const handleSorting = (e) => {
+    const { value } = e.target;
+    setChange(!change);
+    if (value === "asc") {
+      let asc = data.sort((a, b) => {
+        return a.price - b.price;
+      });
+      setSortData(asc);
+    } else if (value === "des") {
+      let des = data.sort((a, b) => {
+        return b.price - a.price;
+      });
+      setSortData(des);
+    }
+  };
+
+  useEffect(() => {
+    setData(sortData);
+  }, [change]);
+
+
   return (
     <Container h='auto' maxW='container.xl' p='1' mt='10' >
       {/* ....................................... 1st Horizontal Center-Box (total 2 center-box).......................................................... */}
@@ -35,11 +59,11 @@ export default function Products(params) {
         <Box ml='-115vh'>
           <Breadcrumb spacing='5px' fontSize='sm' separator={<ChevronRightIcon color='gray' />}>
             <BreadcrumbItem>
-              <BreadcrumbLink href='#'>Home</BreadcrumbLink>
+              <BreadcrumbLink href='/'>Home</BreadcrumbLink>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-              <BreadcrumbLink href='#'>All Categories</BreadcrumbLink>
+              <BreadcrumbLink href='/'>All Categories</BreadcrumbLink>
             </BreadcrumbItem>
 
             <BreadcrumbItem isCurrentPage color='gray'>
@@ -61,31 +85,31 @@ export default function Products(params) {
             <Heading as={"h5"} size="sm" mb='5' color='gray.600'>Category</Heading>
             <RadioGroup colorScheme='green' onChange={setValue} value={value}>
               <Stack direction='column'>
-                <Text color='gray' mb='5'>Personal Care
+                <Flex color='gray' mb='5'>Personal Care
                   <Radio value='0' mt='1.5' ml='14vh'></Radio>
-                </Text>
+                </Flex>
               </Stack>
             </RadioGroup>
           </Box>
 
           <Divider border='1px solid black' bg={'blackAlpha.200'} />
 
-          <Box h='auto' w='95%' m='3' alignItems='left'>
+          {/* <Box h='auto' w='95%' m='3' alignItems='left'>
             <Heading as={"h5"} size="sm" mb='5' color='gray.600' mt='5'>Sub Category</Heading>
             <RadioGroup onChange={setValue} value={value}>
               <Stack direction='column' mb='5'>
-                <Text color='gray'>Men Care <Radio value='1' mt='1.5' ml='17vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Appliances <Radio value='2' mt='1.5' ml='16vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Women Care <Radio value='3' mt='1.5' ml='14vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Oral Care <Radio value='4' mt='1.5' ml='17.5vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Male Grooming <Radio value='5' mt='1.5' ml='11.5vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Hair Care <Radio value='6' mt='1.5' ml='17.5vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Face Care <Radio value='7' mt='1.5' ml='17vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Body Care <Radio value='8' mt='1.5' ml='16.5vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Hands & Feet Care <Radio value='9' mt='1.5' ml='8.5vh' border='3px solid black'></Radio></Text>
+                <Flex color='gray'>Men Care <Radio value='1' mt='1.5' ml='17vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Appliances <Radio value='2' mt='1.5' ml='16vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Women Care <Radio value='3' mt='1.5' ml='14vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Oral Care <Radio value='4' mt='1.5' ml='17.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Male Grooming <Radio value='5' mt='1.5' ml='11.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Hair Care <Radio value='6' mt='1.5' ml='17.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Face Care <Radio value='7' mt='1.5' ml='17vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Body Care <Radio value='8' mt='1.5' ml='16.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Hands & Feet Care <Radio value='9' mt='1.5' ml='8.5vh' border='3px solid black'></Radio></Flex>
               </Stack>
             </RadioGroup>
-          </Box>
+          </Box> */}
 
           <Divider border='1px solid black' bg={'blackAlpha.200'} maxW='sm' />
 
@@ -93,12 +117,12 @@ export default function Products(params) {
             <Heading as={"h5"} size="sm" mb='5' color='gray.600' mt='5'>Price</Heading>
             <RadioGroup onChange={setValue} value={value}>
               <Stack direction='column' mb='5'>
-                <Text color='gray'>Below 99 <Radio value='11' mt='1.5' ml='17.7vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>100-199 <Radio value='12' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>200-299 <Radio value='13' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>300-399 <Radio value='14' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>400-499 <Radio value='15' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Above 500 <Radio value='16' mt='1.5' ml='16.2vh' border='3px solid black'></Radio></Text>
+                <Flex color='gray'>Below 99 <Radio value='11' mt='1.5' ml='17.7vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>100-199 <Radio value='12' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>200-299 <Radio value='13' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>300-399 <Radio value='14' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>400-499 <Radio value='15' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Above 500 <Radio value='16' mt='1.5' ml='16.2vh' border='3px solid black'></Radio></Flex>
               </Stack>
             </RadioGroup>
           </Box>
@@ -109,15 +133,15 @@ export default function Products(params) {
             <Heading as={"h5"} size="sm" mb='5' color='gray.600' mt='5'>Brand</Heading>
             <RadioGroup onChange={setValue} value={value}>
               <Stack direction='column' mb='5'>
-                <Text color='gray'>&me <Radio value='21' mt='1.5' ml='21.5vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>1m <Radio value='22' mt='1.5' ml='23.2vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>23 Yards <Radio value='23' mt='1.5' ml='18.3vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>360 Block <Radio value='24' mt='1.5' ml='17.2vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>3m <Radio value='25' mt='1.5' ml='23.2vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>A Derma <Radio value='26' mt='1.5' ml='18vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>A & I <Radio value='27' mt='1.5' ml='21.3vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Aarhaveda <Radio value='28' mt='1.5' ml='16.2vh' border='3px solid black'></Radio></Text>
-                <Text color='gray'>Abena <Radio value='29' mt='1.5' ml='20.1vh' border='3px solid black'></Radio></Text>
+                <Flex color='gray'>&me <Radio value='21' mt='1.5' ml='21.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>1m <Radio value='22' mt='1.5' ml='23.2vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>23 Yards <Radio value='23' mt='1.5' ml='18.3vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>360 Block <Radio value='24' mt='1.5' ml='17.2vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>3m <Radio value='25' mt='1.5' ml='23.2vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>A Derma <Radio value='26' mt='1.5' ml='18vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>A & I <Radio value='27' mt='1.5' ml='21.3vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Aarhaveda <Radio value='28' mt='1.5' ml='16.2vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'>Abena <Radio value='29' mt='1.5' ml='20.1vh' border='3px solid black'></Radio></Flex>
               </Stack>
             </RadioGroup>
           </Box>
@@ -133,20 +157,22 @@ export default function Products(params) {
 
             <Spacer />
 
-            <Box w='50%' >
-              <Text color='gray.500' > Sort By:
-                <Menu>
-                  <MenuButton as={Button} rightIcon={<ChevronDownIcon />} border='1px solid grey' bg='white' ml='15vh' color='blackAlpha.700'>
-                    Popularity
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>Low to high</MenuItem>
-                    <MenuItem>High to Low</MenuItem>
-                    <MenuItem>Discount</MenuItem>
-                    <MenuItem>Relevance</MenuItem>
-                  </MenuList>
-                </Menu>
-              </Text>
+            <Box w='40%' >
+              <Stack direction="horizontal" gap="40px" align="center">
+                <Text fontSize="14px" width="70px">
+                  Sort By:
+                </Text>
+
+                <Select cursor='pointer' border='2px solid black' borderRadius='10' onChange={handleSorting}>
+                  <option value="">Select</option>
+                  <option value="asc">Price Low to High</option>
+                  <option value="des">Price High to Low</option>
+                  <option> Discount </option>
+                  <option> Relevance </option>
+                  <option> Popularity </option>
+                </Select>
+
+              </Stack>
             </Box>
           </Center>
           {/* ---------------------------------------- Products Box ----------------------------------------------------- */}
@@ -171,6 +197,8 @@ export default function Products(params) {
         </Stack>
       </Center>
     </Container>
+
   )
+
 }
 
