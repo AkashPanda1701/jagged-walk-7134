@@ -101,11 +101,11 @@ export default function Details  ()  {
           medicines, illnesses, lab tests, Ayurvedic and over the counter health
           products.
         </Box>
-        <Heading mt={7} as={"h6"} size="xs" fontWeight={500}>
+        
           <Heading mt={7} as={"h6"} size="xs" fontWeight={500}>
             We Believe in ‘Simplifying Healthcare, Impacting Lives!’
           </Heading>
-        </Heading>
+      
       </Box>
     </>
   );

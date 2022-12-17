@@ -30,10 +30,10 @@ export default function Homecomp() {
   return (
     <>
       <Box h="50px"></Box>
-      <Box>
+      <Box width={'98%'} m="auto">
         <Heading
           margin={"auto"}
-          width={700}
+          w="56%"
           as="h3"
           fontSize="25px"
           fontWeight={600}

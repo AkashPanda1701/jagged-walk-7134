@@ -92,17 +92,16 @@ export default function Navbar() {
               fontFamily={"heading"}
               color={useColorModeValue("gray.800", "white")}
             >
-              <Image
-                h="58px"
-                w="165px"
-                src="https://user-images.githubusercontent.com/97351159/207395646-47cbbbb8-e5d4-45c0-a42b-d62ad5123a3f.png"
-              />
+              <Link href="/">
+                <Image
+                  h="58px"
+                  w="165px"
+                  src="https://user-images.githubusercontent.com/97351159/207395646-47cbbbb8-e5d4-45c0-a42b-d62ad5123a3f.png"
+                />
+              </Link>
             </Text>
 
-            <Flex
-              display={{ base: "none", md: "flex" }}
-              ml={10}
-            >
+            <Flex display={{ base: "none", md: "flex" }} ml={10}>
               <DesktopNav />
             </Flex>
           </Flex>

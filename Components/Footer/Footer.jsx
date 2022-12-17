@@ -94,7 +94,7 @@ export default function Footer () {
             </Box>
           </SimpleGrid>
         </Box>
-        <Box ml={"110px"}>
+        <Box w="80%" ml={"110px"}>
           <Heading as="h6" size="md">
             Our Payment Partners
           </Heading>

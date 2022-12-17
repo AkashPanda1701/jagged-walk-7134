@@ -1,4 +1,15 @@
-import { SimpleGrid,Image,Box,Heading, Grid } from "@chakra-ui/react"
+import {
+  SimpleGrid,
+  Image,
+  Box,
+  Heading,
+  Grid,
+  useBreakpointValue,
+  IconButton,
+} from "@chakra-ui/react";
+import Slider from "react-slick";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { useState } from "react";
 
 const db = [
   {
@@ -22,75 +33,120 @@ const db = [
   {
     img: "https://cms-contents.pharmeasy.in/homepage_top_categories_images/6e78a241e48-CovidCare.jpg?dim=256x0",
   },
+  {
+    img: "https://cms-contents.pharmeasy.in/homepage_top_categories_images/94616a36a9a-Lifestyle.jpg?dim=256x0",
+  },
+  {
+    img: "https://cms-contents.pharmeasy.in/homepage_top_categories_images/64444851b5e-BoneHealth.jpg?dim=256x0",
+  },
 ];
 
-export default function LabTest(){
-    return (
-      <>
-   
-          <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
-            Lab Test by Health Concern
-          </Heading>
-          <SimpleGrid pt={10} w="85%" m="auto" gap={9} columns={[3, 4, 4, 7]}>
-            {db.map((ele,index) => {
-              return (
-                <Box key={index}>
-                  <Image src={ele.img} />
-                </Box>
-              );
-            })}
-          </SimpleGrid>
-      
-      </>
-    );
+// slider settings
+const settings = {
+  dots: false,
+  arrows: true,
+  fade: false,
+  infinite: true,
+  speed: 500,
+  autoplay: false,
+  slidesToShow: 6,
+  slidesToScroll: 1,
+};
 
+export default function LabTest() {
+  const [slider, setSlider] = useState();
+  const top = useBreakpointValue({ base: "90%", md: "50%" });
+  const side = useBreakpointValue({ base: "30%", md: "10px" });
+  return (
+    <>
+      <Heading ml={20} fontWeight={500} as="h3" size="lg" mt={20}>
+        Lab Test by Health Concern
+      </Heading>
+      <SimpleGrid
+        display={{ base: "inline-grid", md: "inline-grid", lg: "none" }}
+        pt={10}
+       
+        pl={{base:"75px"}}
+        w="95%"
+      m={'auto'}
+        gap={9}
+        columns={[3, 4, 4, 7]}
+      >
+        {db.map((ele, index) => {
+          return (
+            <Box key={index}>
+              <Image src={ele.img} />
+            </Box>
+          );
+        })}
+      </SimpleGrid>
+      <Box h={10}></Box>
+      <Box
+        display={{ base: "none", md: "none", lg: "block" }}
+        width="90%"
+        m="auto"
+        position={"relative"}
+        height={"180px"}
+        overflow={"hidden"}
+        borderRadius="0"
+        zIndex="0"
+      >
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charSet="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
+        <IconButton
+          borderRadius="full"
+          position="absolute"
+          left={side}
+          top={top}
+          transform={"translate(0%, -50%)"}
+          zIndex={2}
+          bg="black"
+          _active={{ bg: "black" }}
+          size="md"
+          _hover={{
+            bg: "black",
+          }}
+          onClick={() => slider?.slickPrev()}
+        >
+          <BsChevronLeft color="white" />
+        </IconButton>
+        <IconButton
+        
+          borderRadius="full"
+          position="absolute"
+          right={side}
+          top={top}
+          transform={"translate(0%, -50%)"}
+          zIndex={2}
+          size="md"
+          _hover={{
+            bg: "black",
+          }}
+          _active={{ bg: "black" }}
+          bg="black"
+          onClick={() => slider?.slickNext()}
+        >
+          <BsChevronRight  color="white" />
+        </IconButton>
+
+        <Slider {...settings} ref={(slider) => setSlider(slider)}>
+          {db.map((ele, index) => (
+            <Box key={index}>
+              <Image w={"190px"} src={ele.img} />
+              
+            </Box>
+          ))}
+        </Slider>
+      </Box>
+    </>
+  );
 }
-// import React, { Component } from "react";
-// import Slider from "react-slick";
-
-// export default class MultipleItems extends Component {
-//   render() {
-//     const settings = {
-//       dots: true,
-//       infinite: true,
-//       speed: 500,
-//       slidesToShow: 3,
-//       slidesToScroll: 3,
-//     };
-//     return (
-//       <div>
-//         <h2> Multiple items </h2>
-//         <Slider {...settings}>
-//           <div>
-//             <h3>1</h3>
-//           </div>
-//           <div>
-//             <h3>2</h3>
-//           </div>
-//           <div>
-//             <h3>3</h3>
-//           </div>
-//           <div>
-//             <h3>4</h3>
-//           </div>
-//           <div>
-//             <h3>5</h3>
-//           </div>
-//           <div>
-//             <h3>6</h3>
-//           </div>
-//           <div>
-//             <h3>7</h3>
-//           </div>
-//           <div>
-//             <h3>8</h3>
-//           </div>
-//           <div>
-//             <h3>9</h3>
-//           </div>
-//         </Slider>
-//       </div>
-//     );
-//   }
-// }
-
