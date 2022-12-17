@@ -257,7 +257,7 @@ export default function Navbar() {
             <Link>Health Blogs</Link>
           </Heading>
           <Heading fontWeight={500} size="xs">
-            <Link>Offers</Link>
+            <Link href="/offers">Offers</Link>
           </Heading>
           <Heading fontWeight={500} size="xs">
             <Link>Value Store</Link>
