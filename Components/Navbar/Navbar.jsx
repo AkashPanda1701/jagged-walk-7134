@@ -15,21 +15,34 @@ import {
   useBreakpointValue,
   useDisclosure,
   Image,
-  Heading
+  Heading,
+
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel
+
 } from "@chakra-ui/react";
+
+import Login from "../Login/Login";
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import Login from '../Login/Login'
-import {FaRegUser} from 'react-icons/fa'
-import {BsCart2} from "react-icons/bs"
-
-import { Menu, MenuButton, MenuItem,MenuList } from "@chakra-ui/react";
+import { FaRegUser } from "react-icons/fa";
+import { BsCart2 } from "react-icons/bs";
 
 
+
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -41,7 +54,7 @@ export default function Navbar() {
           //   color={useColorModeValue("gray.600", "white")}
           minH={"60px"}
           py={{ base: 2 }}
-          px={{ base: 2}}
+          px={{ base: 2 }}
           //   borderBottom={2}
           borderStyle={"solid"}
           borderBottom={"1px solid lightgrey"}
@@ -66,21 +79,26 @@ export default function Navbar() {
             />
           </Flex>
           <Flex
-            ml={{base:"0px",md:'40px'}}
+            ml={{ base: "0px", md: "40px" }}
             flex={{ base: 1 }}
             justify={{ base: "center", md: "start" }}
             gap={3}
           >
             <Text
-              textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              textAlign={useBreakpointValue({
+                base: "center",
+                md: "left",
+              })}
               fontFamily={"heading"}
               color={useColorModeValue("gray.800", "white")}
             >
-              <Image
-                h="58px"
-                w="165px"
-                src="https://user-images.githubusercontent.com/97351159/207395646-47cbbbb8-e5d4-45c0-a42b-d62ad5123a3f.png"
-              />
+              <Link href="/">
+                <Image
+                  h="58px"
+                  w="165px"
+                  src="https://user-images.githubusercontent.com/97351159/207395646-47cbbbb8-e5d4-45c0-a42b-d62ad5123a3f.png"
+                />
+              </Link>
             </Text>
 
             <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -89,18 +107,18 @@ export default function Navbar() {
           </Flex>
 
           <Stack
-          ml={10}
+            ml={10}
             flex={{ base: 1, md: 0 }}
             justify={"flex-end"}
             direction={"row"}
             spacing={{ base: 0, md: 6 }}
-            pr={{base:"0px",md:"60px"}}
+            pr={{ base: "0px", md: "60px" }}
           >
             <Box display="flex" gap={{ base: 0, md: 3 }}>
               <Text mt="5px">
                 <FaRegUser />
               </Text>
-             <Login/>
+              <Login />
             </Box>
             <Box display="flex" gap={2}>
               <Text mt="5px">
@@ -126,12 +144,12 @@ export default function Navbar() {
         </Collapse>
       </Box>
       <Box
-      w="100%"
+        w="100%"
         borderBottom="1px solid lightgrey"
         display={{ base: "none", md: "flex" }}
       >
         <Flex
-        //   ml={{ base: "5px", sm: "180px", lg: "380px" }}
+          //   ml={{ base: "5px", sm: "180px", lg: "380px" }}
           className="categoriesnav"
         >
           <Heading fontWeight={500} size="xs">
@@ -152,22 +170,85 @@ export default function Navbar() {
               >
                 Health care
               </MenuButton>
-              <MenuList>
-                <Link>
-                  <MenuItem>Health care</MenuItem>
-                </Link>
-                <Link>
-                  <MenuItem>Personal care</MenuItem>
-                </Link>
-                <Link>
-                  <MenuItem>Skin care</MenuItem>
-                </Link>
-                <Link>
-                  <MenuItem>Home care</MenuItem>
-                </Link>
-                <Link>
-                  <MenuItem>Health Food & Drinks</MenuItem>
-                </Link>
+              <MenuList ml="-300px">
+                <Box p={10} w="850px" m="auto">
+                  <Tabs>
+                    <TabList>
+                      <Tab>Home care</Tab>
+                      <Tab>Skin care</Tab>
+                      <Tab>Personal care</Tab>
+                      <Tab>Health care</Tab>
+                      <Tab>Health Food & Drinks</Tab>
+                    </TabList>
+                    <TabPanels>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>Product 1</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Product 1</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Product 1</Box>
+                        </Link>
+                      </TabPanel>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>
+                            Fair And Lovely Advance Multivitamin Cream 25 Gm
+                          </Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>
+                            A2lite Skin Lightening And Brightening Cream - 20 Gm
+                          </Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Episoft Cleansing Lotion 125ml</Box>
+                        </Link>
+                      </TabPanel>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>Sensodent K Paste 100gm</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Senquel F Tooth Paste 100gm</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>
+                            Man code Beard Wash & Conditioner, 200ml
+                          </Box>
+                        </Link>
+                      </TabPanel>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>
+                            Accu-Chek Instant S Glucometer With 10 Strips
+                          </Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Beato Blood Glucose Test Strip</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>Pharmeasy Digital Thermometer</Box>
+                        </Link>
+                      </TabPanel>
+                      <TabPanel>
+                        <Link>
+                          <Box mt={4}>Everherb Karela Jamun Juice</Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>
+                            B-Protin Chocolate Nutrition Supplement Bottle
+                          </Box>
+                        </Link>
+                        <Link>
+                          <Box mt={4}>"Protinex Vanilla Nutrition Drink</Box>
+                        </Link>
+                      </TabPanel>
+                    </TabPanels>
+                  </Tabs>
+                </Box>
               </MenuList>
             </Menu>
           </Heading>
@@ -175,7 +256,7 @@ export default function Navbar() {
             <Link>Health Blogs</Link>
           </Heading>
           <Heading fontWeight={500} size="xs">
-            <Link>Offers</Link>
+            <Link href="/offers">Offers</Link>
           </Heading>
           <Heading fontWeight={500} size="xs">
             <Link>Value Store</Link>
@@ -187,11 +268,16 @@ export default function Navbar() {
 }
 
 const DesktopNav = () => {
-
   return (
     <>
       <Stack direction={"row"} spacing={4}>
-        <Box ml={-7} mt="10px" bg="#8897a2" h="35px" w="1px"></Box>
+        <Box
+          ml={-7}
+          mt="10px"
+          bg="#8897a2"
+          h="35px"
+          w="1px"
+        ></Box>
         <Box pt="15px" fontSize="14px" display="flex">
           <Image
             mt="3px"
@@ -201,9 +287,7 @@ const DesktopNav = () => {
           Express Delivery
         </Box>
       </Stack>
-      <Box>
-        {/* <DesktopSubNav /> */}
-      </Box>
+      <Box>{/* <DesktopSubNav /> */}</Box>
     </>
   );
 };
@@ -291,18 +375,29 @@ const MobileNavItem = ({ label, children, href }) => {
         )}
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+      <Collapse
+        in={isOpen}
+        animateOpacity
+        style={{ marginTop: "0!important" }}
+      >
         <Stack
           mt={2}
           pl={4}
           borderLeft={1}
           borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
+          borderColor={useColorModeValue(
+            "gray.200",
+            "gray.700"
+          )}
           align={"start"}
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link
+                key={child.label}
+                py={2}
+                href={child.href}
+              >
                 {child.label}
               </Link>
             ))}

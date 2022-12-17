@@ -1,3 +1,4 @@
+
 import {
   AUTH_LOGIN_REQ,
   AUTH_REQ_LOADING,
@@ -33,20 +34,3 @@ export const authLogout = () => {
 export const otpLoading = () => {
   return { type: AUTH_LOGIN_LOADING };
 };
-
-// export const authOtphandle =
-//   (Number) => async (dispatch) => {
-//     // dispatch({ type: AUTH_LOGIN_LOADING });
-//     try {
-//       let res = await axios.post(
-//         `https://eat-more3.onrender.com/users/login`,
-//         Number
-//       );
-//       dispatch({
-//         type: AUTH_LOGIN_REQ,
-//         payload: res.data.token,
-//       });
-//     } catch (e) {
-//       dispatch({ type: AUTH_LOGIN_REQ_ERROR });
-//     }
-//   };

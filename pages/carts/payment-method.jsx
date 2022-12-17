@@ -13,9 +13,12 @@ import {
   Button,
   Input,
   Divider,
+  Link,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import BillSummary from "../../Components/Cart_Checkout/BillSummary";
+import { getCart } from "../../redux/cart/action";
 import styles from "./Css/payment-method.module.css";
 
 const getData = async (url) => {
@@ -24,28 +27,37 @@ const getData = async (url) => {
     let data = await res.json();
     return data;
   } catch (e) {
-    return []
+    return [];
   }
 };
 export default function paymentMethod() {
-  const [data, setData] = useState([]);
+  const [dataAdd, setDataAdd] = useState([]);
   const [flag, setFlag] = useState(false);
   const [itemTotal, setItemTotal] = useState(0);
   const [saving, setSaving] = useState(0);
   const [MRP, setMRP] = useState(0);
   const [discount, setDiscount] = useState(0);
+  const { data } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getData(`https://fitness-club-server.onrender.com/address`).then((res) => {
+      setDataAdd(res);
+    });
+  }, []);
 
   let count = 1;
   useEffect(() => {
-    getData(`http://localhost:2707/cart`).then((res) => {
-      setData(res);
-    });
+    // getData(`http://localhost:2707/cart`).then((res) => {
+    //   setData(res);
+    // });
+    dispatch(getCart());
     //finding total
     let Price = 0;
     let MRP = 0;
     for (let i = 0; i < data.length; i++) {
-      Price += Number(((data[i].price) * (data[i].quantity)).toFixed(2));
-      MRP += Number(((data[i].mrp) * (data[i].quantity)).toFixed(2));
+      Price += Number((data[i].price * data[i].quantity).toFixed(2));
+      MRP += Number((data[i].mrp * data[i].quantity).toFixed(2));
     }
     let per = (((MRP - Price) / MRP) * 100).toFixed(2);
     setItemTotal(Price);
@@ -59,8 +71,12 @@ export default function paymentMethod() {
     }
     // console.log('saving:', saving)
     // console.log("itemTotal:", itemTotal);
-  }, [itemTotal, flag, saving, discount, MRP]);
+  }, [itemTotal, flag]);
 
+  let arr = dataAdd[dataAdd.length - 1];
+  if (arr) {
+    console.log("dataAdd:", arr.patientName);
+  }
   return (
     <Box maxW="1349px" className={styles.paymentMethod}>
       <Box maxW="1024px" m="auto">
@@ -69,6 +85,7 @@ export default function paymentMethod() {
           templateRows="repeat(2, 1fr)"
           templateColumns="repeat(5, 1fr)"
           gap="80px"
+
         >
           <GridItem
             colSpan={{ base: 5, sm: 5, md: 3 }}
@@ -398,7 +415,7 @@ export default function paymentMethod() {
                       className={styles.offerButton}
                     >
                       {" "}
-                      Place Order
+                      <Link href="/carts/order-success">Place Order</Link>
                     </Button>
                   </AccordionPanel>
                 </AccordionItem>
@@ -407,41 +424,43 @@ export default function paymentMethod() {
           </GridItem>
 
           <GridItem
+
             colSpan={{ base: 5, sm: 5, md: 2 }}
             className={styles.cartTotal}
             bg=""
           >
-            <Box>
+            <Box m="auto">
               {/* Billing Summary */}
               {data.length > 0 ? (
                 <BillSummary data={data} itemTotal={itemTotal} MRP={MRP} />
               ) : null}
               {/* Billing Summary */}
-
             </Box>
             {/* details of address */}
-            <Box>
-              <Heading>Others Details</Heading>
-              <Box>
-                <Text>Shipping Address</Text>
+            {data.length > 0 && arr ? (
+              <Box m="auto" className={styles.addressDetails}>
+                <Heading as="h1">Others Details</Heading>
                 <Box>
-                  {/* deliverTo */}
-                  <Text>YashWant Colony , Gm Motors</Text>
-                  {/* streetName */}
-                  <Text>nagpur road</Text>
-                  {/* pinCode */}
-                  <Text>442001</Text>
-                  {/* MoobileNO */}
-                  <Text>+91-{8668794790}</Text>
-                  {/* addressType */}
-                  <Text>Address Type:{"Home"}</Text>
+                  <Text>Shipping Address</Text>
+                  <Box>
+                    {/* deliverTo */}
+                    <Text>{arr.deliverTo}</Text>
+                    {/* streetName */}
+                    <Text>{arr.streetName}</Text>
+                    {/* pinCode */}
+                    <Text>{arr.pinCode}</Text>
+                    {/* MoobileNO */}
+                    <Text>+91-{arr.mobileNo}</Text>
+                    {/* addressType */}
+                    <Text>Address Type:{arr.addressType}</Text>
+                  </Box>
+                </Box>
+                <Box>
+                  <Text>Patient Details</Text>
+                  <Text>{arr.patientName}</Text>
                 </Box>
               </Box>
-              <Box>
-                <Text>Patient Details</Text>
-                <Text>Ashish Kohad</Text>
-              </Box>
-            </Box>
+            ) : null}
             {/* details of address */}
           </GridItem>
         </Grid>

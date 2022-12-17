@@ -10,30 +10,30 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { BiSearchAlt } from "react-icons/bi";
-import  Adslider  from "./adSlider";
-import  Adslider2  from "./AdsSlider2";
-import  Details  from "./Details";
-import  DownloadApp from "./Downloadapp";
-import  FrequentlyBookedLabTest  from "./FrequentlyBookeTest";
-import  LabTest from "./LabTest";
-import  NewLaunches  from "./NewLaunches";
-import OffersJustforYou  from "./Offerts";
-import  PaymentOffers  from "./PaymentOffers";
-import  PlusMember  from "./Plus member";
+import Adslider from "./adSlider";
+import Adslider2 from "./AdsSlider2";
+import Details from "./Details";
+import DownloadApp from "./Downloadapp";
+import FrequentlyBookedLabTest from "./FrequentlyBookeTest";
+import LabTest from "./LabTest";
+import NewLaunches from "./NewLaunches";
+import OffersJustforYou from "./Offerts";
+import PaymentOffers from "./PaymentOffers";
+import PlusMember from "./Plus member";
 
-import  ShopByCategory  from "./Shopbycategory";
-import ShopByConcern  from "./ShopbyConcern";
-import TrendingNearMe  from "./TrendingNear";
-import WhyChooseUs  from "./WhyChoose";
+import ShopByCategory from "./Shopbycategory";
+import ShopByConcern from "./ShopbyConcern";
+import TrendingNearMe from "./TrendingNear";
+import WhyChooseUs from "./WhyChoose";
 
-export default function Homecomp  ()  {
+export default function Homecomp() {
   return (
     <>
       <Box h="50px"></Box>
-      <Box>
+      <Box width={'98%'} m="auto">
         <Heading
           margin={"auto"}
-          width={700}
+          w="56%"
           as="h3"
           fontSize="25px"
           fontWeight={600}
@@ -46,25 +46,43 @@ export default function Homecomp  ()  {
           borderRadius={40}
           p={1}
           margin={"auto"}
-          width={{ base: "200px", sm: "450px", lg: "710px" }}
+          width={{
+            base: "200px",
+            sm: "450px",
+            lg: "710px",
+          }}
           border={"1px solid lightgrey"}
         >
           <InputGroup
             border={"0px solid white"}
             margin={"auto"}
-            width={{ base: "200px", sm: "450px", lg: "700px" }}
+            width={{
+              base: "200px",
+              sm: "450px",
+              lg: "700px",
+            }}
             // size="md"
           >
             <InputLeftAddon
               borderRadius="20px"
-              fontSize={{ base: "xsm", sm: "xsm", md: "md", lg: "mg" }}
+              fontSize={{
+                base: "xsm",
+                sm: "xsm",
+                md: "md",
+                lg: "mg",
+              }}
               className="inputgrp"
               children={<BiSearchAlt />}
               background="white"
             />
             <Input
               className="inputgrp"
-              fontSize={{ base: "xsm", sm: "xsm", md: "md", lg: "mg" }}
+              fontSize={{
+                base: "xsm",
+                sm: "xsm",
+                md: "md",
+                lg: "mg",
+              }}
               placeholder="Search Medicines/Healthcare products"
             />
             <InputRightAddon
@@ -76,11 +94,19 @@ export default function Homecomp  ()  {
               children={
                 <Button
                   borderRadius={20}
-                  fontSize={{ base: "10px", sm: "14px", lg: "16px" }}
+                  fontSize={{
+                    base: "10px",
+                    sm: "14px",
+                    lg: "16px",
+                  }}
                   color={"white"}
                   _hover={{ background: "#10847e" }}
                   background={"#10847e"}
-                  width={{ base: "50px", sm: "70px", lg: "100px" }}
+                  width={{
+                    base: "50px",
+                    sm: "70px",
+                    lg: "100px",
+                  }}
                 >
                   Search
                 </Button>
@@ -101,7 +127,9 @@ export default function Homecomp  ()  {
           <Box
             p={2}
             borderRadius={10}
-            _hover={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;" }}
+            _hover={{
+              boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;",
+            }}
           >
             <Image
               padding={4}
@@ -110,14 +138,20 @@ export default function Homecomp  ()  {
             />
 
             <Box>Medicine</Box>
-            <Box color={"red"} fontSize="12px" fontWeight={600}>
+            <Box
+              color={"red"}
+              fontSize="12px"
+              fontWeight={600}
+            >
               UPTO 20% OFF
             </Box>
           </Box>
           <Box
             p={2}
             borderRadius={10}
-            _hover={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;" }}
+            _hover={{
+              boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;",
+            }}
           >
             <Image
               padding={4}
@@ -125,14 +159,20 @@ export default function Homecomp  ()  {
               src="https://assets.pharmeasy.in/apothecary/images/labtest_ff.webp?dim=256x0"
             />
             <Box>Lab Tests</Box>
-            <Box color={"red"} fontSize="12px" fontWeight={600}>
+            <Box
+              color={"red"}
+              fontSize="12px"
+              fontWeight={600}
+            >
               UPTO 70% OFF
             </Box>
           </Box>
           <Box
             p={2}
             borderRadius={10}
-            _hover={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;" }}
+            _hover={{
+              boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;",
+            }}
           >
             <Image
               padding={4}
@@ -140,14 +180,20 @@ export default function Homecomp  ()  {
               src="https://assets.pharmeasy.in/apothecary/images/healthcare_ff.webp?dim=256x0"
             />
             <Box>Healthcare</Box>
-            <Box color={"red"} fontSize="12px" fontWeight={600}>
+            <Box
+              color={"red"}
+              fontSize="12px"
+              fontWeight={600}
+            >
               UPTO 60% OFF
             </Box>
           </Box>
           <Box
             p={2}
             borderRadius={10}
-            _hover={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;" }}
+            _hover={{
+              boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;",
+            }}
           >
             <Image
               padding={4}
@@ -155,12 +201,18 @@ export default function Homecomp  ()  {
               src="https://assets.pharmeasy.in/apothecary/images/health_blogs_ff.webp?dim=256x0"
             />
             <Box>Health Blogs</Box>
-            <Box color={"red"} fontSize="12px" fontWeight={600}></Box>
+            <Box
+              color={"red"}
+              fontSize="12px"
+              fontWeight={600}
+            ></Box>
           </Box>
           <Box
             p={2}
             borderRadius={10}
-            _hover={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;" }}
+            _hover={{
+              boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px;",
+            }}
           >
             <Image
               padding={4}
@@ -168,7 +220,11 @@ export default function Homecomp  ()  {
               src="https://assets.pharmeasy.in/apothecary/images/plus_ff.webp?dim=256x0"
             />
             <Box>PLUS</Box>
-            <Box color={"red"} fontSize="12px" fontWeight={600}>
+            <Box
+              color={"red"}
+              fontSize="12px"
+              fontWeight={600}
+            >
               SAVE 5% EXTRA
             </Box>
           </Box>
@@ -206,7 +262,7 @@ export default function Homecomp  ()  {
           </Box>
         </SimpleGrid>
         {/* ads slider */}
-        {/* <Adslider /> */}
+        <Adslider />
 
         {/* labtests */}
         <LabTest />
@@ -230,9 +286,9 @@ export default function Homecomp  ()  {
         <PlusMember />
 
         {/* shop by concern */}
-        <ShopByConcern/>
+        <ShopByConcern />
         {/* Frequently Booked lab test */}
-        <FrequentlyBookedLabTest/>
+        <FrequentlyBookedLabTest />
 
         {/* Ads Slider 2-- */}
 
@@ -249,4 +305,4 @@ export default function Homecomp  ()  {
       </Box>
     </>
   );
-};
+}
