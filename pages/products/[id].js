@@ -87,7 +87,7 @@ export default function Productdetails(params) {
                         <Text ml='1' color='grey' fontSize='xs'> 7 days Return Policy {' '}
                             {/* <Link color='teal.500' href='https://pharmeasy.in/legal/terms-and-conditions#returns'>
                                 Read More
-                            </Link> */}
+                            </Link>*/}
                         </Text>
                     </Box>
 
