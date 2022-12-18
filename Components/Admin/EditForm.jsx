@@ -36,7 +36,7 @@ export function EditForm({ item }) {
         quantity: item.quantity,
         category: item.category,
         discount: item.discount,
-        // image: [...item.image, image]
+        image: item.images
     });
 
 
@@ -52,10 +52,10 @@ export function EditForm({ item }) {
         console.log("form:", form);
     };
 
-    const { title, price, mrp, quantity, category, discount, image } = form;
+    const { title, price, mrp, quantity, category, discount, images } = form;
     return (
         <>
-            <Button onClick={onOpen} bg="white"><GrEdit /></Button>
+            <Button onClick={onOpen} colorScheme="teal" bg="white" variant='outline'><GrEdit /></Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -127,14 +127,21 @@ export function EditForm({ item }) {
                                 </Select>
                             </FormControl>
 
-                            <FormControl isRequired>
-                                <FormLabel>Image</FormLabel>
-                                {/* <Input placeholder='Image of Product'
-                                    value={image}
-                                    name="image"
-                                    onChange={handleChange}
-                                /> */}
-                            </FormControl>
+                            {
+                                item.images &&
+                                item.images.map((images, index) =>
+                                    <FormControl isRequired>
+                                        <FormLabel>Images {index + 1}</FormLabel>
+                                        <Input
+                                            placeholder="Images of Product"
+                                            value={images}
+                                            // name="discount"
+                                            onChange={handleChange}
+                                        />
+                                    </FormControl>
+
+                                )
+                            }
                         </Box>
                     </ModalBody>
 

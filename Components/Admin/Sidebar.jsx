@@ -38,7 +38,7 @@ import { ReactText } from "react";
 
 
 const LinkItems = [
-  { "link": "#", name: "Home", icon: FiHome },
+  { "link": "/admin/", name: "Home", icon: FiHome },
   { "link": "/admin/productform", name: "Create Item", icon: FiTrendingUp },
   { "link": "/", name: "Back", icon: FiCompass },
   { "link": "#", name: "Users Details", icon: FiStar },
