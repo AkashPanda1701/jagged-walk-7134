@@ -1,0 +1,17 @@
+.displayImages{
+    display: flex;
+    flex-direction: row;
+}
+
+.displayImages>div:nth-child(2){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.displayImages>div:nth-child(1)>img,
+.displayImages>div:nth-child(2)>img{
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
