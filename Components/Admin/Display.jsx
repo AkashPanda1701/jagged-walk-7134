@@ -69,9 +69,10 @@ export default function Display({ item }) {
                     <Image  m="auto" w="180px" h="180px" src={item.images[0]} alt="" />
                 </Box>
                 <Box >
-                    <Image w="50px" h="50px"  src={item.images[1]} alt="" />
-                    <Image w="50px" h="50px" src={item.images[2]} alt="" />
-                    <Image w="50px" h="50px" src={item.images[3]} alt="" />
+                    {
+                        item.images?.map((img, index) =>  <Image key={index} w="50px" h="50px"  src={img} alt="" /> )
+                    }
+                   
                 </Box>
             </GridItem>
             <GridItem m="auto" bg="" colSpan={{ base: 1, sm: 1, md: 1 }}>
@@ -169,25 +170,7 @@ export default function Display({ item }) {
                         </Modal>
 
                     </Box>
-                    <Box mt="20px">
-                        <Button
-                        colorScheme="teal"
-                        variant='outline'
-                            disabled={quantity === 1}
-                            onClick={() => setQuantity(quantity - 1)}
-                        >
-                            -
-                        </Button>
-                        <Button variant='outline'>{quantity}</Button>
-                        <Button
-                        variant='outline'
-                        colorScheme="teal"
-                            disabled={quantity >= 6}
-                            onClick={() => setQuantity(quantity + 1)}
-                        >
-                            +
-                        </Button>
-                    </Box>
+                    
                 </Box>
             </GridItem>
         </Grid >

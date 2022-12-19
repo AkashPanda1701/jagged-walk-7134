@@ -42,7 +42,20 @@ function Alltest({data}) {
               })
                 return
         }
-        console.log('date: ', date);
+        //verify date for future date
+        const today = new Date()
+        const selectedDate = new Date(date)
+        if(selectedDate < today){
+            toast({
+                title: "Please select date in future",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+                position:'top'
+              })
+
+              return
+        }
 
         dispatch(postLabcart({testId,patients,appointmentDate:date}))
 
@@ -77,13 +90,13 @@ function Alltest({data}) {
                           <Text>{test.testName.slice(0, 30)}...</Text>
                           <Text color='#a0a0a0' fontSize={'sm'}>{test.description}</Text>
 
-                          <Flex mt={4} alignItems='center' justifyContent='space-between'>
+                          <Flex mt={4} alignItems='center' justifyContent='space-between' gap={4}>
                           <Select placeholder='Patients' w='40%' mt={4} onChange={(e)=>setPatients(e.target.value)}  borderRadius='0 10px 10px 0' _hover={{border:'2px solid #10847e'}} border='2px solid #10847e' >
                             <option value='1'>1</option>
                             <option value='2'>2</option>
                             <option value='3'>3</option>
                           </Select>
-                          <Input type='date' w='60%' mt={4} onChange={(e)=>setDate(e.target.value)}  borderRadius='10px 0 0 10px' _hover={{border:'2px solid #10847e'}} border='2px solid #10847e' />
+                          <Input mr={4} type='date' w='60%' mt={4} onChange={(e)=>setDate(e.target.value)}  borderRadius='10px 0 0 10px' _hover={{border:'2px solid #10847e'}} border='2px solid #10847e' />
                           </Flex>
                           <Flex mt={4} alignItems='center' justifyContent='space-between'>
                           <Text color='#a0a0a0' fontSize={'lg'}>₹{test.price}</Text>

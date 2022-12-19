@@ -16,7 +16,7 @@ const Products  = async (req, res) => {
 async function getAllProducts(req, res) {
     try {
 
-        let { category,price, sort,orderBy ,limit,page } = req.query;
+        let { category,price,orderBy ,limit,page } = req.query;
      const query = {};
         if (category) {
             query.category = category;
@@ -37,7 +37,7 @@ async function getAllProducts(req, res) {
         
 
 
-    const products = await Product.find(query).sort({ [sort]: orderBy === 'asc' ? 1 :  orderBy === 'desc' ? -1 : 0 }).limit(+limit).skip((+page-1)*limit);
+    const products = await Product.find(query).sort({ price: orderBy === 'asc' ? 1 :  orderBy === 'desc' ? -1 : 0 }).limit(+limit).skip((+page-1)*limit);
     
     return res.status(200).send({ products });
     } catch (error) {

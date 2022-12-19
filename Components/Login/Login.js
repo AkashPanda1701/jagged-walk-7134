@@ -57,7 +57,7 @@ function Login() {
     (store) => store.auth
   );
   const toast = useToast();
-  console.log(loading1);
+  // console.log(loading1);
   const sendOtp = () => {
     dispatch(authLoading());
     if (
@@ -103,7 +103,8 @@ function Login() {
         authError(
           "Something Went Wrong Please Try Again Later "
         );
-        alert(error);
+        onClose();
+        setLoading(false);
         toast({
           title: `Try Again`,
           position: "top",
@@ -136,6 +137,7 @@ function Login() {
         setLoading(false);
       })
       .catch((error) => {
+        onClose();
         // dispatch({ type: AUTH_LOGIN_REQ_ERROR });
         toast({
           title: error,
@@ -143,19 +145,13 @@ function Login() {
           isClosable: true,
           status: "error",
         });
+        setLoading(false);
       });
-
-    
-    
   };
   const handleChange = (e) => {
     setOtp(e);
   };
-  const checkNoIndb = () => {
-    axios.post(`http://localhost:3000/api/user/signup?${Number}`).then((res) => {
-    
-  })
-}
+
   return (
     <>
       <div>
@@ -194,7 +190,7 @@ function Login() {
               <Img
                 w="250px"
                 padding={"30px"}
-                src="https://user-images.githubusercontent.com/97351159/207395646-47cbbbb8-e5d4-45c0-a42b-d62ad5123a3f.png"
+                src="https://user-images.githubusercontent.com/97351159/208255522-22126415-4bf1-422b-9c54-d637ae7ecf91.png"
               />
               <Img
                 paddingRight={"10px"}
@@ -412,7 +408,7 @@ function Login() {
                 </Stack>
               </DrawerBody>
             ) : (
-              <Form Number={Number} />
+              <Form Number={Number} onClose={onClose} />
             )}
           </DrawerContent>
         </Drawer>

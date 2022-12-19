@@ -4,6 +4,8 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import Slider from "react-slick";
 import SimilarProduct from "./similarproduct";
 import axios from "axios"
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../redux/product/action";
 
 
 // Slider settings
@@ -17,30 +19,54 @@ const settings = {
     autoplaySpeed: 3000,
     slidesToShow: 5,
     slidesToScroll: 1,
+    responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
 };
 
-const  SimilarProductSlider = () => {
+const  SimilarProductSlider = ({category}) => {
     const [slider, setSlider] = React.useState();
-    const [productData, setProductData] = useState([])
+    const dispatch = useDispatch();
+    const {data} = useSelector(state => state.product)
 
     const top = useBreakpointValue({ base: "90%", md: "50%" });
     const side = useBreakpointValue({ base: "30%", md: "10px" });
 
     
 useEffect(()=>{
-    axios
-    .get("https://pharmeasy-backend.onrender.com/products/")
-    .then((res)=> setProductData(res.data))
-},[])
+    dispatch(getAllProducts({category}))
+},[category, dispatch])
 
 
     return (
-    <div style={{ width: '70%', marginLeft: '5%'}}>
+    <div style={{ width: '70%', margin: 'auto'}}>
         <Flex h="450px" justify="center" marginY="20px" direction="column" py="40px" color="#4f585e" borderTop="1.5px solid #e6e8ee" borderBottom="1.5px solid #d8dee3">
             <Text fontSize="18px" fontWeight="700" textAlign="left">Similar Products</Text>
             <Box
                 position={"relative"}
-                height={"380px"}
                 width={"full"}
                 overflow={"hidden"}
                 borderRadius="0"
@@ -96,7 +122,7 @@ useEffect(()=>{
                     <BiRightArrowAlt color="#0f847e" />
                 </IconButton>
                 <Slider {...settings} ref={(slider) => setSlider(slider)}>
-                    {productData.map((prod, index) => (
+                    {data.map((prod, index) => (
                         <SimilarProduct prod={prod}  key={prod._id} />
                     ))}
                 </Slider>

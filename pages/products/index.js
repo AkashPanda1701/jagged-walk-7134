@@ -6,53 +6,45 @@ import {
   Text, Breadcrumb, BreadcrumbItem,
   BreadcrumbLink, Select,
   Flex,
+  Grid,
+  Button,
+  List,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../redux/product/action";
+import Link from "next/link";
 // ------------------- ---------------------------- -----------------------------
 
 export default function Products(params) {
-
-  const [data, setData] = useState([]);
-  const [value, setValue] = useState('0');
-  const [sortData, setSortData] = useState([]);
-  const [change, setChange] = useState(true);
-
+  
+  const {data } = useSelector(state => state.product);
+  const [page , setPage] = useState(1);
+  const dispatch = useDispatch();
+  let { query :{category} } = useRouter();
+  const [price , setPrice] = useState('');
+  const [orderBy , setOrderBy] = useState('');
+  
+  
   useEffect(() => {
-    axios(
-      "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products?page=1&limit=20"
-    )
-      .then((res) => setData(res.data.data))
-      .catch((err) => alert(err));
-  }, []);
-  //console.log(data);
-
-
-  const handleSorting = (e) => {
-    const { value } = e.target;
-    setChange(!change);
-    if (value === "asc") {
-      let asc = data.sort((a, b) => {
-        return a.price - b.price;
-      });
-      setSortData(asc);
-    } else if (value === "des") {
-      let des = data.sort((a, b) => {
-        return b.price - a.price;
-      });
-      setSortData(des);
+    if(category=='all'){
+      category = '';
     }
-  };
+    dispatch(getAllProducts({category, page, price, orderBy}));
+  }, [category, dispatch, page, price , orderBy]);
+  
+ 
 
-  useEffect(() => {
-    setData(sortData);
-  }, [change]);
 
 
   return (
-    <Container h='auto' maxW='container.xl' p='1' mt='10' >
+      <>
+      <Navbar/>
+    <Box h='auto'  p='1' mt='10'  w='90%'>
       {/* ....................................... 1st Horizontal Center-Box (total 2 center-box).......................................................... */}
       <Center h='auto' mb='5'>
         {/* ---------------------------- BreadCrumb Items Containing Box--------------------------------- */}
@@ -62,12 +54,8 @@ export default function Products(params) {
               <BreadcrumbLink href='/'>Home</BreadcrumbLink>
             </BreadcrumbItem>
 
-            <BreadcrumbItem>
-              <BreadcrumbLink href='/'>All Categories</BreadcrumbLink>
-            </BreadcrumbItem>
-
             <BreadcrumbItem isCurrentPage color='gray'>
-              <BreadcrumbLink href='#'>Personal Care</BreadcrumbLink>
+              <BreadcrumbLink href={`/products?category=${category}`}>{category}</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
         </Box>
@@ -76,20 +64,33 @@ export default function Products(params) {
       {/* ....................................... 2nd Horizontal Center-Box .............................................................................  */}
       <Center h='auto' alignItems='left'>
         {/* ------------------------------------- Filter-Side View----------------------------------------------------- */}
-        <Stack h='auto' w='18%' ml={'20'}>
+        <Stack h='auto' w='18%' ml={'20'} >
           <Box h='auto' w='95%' m='3' ml='-0.5' mb='5'>
             <Heading color='gray.600' size='lg' fontWeight={600}>Filter</Heading>
           </Box>
 
           <Box h='auto' w='95%' m='3' alignItems='left' >
             <Heading as={"h5"} size="sm" mb='5' color='gray.600'>Category</Heading>
-            <RadioGroup colorScheme='green' onChange={setValue} value={value}>
-              <Stack direction='column'>
-                <Flex color='gray' mb='5'>Personal Care
-                  <Radio value='0' mt='1.5' ml='14vh'></Radio>
-                </Flex>
-              </Stack>
-            </RadioGroup>
+              <Link href={`/products?category=all`}>
+               <Text color='gray'>All</Text>
+              </Link>
+              <Link href={`/products?category=homecare`}>
+                <Text color='gray'>Home Care</Text>
+              </Link>
+              <Link href={`/products?category=personalcare`}>
+                <Text color='gray'>Personal Care</Text>
+              </Link>
+              <Link href={`/products?category=healthcare`}>
+                <Text color='gray'>Health Care</Text>
+              </Link>
+              <Link href={`/products?category=Health-Food-Drinks`}>
+                <Text color='gray'>Health Food & Drinks</Text>
+              </Link>
+              <Link href={`/products?category=skincare`}>
+                <Text color='gray'>Skin Care</Text>
+              </Link>
+        
+            
           </Box>
 
           <Divider border='1px solid black' bg={'blackAlpha.200'} />
@@ -115,36 +116,19 @@ export default function Products(params) {
 
           <Box h='auto' w='95%' m='3' alignItems='left'>
             <Heading as={"h5"} size="sm" mb='5' color='gray.600' mt='5'>Price</Heading>
-            <RadioGroup onChange={setValue} value={value}>
+            <RadioGroup onChange={setPrice} value={price}>
               <Stack direction='column' mb='5'>
-                <Flex color='gray'>Below 99 <Radio value='11' mt='1.5' ml='17.7vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>100-199 <Radio value='12' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>200-299 <Radio value='13' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>300-399 <Radio value='14' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>400-499 <Radio value='15' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Above 500 <Radio value='16' mt='1.5' ml='16.2vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray' justifyContent={'space-between'}>Below 99 <Radio  value='0,99' mt='1.5' ml='17.7vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'  justifyContent={'space-between'}>100-199 <Radio  value='100,199' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'  justifyContent={'space-between'}>200-299 <Radio  value='200,299' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'  justifyContent={'space-between'}>300-399 <Radio   value='300,399' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'  justifyContent={'space-between'}>400-499 <Radio    value='400,499' mt='1.5' ml='18.5vh' border='3px solid black'></Radio></Flex>
+                <Flex color='gray'  justifyContent={'space-between'}>Above 500 <Radio  value='500,3000' mt='1.5' ml='16.2vh' border='3px solid black'></Radio></Flex>
               </Stack>
             </RadioGroup>
           </Box>
 
-          <Divider border='1px solid black' bg={'blackAlpha.200'} />
 
-          <Box h='auto' w='95%' m='3' alignItems='left'>
-            <Heading as={"h5"} size="sm" mb='5' color='gray.600' mt='5'>Brand</Heading>
-            <RadioGroup onChange={setValue} value={value}>
-              <Stack direction='column' mb='5'>
-                <Flex color='gray'>&me <Radio value='21' mt='1.5' ml='21.5vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>1m <Radio value='22' mt='1.5' ml='23.2vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>23 Yards <Radio value='23' mt='1.5' ml='18.3vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>360 Block <Radio value='24' mt='1.5' ml='17.2vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>3m <Radio value='25' mt='1.5' ml='23.2vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>A Derma <Radio value='26' mt='1.5' ml='18vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>A & I <Radio value='27' mt='1.5' ml='21.3vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Aarhaveda <Radio value='28' mt='1.5' ml='16.2vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Abena <Radio value='29' mt='1.5' ml='20.1vh' border='3px solid black'></Radio></Flex>
-              </Stack>
-            </RadioGroup>
-          </Box>
         </Stack>
         <Spacer />
 
@@ -152,7 +136,7 @@ export default function Products(params) {
         <Stack h='auto' w='70%'>
           <Center h='auto' m='3'>
             <Box w='45%'>
-              <Heading color='gray.600' size='lg' fontWeight={600}>Personal Care</Heading>
+              <Heading color='gray.600' size='lg' fontWeight={600}>{category && category.charAt(0).toUpperCase() + category.slice(1)}</Heading>
             </Box>
 
             <Spacer />
@@ -163,13 +147,10 @@ export default function Products(params) {
                   Sort By:
                 </Text>
 
-                <Select cursor='pointer' border='2px solid black' borderRadius='10' onChange={handleSorting}>
+                <Select cursor='pointer' border='2px solid black' borderRadius='10'  onChange={(e) => setOrderBy(e.target.value)}>
                   <option value="">Select</option>
                   <option value="asc">Price Low to High</option>
-                  <option value="des">Price High to Low</option>
-                  <option> Discount </option>
-                  <option> Relevance </option>
-                  <option> Popularity </option>
+                  <option value="desc">Price High to Low</option>
                 </Select>
 
               </Stack>
@@ -177,27 +158,49 @@ export default function Products(params) {
           </Center>
           {/* ---------------------------------------- Products Box ----------------------------------------------------- */}
           <Box>
-            <SimpleGrid columns={[1, 2, 3, 3]} spacing={5}>
-              {data &&
-                data.map((item) => {
+            <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }} gap={2} m='3'>
+              {
+                data?.map((item,index) => {
                   return (
-                    <Box borderRadius='7' boxShadow='xs' p='3' _hover={{ border: 'green', cursor: 'pointer', boxShadow: 'outline' }} >
-                      <Stack >
-                        <Img boxSize="16rem" src={item.image} />
-                        <Text> {item.title} </Text>
-                        <Text> {item.category} </Text>
-                        <Text> ₹ {item.price} </Text>
-                        <Text> {item.brand} </Text>
+                    <Box key={index} borderRadius='7' boxShadow='xs' p='3' _hover={{ border: 'green', cursor: 'pointer', boxShadow: 'outline' }} maxWidth='250px' >
+                      <Link href={`/products/${item._id}`}>
+                      <Stack p='3'>
+                        <Img boxSize="16rem" src={item.images[0]} h={'200px'}  />
+                        <Text> {item.title.substring(0, 20)}... </Text>
+                        <Text> {item.category.charAt(0).toUpperCase() + item.category.slice(1)} </Text>
+                        <Text>Price: ₹ {item.price} </Text>
+                        <Text>Mrp: ₹ {item.mrp} </Text>
                       </Stack>
+                      </Link>
                     </Box>
                   );
                 })}
-            </SimpleGrid>
+            </Grid>
+            <Flex justifyContent='center' alignItems='center' mt='5' mb='5'>
+            <Button onClick={()=>{
+              if(page==1){
+                setPage(5)
+              }
+              else{
+                setPage((page)=>page-1)
+              }
+            }}>Prev</Button>
+            <Button bg='none' _hover={{bg:'none'}}>{page}</Button>
+            <Button onClick={()=>{
+              if(page==5){
+                setPage(1)
+              }
+              else{
+                setPage((page)=>page+1)
+              }
+            }}>Next</Button>
+            </Flex>
           </Box>
         </Stack>
       </Center>
-    </Container>
-
+    </Box>
+<Footer/>
+</>
   )
 
 }

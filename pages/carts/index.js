@@ -8,8 +8,6 @@ import {
     List,
     ListIcon,
     ListItem,
-    Select,
-    SimpleGrid,
     Text,
 } from "@chakra-ui/react";
 import styles from "./Css/cart.module.css";
@@ -22,7 +20,6 @@ import EmptyCart from "../../Components/Cart_Checkout/EmptyCart";
 import WithCartItem from "../../Components/Cart_Checkout/WithCartItem";
 import AddAddress from "../../Components/Cart_Checkout/AddAddress";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllItem, getCart } from "../../redux/cart/action";
 import LoadingItem from "../../Components/Cart_Checkout/LoadingItem";
 import ReactElasticCarousel from "../../Components/Cart_Checkout/React-Elastic-Carousel";
 import ApplyCoupons from "../../Components/Cart_Checkout/ApplyCoupons";
@@ -31,44 +28,36 @@ import Navbar from "../../Components/Navbar/Navbar";
 
 
 export default function Cart() {
-    const [flag, setFlag] = useState(0);
-    const [itemTotal, setItemTotal] = useState(0);
-    const [saving, setSaving] = useState(0);
-    const [MRP, setMRP] = useState(0);
-    const [discount, setDiscount] = useState(0);
+    // const [flag, setFlag] = useState(0);
+    // const [itemTotal, setItemTotal] = useState(0);
+    // const [saving, setSaving] = useState(0);
+    // const [MRP, setMRP] = useState(0);
+    // const [discount, setDiscount] = useState(0);
 
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((store) => store.cart);
     // console.log('loading, error:', loading, error)
 
-    useEffect(() => {
-        dispatch(getCart());
-        dispatch(getAllItem());
-    }, [flag]);
 
-    let count = 1;
-    useEffect(() => {
-        //finding total
-        let Price = 0;
-        let MRP = 0;
-        for (let i = 0; i < data.length; i++) {
-            Price += Number(((data[i].price) * (data[i].quantity)).toFixed(2));
-            MRP += Number(((data[i].mrp) * (data[i].quantity)).toFixed(2));
-        }
-        let per = (((MRP - Price) / MRP) * 100).toFixed(2);
-        setItemTotal(Price.toFixed(2));
-        setMRP(MRP.toFixed(2));
-        setSaving((MRP - Price).toFixed(2));
-        setDiscount(per);
+    // let count = 1;
+    // useEffect(() => {
+    //     //finding total
+    //     let Price = 0;
+    //     let MRP = 0;
+    //     for (let i = 0; i < data.length; i++) {
+    //         Price += Number(((data[i].price) * (data[i].quantity)).toFixed(2));
+    //         MRP += Number(((data[i].mrp) * (data[i].quantity)).toFixed(2));
+    //     }
+    //     let per = (((MRP - Price) / MRP) * 100).toFixed(2);
+    //     setItemTotal(Price.toFixed(2));
+    //     setMRP(MRP.toFixed(2));
+    //     setSaving((MRP - Price).toFixed(2));
+    //     setDiscount(per);
 
-        // console.log("itemTotal Payment Method:", itemTotal);
-    }, [loading, error]);
+    //     // console.log("itemTotal Payment Method:", itemTotal);
+    // }, [loading, error]);
 
-    const handleQuantity = (quantity) => {
-        console.log('quantity in Cart from WithCartItem:', quantity)
-        setFlag(quantity)
-        console.log(flag);
-    }
+  
 
     return (
         <>
@@ -114,7 +103,7 @@ export default function Cart() {
                                     {data &&
                                         data.map((item, index) => (
                                             <div key={index}>
-                                                {loading ? <LoadingItem /> : <WithCartItem handleQuantity={handleQuantity} item={item} />}
+                                                {loading ? <LoadingItem /> : <WithCartItem  item={item} />}
                                             </div>
                                         ))}
                                 </Box>
@@ -128,7 +117,8 @@ export default function Cart() {
                             <Box h="73px">
                                 <Heading as="h1">
                                     Cart total:
-                                    <span>{data.length > 0 ? ` ₹ ${itemTotal}` : 0}</span>
+                                    <span>{data.length > 0 ? ` ₹ ${data.reduce((a, b) => a + b.productId.price * b.quantity, 0).toFixed(2)
+                                    }` : 0}</span>
                                 </Heading>
                             </Box>
                             {data.length > 0 ? (
@@ -167,7 +157,7 @@ export default function Cart() {
 
                             {/* Billing Summary */}
                             {data.length > 0 ? (
-                                <BillSummary data={data} itemTotal={itemTotal} MRP={MRP} />
+                                <BillSummary data={data}   />
                             ) : null}
                             {/* Billing Summary */}
 
@@ -183,10 +173,10 @@ export default function Cart() {
                                     </Box>
                                     <Box w="400px">
                                         <Heading as="h1">
-                                            Total savings of <span>₹{saving}</span> on this Order
+                                            Total savings of <span>₹{(data.reduce((a, b) => a + b.productId.mrp * b.quantity, 0)-data.reduce((a, b) => a + b.productId.price * b.quantity, 0)).toFixed(2)}</span> on this Order
                                         </Heading>
                                         <Heading as="h1">
-                                            MRP Discount <span>{`${discount} %`}</span>{" "}
+                                            MRP Discount <span>{`${(100-((data.reduce((a, b) => a + b.productId.price * b.quantity, 0).toFixed(2)/data.reduce((a, b) => a + b.productId.mrp * b.quantity, 0).toFixed(2))*100)).toFixed(2)} %`}</span>{" "}
                                         </Heading>
                                     </Box>
                                 </Box>

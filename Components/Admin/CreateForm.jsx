@@ -193,7 +193,7 @@ export default function CreateForm() {
                         <option value="healthcare">Health Care</option>
                         <option value="skincare">Skin Care</option>
                         <option value="homecare">Home Care</option>
-                        <option value="Health Food & Drinks">Health Food & Drinks</option>
+                        <option value="Health-Food-Drinks">Health Food & Drinks</option>
                         <option value="personalcare">Personal Care</option>
                     </Select>
                 </FormControl>

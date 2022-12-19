@@ -2,12 +2,10 @@ import {
     ADD_ITEM_CART_TO_CART_ERROR,
     ADD_ITEM_CART_TO_CART_LOADING,
     ADD_ITEM_CART_TO_CART_SUCCESS,
+    CLEAR_CART_MESSAGE,
     DELETE_CART_ERROR,
     DELETE_CART_LOADING,
     DELETE_CART_SUCCESS,
-    GET_ALL_CART_ERROR,
-    GET_ALL_CART_LOADING,
-    GET_ALL_CART_SUCCESS,
     GET_CART_ERROR,
     GET_CART_LOADING,
     GET_CART_SUCCESS,
@@ -19,9 +17,9 @@ import {
 // Don't make any changes to this file.
 const initialState = {
     data: [],
-    allData: [],
     loading: false,
     error: false,
+    message: "",
 };
 
 export const cartReducer = (state = initialState, { type, payload }) => {
@@ -61,7 +59,12 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case PATCH_CART_SUCCESS: {
             return {
                 ...state,
-                data: payload,
+                data: state.data.map((item) => {
+                    if (item._id === payload._id) {
+                        item.quantity = payload.quantity;
+                    }
+                    return item;
+                }),
                 loading: false,
                 error: false,
             };
@@ -83,12 +86,9 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             };
         }
         case DELETE_CART_SUCCESS: {
-            let id = payload._id || payload.id;
-            // console.log("id Inside Delete Reducer:", id);
-            const DeleteCartItemArr = state.data.filter((item) => id !== (item._id || item.id));
             return {
                 ...state,
-                data: DeleteCartItemArr,
+                data: state.data.filter((item) => item._id !== payload._id),
                 loading: false,
                 error: false,
             };
@@ -101,29 +101,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
             };
         }
 
-        case GET_ALL_CART_LOADING: {
-            // console.log("get loading");
-            return {
-                ...state,
-                loading: true,
-                error: false,
-            };
-        }
-        case GET_ALL_CART_SUCCESS: {
-            return {
-                ...state,
-                allData: payload,
-                loading: false,
-                error: false,
-            };
-        }
-        case GET_ALL_CART_ERROR: {
-            return {
-                ...state,
-                loading: false,
-                error: true,
-            };
-        }
+      
 
         case ADD_ITEM_CART_TO_CART_LOADING: {
             // console.log("post loading");
@@ -136,9 +114,10 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         case ADD_ITEM_CART_TO_CART_SUCCESS: {
             return {
                 ...state,
-                data: [...state.data, payload],
+                data: [...state.data, payload.data],
                 loading: false,
                 error: false,
+                message: payload.message,
             };
         }
         case ADD_ITEM_CART_TO_CART_ERROR: {
@@ -146,8 +125,17 @@ export const cartReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 loading: false,
                 error: true,
+                message: payload.message,
             };
         }
+        case CLEAR_CART_MESSAGE : {
+            return {
+                ...state,
+                message: "",
+                error: false,
+            };
+        }
+
 
         default:
             return state;

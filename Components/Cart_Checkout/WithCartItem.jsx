@@ -5,6 +5,7 @@ import {
     GridItem,
     Heading,
     Image,
+    Img,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -19,38 +20,28 @@ import {
 import styles from "../../pages/carts/Css/cart.module.css";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteCart, getCart, patchCart } from "../../redux/cart/action";
 
-export default function WithCartItem({ item, handleQuantity }) {
+export default function WithCartItem({ item }) {
+    // console.log('item: ', item);
     // console.log('item:', item.price)
-    const [quantity, setQuantity] = useState(item.quantity);
+    const {data} = useSelector((state) => state.cart);
     const [day, setDay] = useState("");
     const [month, setMonth] = useState("");
     const toast = useToast();
     const dispatch = useDispatch();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const handleDelete = () => {
-        console.log("Item get Delete");
-        dispatch(deleteCart(item));
-        toast({
-            title: "Item Delete Successfully",
-            status: "error",
-            duration: 2000,
-            isClosable: true,
-            position: "top",
-        });
-    };
+   
 
     useEffect(() => {
         DeliveryDate();
         // console.log("quantity:", quantity);
         // itemUpdate
         // console.log("quantity:", quantity);
-        dispatch(patchCart({ item, quantity }));
-        handleQuantity(quantity);
-    }, [quantity]);
+        // dispatch(patchCart({ item, quantity }));
+    }, []);
 
     function DeliveryDate() {
         const months = [
@@ -110,12 +101,12 @@ export default function WithCartItem({ item, handleQuantity }) {
             className={styles.individualItem}
         >
             <GridItem colSpan={{ base: 10, sm: 10, md: 2 }}>
-                <Image maxW="105px" h="105px" src={item.images[0]} alt="" />
+                <Img maxW="105px" h="105px" src={item.productId.images && item.productId.images[0]} alt="" />
             </GridItem>
             <GridItem colSpan={{ base: 10, sm: 10, md: 8 }}>
                 <Box>
                     <Heading maxW="401px" as="h1">
-                        {item.title}
+                        {item.productId.title}
                     </Heading>
                     <button onClick={onOpen}>
                         <AiOutlineDelete color="red" />
@@ -134,28 +125,42 @@ export default function WithCartItem({ item, handleQuantity }) {
                                     className={styles.individualItem}
                                 >
                                     <GridItem  colSpan={{ base: 10, sm: 10, md: 3 }}>
-                                        <Image maxW="105px" h="105px" src={item.images[0]} alt="" />
+                                        <Img maxW="105px" h="105px" src={item.productId.images && item.productId.images[0]} alt="" />
                                     </GridItem>
                                     <GridItem colSpan={{ base: 10, sm: 10, md: 7 }}>
                                         <Box>
                                             <Heading maxW="401px" as="h1">
-                                                {item.title}
+                                                {item.productId.title}
                                             </Heading>
                                         </Box>
                                         <Box className={styles.priceMRP}>
                                             <Box w="256px" maxW="300px">
                                                 <Heading as="h1">
-                                                    MRP <span>{`₹${item.mrp.toFixed(2)}*`}</span>
+                                                    MRP <span>{`₹${item.productId.mrp}*`}</span>
                                                 </Heading>
-                                                <Heading as="h1">{`₹${item.price}*`}</Heading>
-                                                <Heading as="h1">{`${item.discount} OFF`}</Heading>
+                                                <Heading as="h1">{`₹${item.productId.price}*`}</Heading>
+                                                <Heading as="h1">{`${item.productId.discount} OFF`}</Heading>
                                             </Box>
                                         </Box>
                                     </GridItem>
                                 </Grid>
                                 <ModalFooter mt="-15px">
                                     <Button
-                                        onClick={handleDelete}
+                                        onClick={() => {
+                                           
+                                         dispatch(deleteCart(item._id)); 
+                                               
+                                         
+                                            toast({
+                                                title: "Item removed from cart.",
+                                                status: "success",
+                                                duration: 3000,
+                                                isClosable: true,
+                                                position: "top",
+                                            });
+                                            
+                                            onClose();
+                                        }}
                                         colorScheme="red"
                                         variant="outline"
                                     >
@@ -178,22 +183,59 @@ export default function WithCartItem({ item, handleQuantity }) {
                 <Box className={styles.priceMRP}>
                     <Box w="256px" maxW="300px">
                         <Heading as="h1">
-                            MRP <span>{`₹${item.mrp.toFixed(2)}*`}</span>
+                            MRP <span>{`₹${item.productId.mrp
+                            }*`}</span>
                         </Heading>
-                        <Heading as="h1">{`₹${item.price}*`}</Heading>
-                        <Heading as="h1">{`${item.discount} OFF`}</Heading>
+                        <Heading as="h1">{`₹${item.productId.price}*`}</Heading>
+                        <Heading as="h1">{`${item.productId.discount} OFF`}</Heading>
                     </Box>
                     <Box>
                         <Button
-                            disabled={quantity === 1}
-                            onClick={() => setQuantity(quantity - 1)}
+                            onClick={() => {
+                                if(item.quantity === 1){
+                                    toast({
+                                        title: "Minimum 1 quantity required",
+                                        status: "warning",
+                                        duration: 3000,
+                                        isClosable: true,
+                                        position: "top",
+                                    });
+                                    return;
+                                }
+                                dispatch(patchCart(item._id, item.quantity - 1));
+                                toast({
+                                    title: `${item.productId.title} quantity decreased by 1`,
+                                    status: "success",
+                                    duration: 3000,
+                                    isClosable: true,
+                                    position: "top",
+                                });
+                            }}
                         >
                             -
                         </Button>
-                        <Button>{quantity}</Button>
+                        <Button>{item.quantity}</Button>
                         <Button
-                            disabled={quantity >= 6}
-                            onClick={() => setQuantity(quantity + 1)}
+                            onClick={() => {
+                                if(item.quantity === 10){
+                                    toast({
+                                        title: "Maximum 10 quantity allowed",
+                                        status: "warning",
+                                        duration: 3000,
+                                        isClosable: true,
+                                        position: "top",
+                                    });
+                                    return;
+                                }
+                                dispatch(patchCart(item._id, item.quantity + 1));
+                                toast({
+                                    title: `${item.productId.title} quantity increased by 1`,
+                                    status: "success",
+                                    duration: 3000,
+                                    isClosable: true,
+                                    position: "top",
+                                });
+                            }}
                         >
                             +
                         </Button>

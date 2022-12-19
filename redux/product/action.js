@@ -27,7 +27,6 @@ export const getAllProducts = (query) => async (dispatch) => {
     }
     
     const res = await axios.get(`http://localhost:3000/api/products?${q}`);
-    console.log('res: ', res);
   
 
     dispatch({ type: GET_ALL_PRODUCTS_SUCCESS, payload: res.data });

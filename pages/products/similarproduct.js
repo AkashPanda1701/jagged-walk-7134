@@ -1,4 +1,5 @@
-import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Image, Img, Text } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 // import  Link  from "react-router-dom";
 
@@ -13,11 +14,10 @@ const SimilarProduct = ({ prod }) => {
       marginTop="20px"
       color="#4f585e"
     >
-      <a href={`/product/${prod._id}`}>
+      <Link href={`/products/${prod._id}`}>
         <Box
-          margin="0 10px"
           w="100%"
-          height={"80%"}
+          h="70%"
           position="relative"
           overflow="hidden"
           borderRadius="lg"
@@ -32,7 +32,7 @@ const SimilarProduct = ({ prod }) => {
             borderRadius="lg"
             border="1.5px solid #e7e6e6"
           >
-            <Image h="100%" src={prod.img1} />
+            <Img h="100%" src={prod.images[0]} w='100%' />
           </Center>
           <Text
             istruncated="true"
@@ -41,7 +41,7 @@ const SimilarProduct = ({ prod }) => {
             noOfLines={2}
             height="48px"
           >
-            {prod.name}
+            {prod.title.slice(0, 15)}...
           </Text>
           <Flex
             className="price"
@@ -53,7 +53,7 @@ const SimilarProduct = ({ prod }) => {
             <Text fontSize="11px" fontWeight="400" color="#8e9ca7">
               MRP{" "}
               <span style={{ textDecoration: "line-through" }}>
-                ₹{prod.price}
+                ₹{prod.mrp}
               </span>{" "}
             </Text>
             <Flex
@@ -67,11 +67,11 @@ const SimilarProduct = ({ prod }) => {
               w="46%"
               bgImage='url("https://assets.pharmeasy.in/web-assets/dist/1602b4ce.svg")'
             >
-              {prod.offpercentage}% OFF
+              {prod.discount} OFF
             </Flex>
           </Flex>
           <Text fontSize="16px" fontWeight="700">
-            ₹{prod.offprice}
+            ₹{prod.price}
           </Text>
           <Button
             my="10px"
@@ -86,7 +86,7 @@ const SimilarProduct = ({ prod }) => {
             Add
           </Button>
         </Box>
-      </a>
+      </Link>
     </Box>
   );
 };
