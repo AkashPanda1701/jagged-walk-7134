@@ -11,7 +11,7 @@ import {
   Button,
   Flex,
   Heading,
-  Image,
+  Image alt='',
   Text,
 } from "@chakra-ui/react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
@@ -88,7 +88,7 @@ export default function Medicines(){
           <Box>
             {data.map((ele) => (
               <Flex key={ele.id} padding={10} alignItems={"center"} gap={10}>
-                <Image
+                <Image alt=''
                   src={ele.img}
                   width={{ base: "10", sm: "20", md: "30", lg: "40" }}
                 />
@@ -105,7 +105,7 @@ export default function Medicines(){
             <Flex padding={2} gap={5}>
               <Box borderRadius={10} border={"1px solid lightgrey"} padding={7}>
                 <Flex gap={4}>
-                  <Image
+                  <Image alt=''
                     src="https://cms-contents.pharmeasy.in/offer/702efbbe2e6-au.jpg?w=64&q=75"
                     width={20}
                   />
@@ -122,7 +122,7 @@ export default function Medicines(){
               </Box>
               <Box borderRadius={10} border={"1px solid lightgrey"} padding={7}>
                 <Flex gap={4}>
-                  <Image
+                  <Image alt=''
                     src="https://cms-contents.pharmeasy.in/offer/61f3dfe3705-OlaMoney.png?w=64&q=75"
                     width={20}
                   />
@@ -139,7 +139,7 @@ export default function Medicines(){
               </Box>
               <Box borderRadius={10} border={"1px solid lightgrey"} padding={7}>
                 <Flex gap={4}>
-                  <Image
+                  <Image alt=''
                     src="https://cms-contents.pharmeasy.in/offer/62e13eb58a2-2.jpg?w=64&q=75"
                     width={20}
                   />
@@ -427,7 +427,7 @@ export default function Medicines(){
             </Accordion>
           </Box>
           <Flex mt={10} gap={20}>
-            <Image
+            <Image alt=''
               width={200}
               src="https://assets.pharmeasy.in/web-assets/_next/icons/footerMobile.jpg"
             />
