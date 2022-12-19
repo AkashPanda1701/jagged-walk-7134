@@ -11,10 +11,11 @@ import {
   Button,
   Flex,
   Heading,
-  Image alt='',
+  Image,
   Text,
 } from "@chakra-ui/react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
+import Link from "next/link";
 import { useState } from "react";
 import Footer from "../../Components/Footer/footer";
 import Adslider from "../../Components/Home/adSlider";
@@ -92,7 +93,7 @@ export default function Medicines(){
                   src={ele.img}
                   width={{ base: "10", sm: "20", md: "30", lg: "40" }}
                 />
-                <NavLink to={`/medicines/${ele.id}`}>{ele.title}</NavLink>
+                <Link to={`/medicines/${ele.id}`}>{ele.title}</Link>
               </Flex>
             ))}
           </Box>
@@ -160,7 +161,7 @@ export default function Medicines(){
           <Adslider />
           {/* ---------------all description------- */}
           <Heading mt={10} as={"h6"} size={"sm"}>
-            India's No. 1 Medicine Delivery App
+            Indias No. 1 Medicine Delivery App
           </Heading>
           <Box mt={7} color={"#8897a2"} fontSize={15}>
             The concept of medicine home delivery has been taken to a new level
@@ -398,9 +399,9 @@ export default function Medicines(){
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  our order will be delivered as per the 'Estimated Delivery
-                  Date' committed at the time of order placement. You can check
-                  this by selecting your order from the "My Orders" section.
+                  our order will be delivered as per the Estimated Delivery
+                  Date committed at the time of order placement. You can check
+                  this by selecting your order from the My Orders section.
                   Keep a lookout for our order delivery updates. Note: Due to
                   the current COVID-19 crisis, the delivery date may not be as
                   per usual timelines and we request you to bear with us. But
