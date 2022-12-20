@@ -34,3 +34,12 @@ Created a functional website for purchasing pharmaceutical and healthcare produc
 <li>MongoDB</li>
 <li>Express</li>
 </ul>
+
+
+## Installation Requirnments 
+
+1. Fork the repo, then clone it
+2. Install all dependencies, with 'npm install'
+3. start the application `npm run start`
+
+
