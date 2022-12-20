@@ -52,6 +52,7 @@ export default function  ShopByConcern () {
           return (
             <Box key={index} width={130}>
               <Image
+              alt=''
                 p={5}
                 _hover={{
                   boxShadow:

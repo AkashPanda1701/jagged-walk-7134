@@ -130,7 +130,7 @@ export function EditForm({ item }) {
                             {
                                 item.images &&
                                 item.images.map((images, index) =>
-                                    <FormControl isRequired>
+                                    <FormControl key={index} isRequired>
                                         <FormLabel>Images {index + 1}</FormLabel>
                                         <Input
                                             placeholder="Images of Product"

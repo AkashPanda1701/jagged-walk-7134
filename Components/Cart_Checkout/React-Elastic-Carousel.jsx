@@ -4,6 +4,8 @@ import Carousel from "react-elastic-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../pages/carts/Css/react-elastic-carousel.module.css";
 import { addItemCart } from "../../redux/cart/action";
+import { CLEAR_CART_MESSAGE } from "../../redux/cart/type";
+import { getAllProducts } from "../../redux/product/action";
 import SkeletonCarousel from "./SkeletonCarousel";
 
 const breakPoints = [
@@ -16,21 +18,16 @@ const breakPoints = [
 
 export default function ReactElasticCarousel({ heading }) {
 
-    const { allData, loading, } = useSelector((store) => store.cart);
+    const {  loading, } = useSelector((store) => store.cart);
+    const { data} = useSelector((store) => store.product);
     const toast = useToast();
     const dispatch = useDispatch();
 
-    const handleAdd = (item) => {
-        console.log('item:', item);
-        dispatch(addItemCart(item));
-        toast({
-            title: "Item Added in Cart Successfully",
-            status: "success",
-            duration: 2000,
-            isClosable: true,
-            position: "top",
-        });
-    }
+    useEffect(() => {
+        dispatch(getAllProducts());
+    }, [dispatch]);
+
+  
     return (
         <Box maxW="1348px" m="auto">
             <Box maxW="1200px" m="auto" className={styles.carouselHeading}>
@@ -39,8 +36,8 @@ export default function ReactElasticCarousel({ heading }) {
                 </Heading>
             </Box>
             <Carousel breakPoints={breakPoints}>
-                {allData &&
-                    allData.map((item, index) => (
+                {data &&
+                    data?.map((item, index) => (
                         <Box key={index}>
                             {" "}
                             {loading ? (
@@ -52,7 +49,7 @@ export default function ReactElasticCarousel({ heading }) {
                                     </Box>
                                     <Box>
                                         <Heading as="h1">
-                                            Accu-Chek Active Glucometer Test Strips Strip Of 25
+                                            {item.title.slice(0, 15)}...
                                         </Heading>
                                         <Heading as="h2">
                                             MRP <span>₹{item.mrp}</span>
@@ -63,7 +60,16 @@ export default function ReactElasticCarousel({ heading }) {
                                         </Heading>
                                     </Box>
                                     <Box>
-                                        <Button onClick={() => handleAdd(item)}>Add</Button>
+                                        <Button onClick={() =>{
+                                            dispatch(addItemCart( { productId: item._id, quantity: 1 } ));
+                                            toast({
+                                                title: "Item added to cart",
+                                                status: "success",
+                                                duration: 2000,
+                                                isClosable: true,
+                                            });
+                                            dispatch({type:CLEAR_CART_MESSAGE})
+                                        } }>Add</Button>
                                     </Box>
                                 </Box>
                             )}

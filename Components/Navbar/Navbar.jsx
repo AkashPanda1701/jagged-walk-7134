@@ -118,7 +118,10 @@ export default function Navbar() {
           >
             <Box display="flex" gap={{ base: 0, md: 3 }}>
               <Text mt="5px">
+                <Link href='/admin'>
                 <FaRegUser />
+
+</Link>
               </Text>
               <Login />
             </Box>

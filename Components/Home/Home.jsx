@@ -72,7 +72,7 @@ export default function Homecomp() {
                 lg: "mg",
               }}
               className="inputgrp"
-              children={<BiSearchAlt />}
+              // children={<BiSearchAlt />}
               background="white"
             />
             <Input
@@ -91,26 +91,26 @@ export default function Homecomp() {
               //   onClick={() => getData(value)}
               fontSize={"md"}
               className="inputgrp"
-              children={
-                <Button
-                  borderRadius={20}
-                  fontSize={{
-                    base: "10px",
-                    sm: "14px",
-                    lg: "16px",
-                  }}
-                  color={"white"}
-                  _hover={{ background: "#10847e" }}
-                  background={"#10847e"}
-                  width={{
-                    base: "50px",
-                    sm: "70px",
-                    lg: "100px",
-                  }}
-                >
-                  Search
-                </Button>
-              }
+              // children={
+              //   <Button
+              //     borderRadius={20}
+              //     fontSize={{
+              //       base: "10px",
+              //       sm: "14px",
+              //       lg: "16px",
+              //     }}
+              //     color={"white"}
+              //     _hover={{ background: "#10847e" }}
+              //     background={"#10847e"}
+              //     width={{
+              //       base: "50px",
+              //       sm: "70px",
+              //       lg: "100px",
+              //     }}
+              //   >
+              //     Search
+              //   </Button>
+              // }
             />
           </InputGroup>
         </Box>

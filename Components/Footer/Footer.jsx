@@ -98,7 +98,7 @@ export default function Footer () {
           <Heading as="h6" size="md">
             Our Payment Partners
           </Heading>
-          <Flex w="60%" pt={"20px"} gap={"20px"}>
+          <Flex w="60%"  pt={"20px"} gap={"20px"}>
             <Box>
               <Image
                 w={"35px"}

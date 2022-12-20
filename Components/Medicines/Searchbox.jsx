@@ -1,6 +1,6 @@
 import {
   Flex,
-  Image,
+  Image ,
   Box,
   Heading,
   Input,
@@ -21,9 +21,9 @@ export const SearchBox = ({ handleChange, value, onClick }) => {
             <Box>
               <Flex className={styles.offersinnerdiv}>
                 <Box>
-                  <Image
+                  <Image alt=''
                     src="https://assets.pharmeasy.in/web-assets/_next/icons/valuePropDisc.svg"
-                    alt="off"
+                    
                   />
                 </Box>
                 <Box color={"white"} fontSize={"xs"}>
@@ -34,7 +34,7 @@ export const SearchBox = ({ handleChange, value, onClick }) => {
             <Box>
               <Flex className={styles.offersinnerdiv}>
                 <Box>
-                  <Image src="https://assets.pharmeasy.in/web-assets/_next/icons/valuePropProd.svg" />
+                  <Image alt='' src="https://assets.pharmeasy.in/web-assets/_next/icons/valuePropProd.svg" />
                 </Box>
                 <Box color={"white"} fontSize={"xs"}>
                   1 Lakh+ Products
@@ -44,7 +44,7 @@ export const SearchBox = ({ handleChange, value, onClick }) => {
             <Box>
               <Flex className={styles.offersinnerdiv}>
                 <Box>
-                  <Image src="https://assets.pharmeasy.in/web-assets/_next/icons/valuePropReturn.svg" />
+                  <Image alt='' src="https://assets.pharmeasy.in/web-assets/_next/icons/valuePropReturn.svg" />
                 </Box>
                 <Box color={"white"} fontSize={"xs"}>
                   1 Lakh+ Products
@@ -59,7 +59,7 @@ export const SearchBox = ({ handleChange, value, onClick }) => {
             <InputLeftAddon
               fontSize={{ base: "xsm", sm: "xsm", md: "md", lg: "mg" }}
               className="inputgrp"
-              children="Select Pincode"
+              // children="Select Pincode"
             />
             <Input
               value={value}
@@ -73,7 +73,7 @@ export const SearchBox = ({ handleChange, value, onClick }) => {
               onClick={onClick}
               fontSize={"md"}
               //   className={styles.inputgrp}
-              children={<BiSearchAlt />}
+              // children={<BiSearchAlt />}
             />
           </InputGroup>
         </Box>

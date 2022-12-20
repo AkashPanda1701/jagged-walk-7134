@@ -2,11 +2,8 @@ import { Box, Heading } from "@chakra-ui/react";
 import styles from "../../pages/carts/Css/cart.module.css";
 import stylesP from "../../pages/carts/Css/payment-method.module.css"
 
-export default function BillSummary({ data, itemTotal, MRP }) {
-    console.log('data:', data)
+export default function BillSummary({ data,  MRP }) {
 
-    itemTotal = Number(itemTotal).toFixed(2);
-    const AmountToBePaid = (Number(itemTotal) + 75 + 25).toFixed(2);
 
 
     return (
@@ -18,8 +15,8 @@ export default function BillSummary({ data, itemTotal, MRP }) {
                     <Heading as="h1" className={styles.charges}>
                         {data.length > 0 ? (
                             <>
-                                <span className={styles.crossSaving}> ₹ {MRP}</span>
-                                <span> ₹ {itemTotal}</span>
+                                <span className={styles.crossSaving}> ₹ {data.reduce((a, b) => a + b.productId.mrp * b.quantity, 0).toFixed(2)}</span>
+                                <span> ₹ {data.reduce((a, b) => a + b.productId.price * b.quantity, 0).toFixed(2)}</span>
                             </>
                         ) : (
                             0
@@ -70,7 +67,7 @@ export default function BillSummary({ data, itemTotal, MRP }) {
             <Box>
                 <Heading as="h1">Amount to be paid</Heading>
                 <Heading as="h1">
-                    {data.length > 0 ? ` ₹ ${AmountToBePaid}` : 0}
+                    {data.length > 0 ? ` ₹ ${(data.reduce((a, b) => a + b.productId.price * b.quantity, 0)+100).toFixed(2)}` : 0}
                 </Heading>
             </Box>
         </Box>

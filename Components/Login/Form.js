@@ -20,8 +20,11 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
+import {AUTH_REQ_SUCCESS} from '../../redux/auth/type'
+import { useDispatch } from "react-redux";
 function Form({ Number, onClose }) {
   const toast = useToast();
+  const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     fname: "",
@@ -49,6 +52,17 @@ function Form({ Number, onClose }) {
     }
     console.log(formData);
     userPost();
+    setTimeout(() => {
+      dispatch({type :AUTH_REQ_SUCCESS, payload: 'success'})
+    toast({
+      title: "Account created.",
+      description: "We've created your account for you.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+  })
+    }, 2000);
   };
   const userPost = () => {
     setLoading(true);
@@ -60,6 +74,7 @@ function Form({ Number, onClose }) {
       .then(function (response) {
         onClose();
         setLoading(false);
+       
       })
       .catch(function (error) {
         console.log(error);

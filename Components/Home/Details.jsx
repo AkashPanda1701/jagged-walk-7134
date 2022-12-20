@@ -33,7 +33,7 @@ export default function Details  ()  {
           Your One-Stop Online Pharmacy - PharmEasy
         </Heading>
         <Heading mt={7} as={"h6"} size="xs" fontWeight={500}>
-          We've got India Covered!
+          We have got India Covered!
         </Heading>
         <Box fontSize={15} mt={3}>
           We now deliver in 1000+ cities and towns across 22000+ pin codes. We
@@ -47,7 +47,7 @@ export default function Details  ()  {
         </Heading>
         <Box fontSize={15} mt={3}>
           PharmEasy is here to help you take it easy! We are amongst one of
-          India's top online pharmacy and medical care platforms. It enables you
+          Indias top online pharmacy and medical care platforms. It enables you
           to order pharmaceutical and healthcare products online by connecting
           you to registered retail pharmacies and get them delivered to your
           home. We are an online medical store, making your purchase easy,

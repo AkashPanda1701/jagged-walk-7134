@@ -43,6 +43,9 @@ import Timer from "./Timer";
 import Form from "./Form";
 function Login() {
   const dispatch = useDispatch();
+  
+  const {isAuth} = useSelector(state => state.auth)
+  console.log('isAuth: ', isAuth);
   const auth = getAuth(app);
   const [Number, setNumber] = useState("8532083765");
   const [Authinicated, setAuthinicated] = useState(false);
@@ -163,7 +166,7 @@ function Login() {
           color="black"
           onClick={onOpen}
         >
-          Hello, Log in
+          Hello,{ isAuth ? 'Akash' : 'Login'}
         </Button>
 
         <Drawer

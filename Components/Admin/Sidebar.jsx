@@ -35,6 +35,7 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
+import { useSelector } from "react-redux";
 
 
 const LinkItems = [
@@ -143,6 +144,7 @@ const NavItem = ({ link, icon, children, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
+  const {isAuth} = useSelector(state => state.auth)
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -201,7 +203,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 >
                   {/* <Text fontSize="sm">Justina Clark</Text> */}
                   <Text fontSize="xs" color="gray.600">
-                    Admin
+                    {
+                      isAuth ? 'Akash' : 'Admin'
+                    }
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>

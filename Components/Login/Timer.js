@@ -17,7 +17,7 @@ function Timer({ setOtpSented }) {
       setIsActive(false);
     }
     return () => clearInterval(interval);
-  }, [timer]);
+  }, [timer, isActive]);
 
   return (
     <div

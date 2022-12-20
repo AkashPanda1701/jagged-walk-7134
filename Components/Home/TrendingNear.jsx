@@ -59,6 +59,7 @@ export default function TrendingNearMe () {
           return (
             <Box key={index} width={130}>
               <Image
+              alt=''
                 borderRadius={8}
                 border={"1px solid lightgrey"}
                 p={5}
