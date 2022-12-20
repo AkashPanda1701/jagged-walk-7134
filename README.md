@@ -42,4 +42,11 @@ Created a functional website for purchasing pharmaceutical and healthcare produc
 2. Install all dependencies, with 'npm install'
 3. start the application `npm run start`
 
+Some snapshots of the project
+![image](https://user-images.githubusercontent.com/97351159/208608678-a5d6b11e-318a-4143-be53-945878d635c6.png)
+
+![image](https://user-images.githubusercontent.com/97351159/208609018-8dede3df-5e88-4e2c-8a1c-12394146e9a9.png)
+
+
+
 
