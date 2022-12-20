@@ -1,34 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+This is a clone of India's most trusted online pharmacy & medical website PharmEasy,  we have named it as MedaPharma its as an e-commerce platform, offering pharmaceutical and healthcare products, where individuals can purchase healthcare-related equipment including medicines.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+```MedaPharma ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+##  Description
+Created a functional website for purchasing pharmaceutical and healthcare products.Where user can login by his/her phone number. Implemented booking test,review product and sort it according to ones needs and add to cart functionalities.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Functionalities :
+<ul>
+<li>Landing Page - Home Page</li>
+<li>SignUp/Login</li>
+<li>Medicines Page</li>
+<li>Offers Page</li>
+<li>Lab Test</li>
+<li>Products</li>
+<li>Single Product Page</li>
+<li>Cart Page Page</li>
+<li>Checkout Page</li>
+<li>Admin Panel with CRUD Operations</li>
+</ul>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Tech stack  💻 :
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>React.js</li>
+<li>FirebaseI</li>
+<li>Router Dom</li>
+<li>Chakra UI</li>
+<li>NodeJS</li>
+<li>MongoDB</li>
+<li>Express</li>
+</ul>
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Installation Requirnments 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the repo, then clone it
+2. Install all dependencies, with 'npm install'
+3. start the application `npm run start`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Some snapshots of the project
+![Screenshot (61)](https://user-images.githubusercontent.com/97351159/208613673-18da35f0-641c-45fe-9de3-efe3606544ca.png)
 
-## Deploy on Vercel
+![Screenshot (60)](https://user-images.githubusercontent.com/97351159/208613781-7b2878eb-9a73-4f2c-b597-2c8f7f3e42a8.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
