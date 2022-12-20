@@ -21,7 +21,7 @@ import WithCartItem from "../../Components/Cart_Checkout/WithCartItem";
 import AddAddress from "../../Components/Cart_Checkout/AddAddress";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingItem from "../../Components/Cart_Checkout/LoadingItem";
-import ReactElasticCarousel from "../../Components/Cart_Checkout/React-Elastic-Carousel";
+// import ReactElasticCarousel from "../../Components/Cart_Checkout/React-Elastic-Carousel";
 import ApplyCoupons from "../../Components/Cart_Checkout/ApplyCoupons";
 import Footer from "../../Components/Footer/footer";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -186,7 +186,7 @@ export default function Cart() {
                     </Grid>
                 </Box>
 
-                {data.length > 0 ? (
+                {/* {data.length > 0 ? (
                     <ReactElasticCarousel
                         heading={"Customers who bought above items also bought"}
                     />
@@ -194,7 +194,7 @@ export default function Cart() {
 
                 {data.length > 0 ? (
                     <ReactElasticCarousel heading={"Previously Browsed Items"} />
-                ) : null}
+                ) : null} */}
 
                 <Box className={styles.termCondition} maxW="1248px" m="auto" mt="50px">
                     <List spacing={3}>
