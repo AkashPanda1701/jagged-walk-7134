@@ -43,9 +43,9 @@ Created a functional website for purchasing pharmaceutical and healthcare produc
 3. start the application `npm run start`
 
 Some snapshots of the project
-![image](https://user-images.githubusercontent.com/97351159/208608678-a5d6b11e-318a-4143-be53-945878d635c6.png)
+![Screenshot (61)](https://user-images.githubusercontent.com/97351159/208613673-18da35f0-641c-45fe-9de3-efe3606544ca.png)
 
-![image](https://user-images.githubusercontent.com/97351159/208609018-8dede3df-5e88-4e2c-8a1c-12394146e9a9.png)
+![Screenshot (60)](https://user-images.githubusercontent.com/97351159/208613781-7b2878eb-9a73-4f2c-b597-2c8f7f3e42a8.png)
 
 
 
