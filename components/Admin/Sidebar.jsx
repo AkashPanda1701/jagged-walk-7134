@@ -9,7 +9,6 @@ import {
   VStack,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
@@ -36,7 +35,7 @@ import {
 import { IconType } from "react-icons";
 import { ReactText } from "react";
 import { useSelector } from "react-redux";
-
+import Link from "next/link";
 
 const LinkItems = [
   { "link": "/admin/", name: "Home", icon: FiHome },
