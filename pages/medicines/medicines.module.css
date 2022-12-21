@@ -1,0 +1,47 @@
+.medicinebox{
+   
+    width: 70%;
+    margin: auto;
+}
+.olheading{
+    margin-top: 35px;
+    color: #4f585e;
+}
+.searchCard{
+    background-color: #10847e;
+    border-radius: 8px;
+    width: 600px;
+    padding: 20px;
+    
+}
+
+.inputgrp{
+   
+    margin-top: 20px;
+}
+.offers{
+    gap: 20px;
+    color: white;
+}
+.heading{
+    margin-top: 25px;
+    color: white;
+}
+.offersinnerdiv{
+    gap: 4px;
+}
+.slideshow {
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 20px  ;
+}
+
+.slideshowSlider {
+  white-space: nowrap;
+  transition: ease 900ms;
+}
+
+.slide {
+  display: inline-block;
+  width: 50%;
+}

@@ -1,0 +1,81 @@
+.paymentMethod {
+  margin: auto;
+  font-family: sans-serif;
+  margin-top: 20px;
+}
+.paymentMethod > div:nth-child(1) {
+  margin: auto;
+}
+.offersHeading {
+  color: #4f4f4f;
+  font-size: 26px;
+  padding: 0px 0px 20px;
+  font-weight: bold;
+}
+.offerContent {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.offerContent > div:nth-child(2) > h1 {
+  font-size: 16px;
+  color: #4f585e;
+}
+.offerContent > div:nth-child(2) > p {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #8897a2;
+}
+.offerButton {
+  background-color: #10847e;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: white;
+}
+.cartTotal > div {
+  background-image: url("https://assets.pharmeasy.in/web-assets/dist/aa2e6e7f.png");
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.cartTotal > div > div {
+  border: 0px solid #ffff;
+}
+.cartTotal > div > div > h1 {
+  margin-bottom: 10px;
+  /* background-color: red; */
+}
+.paymentMethodCss {
+  padding: 5px 14px 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+}
+.addressDetails {
+  /* background-color: #10847e; */
+  padding: 24px;
+}
+.addressDetails > h1 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.addressDetails > div > p {
+  /* background-color: #10847e; */
+  font-weight: bold;
+  font-size: 16px;
+}
+.addressDetails > div > div {
+  /* background-color: rebeccapurple; */
+  padding: 12px;
+}
+.addressDetails > div:nth-child(3) {
+  margin-top: 10px;
+}
+.upi {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.upi > img {
+  margin-left: 10px;
+}
