@@ -21,6 +21,7 @@ import {
   Img,
   useToast,
   useColorModeValue,
+  border,
 } from "@chakra-ui/react";
 
 import Link from "next/link";
@@ -43,9 +44,9 @@ import Timer from "./Timer";
 import Form from "./Form";
 function Login() {
   const dispatch = useDispatch();
-  
-  const {isAuth} = useSelector(state => state.auth)
-  console.log('isAuth: ', isAuth);
+
+  const { isAuth } = useSelector((state) => state.auth);
+  const data = useSelector((state) => state.user);
   const auth = getAuth(app);
   const [Number, setNumber] = useState("8532083765");
   const [Authinicated, setAuthinicated] = useState(false);
@@ -53,16 +54,14 @@ function Login() {
   const [Otp, setOtp] = useState("");
   const [otpVerification, setOtpVerification] =
     useState(false);
-  const [loading1, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
-  const { loading, error } = useSelector(
-    (store) => store.auth
-  );
+  const { error } = useSelector((store) => store.auth);
   const toast = useToast();
   // console.log(loading1);
   const sendOtp = () => {
-    dispatch(authLoading());
+    setLoading(true);
     if (
       Number.length > 10 ||
       Number.length < 10 ||
@@ -94,6 +93,7 @@ function Login() {
       .then((res) => {
         setAuthinicated(res);
         dispatch(authSuccess(Number));
+        setLoading(false);
         setOtpSented(false);
         toast({
           title: `OTP Sented`,
@@ -107,13 +107,15 @@ function Login() {
           "Something Went Wrong Please Try Again Later "
         );
         onClose();
-        setLoading(false);
+        dispatch(authError);
         toast({
           title: `Try Again`,
           position: "top",
           isClosable: true,
           status: "error",
         });
+        console.log(error);
+        setLoading(false);
       });
   };
 
@@ -159,15 +161,24 @@ function Login() {
     <>
       <div>
         <div id="recaptcha-container"></div>
-        <Button
-          fontSize={{ base: 0, md: "md" }}
-          fontWeight={500}
-          variant={"link"}
-          color="black"
-          onClick={onOpen}
-        >
-          Hello,{ isAuth ? 'Akash' : 'Login'}
-        </Button>
+        {!isAuth ? (
+          <Button
+            fontSize={{ base: 0, md: "md" }}
+            fontWeight={500}
+            variant={"link"}
+            color="black"
+            onClick={onOpen}
+          >
+            Hello,Login
+          </Button>
+        ) : (
+            <p style={{ cursor: "pointer" ,fontSize:"13px",padding:"5px"}} onClick={()=> toast({
+          title: `You are  already loged in`,
+          position: "top",
+          isClosable: true,
+          status: "success",
+        })}>Hello,Akash</p>
+        )}
 
         <Drawer
           size="sm"
@@ -180,7 +191,7 @@ function Login() {
 
           <DrawerContent>
             <DrawerCloseButton
-              color="white"
+              color="#10847E"
               right="var(--chakra-space-0)"
             />
             <DrawerHeader
@@ -286,7 +297,7 @@ function Login() {
                     )
                   ) : (
                     <Box>
-                      {loading1 ? (
+                      {loading ? (
                         <Box>
                           <Box
                             display={"flex"}
@@ -394,7 +405,7 @@ function Login() {
                     </Box>
                   )}
                   <Box>
-                    {!loading && !loading1 ? (
+                    {!loading ? (
                       <Text>
                         By clicking continue, you agree with
                         our
