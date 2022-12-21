@@ -8,7 +8,7 @@ export const getLabcart = () => async ( dispatch ) => {
             dispatch({
                 type: GET_LABCART_LOADING,
             });
-            const res = await axios.get(`http://localhost:3000/api/labcarts`,
+            const res = await axios.get(`https://medspharma.netlify.app/api/labcarts`,
             {
                 headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export const postLabcart = (test) => async ( dispatch ) => {
         dispatch({
             type: POST_LABCART_LOADING,
         });
-        const res = await axios.post(`http://localhost:3000/api/labcarts`, test ,{
+        const res = await axios.post(`https://medspharma.netlify.app/api/labcarts`, test ,{
             headers: {
             'Content-Type': 'application/json',
             token: t
@@ -58,7 +58,7 @@ export const updateLabcart = (id,patients) => async ( dispatch ) => {
         dispatch({
             type: UPDATE_LABCART_LOADING,
         });
-        await axios.put(`http://localhost:3000/api/labcarts/${id}`, {patients} ,{
+        await axios.put(`https://medspharma.netlify.app/api/labcarts/${id}`, {patients} ,{
             headers: {
             'Content-Type': 'application/json',
             token: t
@@ -86,7 +86,7 @@ export const deleteLabcart = (id) => async ( dispatch ) => {
         dispatch({
             type: DELETE_LABCART_LOADING,
         });
-        await axios.delete(`http://localhost:3000/api/labcarts/${id}`, {
+        await axios.delete(`https://medspharma.netlify.app/api/labcarts/${id}`, {
             headers: {
             'Content-Type': 'application/json',
             token: t
@@ -111,7 +111,7 @@ export const testBooking = () => async ( dispatch ) => {
                 dispatch({
                     type: TEST_BOOKING_LOADING,
                 });
-                const res = await axios.delete(`http://localhost:3000/api/labcarts`,{
+                const res = await axios.delete(`https://medspharma.netlify.app/api/labcarts`,{
                     headers: {
                         'Content-Type': 'application/json',
                         token: t

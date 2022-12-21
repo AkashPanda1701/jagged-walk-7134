@@ -23,7 +23,7 @@ function Booktest({ data }) {
 export default Booktest;
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`http://localhost:3000/api/labtests`);
+  const res = await fetch(`https://medspharma.netlify.app/api/labtests`);
   const data = await res.json();
   return {
     props: {
