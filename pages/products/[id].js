@@ -9,10 +9,7 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-//import { useParams } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-//import { useContext } from "react";
-//import { Link } from "react-router-dom";
 import SimilarProductSlider from "../../components/Product/SimilarProductSlider";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Mainfooter/footer";

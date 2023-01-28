@@ -94,23 +94,6 @@ export default function Products(params) {
 
           <Divider border='1px solid black' bg={'blackAlpha.200'} />
 
-          {/* <Box h='auto' w='95%' m='3' alignItems='left'>
-            <Heading as={"h5"} size="sm" mb='5' color='gray.600' mt='5'>Sub Category</Heading>
-            <RadioGroup onChange={setValue} value={value}>
-              <Stack direction='column' mb='5'>
-                <Flex color='gray'>Men Care <Radio value='1' mt='1.5' ml='17vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Appliances <Radio value='2' mt='1.5' ml='16vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Women Care <Radio value='3' mt='1.5' ml='14vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Oral Care <Radio value='4' mt='1.5' ml='17.5vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Male Grooming <Radio value='5' mt='1.5' ml='11.5vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Hair Care <Radio value='6' mt='1.5' ml='17.5vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Face Care <Radio value='7' mt='1.5' ml='17vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Body Care <Radio value='8' mt='1.5' ml='16.5vh' border='3px solid black'></Radio></Flex>
-                <Flex color='gray'>Hands & Feet Care <Radio value='9' mt='1.5' ml='8.5vh' border='3px solid black'></Radio></Flex>
-              </Stack>
-            </RadioGroup>
-          </Box> */}
-
           <Divider border='1px solid black' bg={'blackAlpha.200'} maxW='sm' />
 
           <Box h='auto' w='95%' m='3' alignItems='left'>
