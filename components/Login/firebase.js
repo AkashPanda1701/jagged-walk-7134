@@ -6,12 +6,13 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyApevtMOqB2f8YaZWJUOLm4wqh4eLQ6ylM",
-  authDomain: "jagged-walk-7134.firebaseapp.com",
-  projectId: "jagged-walk-7134",
-  storageBucket: "jagged-walk-7134.appspot.com",
-  messagingSenderId: "638333698830",
-  appId: "1:638333698830:web:19962c501e46ea878d8d5f",
+  apiKey: "AIzaSyAZU0QEh11hW2yKVoCuReRPVThbe7QqeYU",
+  authDomain: "hackathon-62510.firebaseapp.com",
+  projectId: "hackathon-62510",
+  storageBucket: "hackathon-62510.appspot.com",
+  messagingSenderId: "374322364903",
+  appId: "1:374322364903:web:c36c26eb4e103f55633d42",
+  measurementId: "G-BTNHXYL33S"
 };
 
 // Initialize Firebase

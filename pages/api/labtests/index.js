@@ -24,8 +24,8 @@ async function getAllLabtests(req, res) {
 
 async function addLabtest(req, res) {
     try {
-        const user = req.user;
-        if(user.role !== 'admin') {
+        const {role} = req.headers;
+        if(role !== 'admin') {
             return res.status(401).send({ error: 'Not authorized' });
         }
         const { image ,testName ,price ,description } = req.body;

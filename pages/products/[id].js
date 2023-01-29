@@ -29,6 +29,8 @@ export default function Productdetails(params) {
     const dispatch = useDispatch();
     const {singleData :data} = useSelector(state => state.product);
     const {message ,error} = useSelector(state => state.cart);
+    const authState = useSelector(state => state.auth);
+    console.log('authState: ', authState);
     
     const router = useRouter();
     const { id } = router.query;
@@ -122,6 +124,16 @@ export default function Productdetails(params) {
                                     <option value="3">3</option>
                                 </Select>
                                     <Button mt='6' onClick={() => {
+                                        if(!authState.user.role){
+                                            toast({
+                                                title: "Please Login First",
+                                                status: "error",
+                                                duration: 3000,
+                                                isClosable: true,
+                                                position : 'top'
+                                            })
+                                            return;
+                                        }
                                         if(quantity === 0){
                                             toast({
                                                 title: "Please Select Quantity",
@@ -132,7 +144,7 @@ export default function Productdetails(params) {
                                             })
                                             return;
                                         }
-                                        dispatch(addItemCart({productId: data._id, quantity}))
+                                        dispatch(addItemCart({productId: data._id, quantity,userId:authState.user.id}))
                                        
 
                                     }} background={"#10847e"} _hover={{ background: "#14918b" }} color="white" p='5'>

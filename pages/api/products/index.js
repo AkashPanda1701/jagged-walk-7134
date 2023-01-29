@@ -1,6 +1,5 @@
 import Product from "../../../models/product.model";
 import connectDB from "../../../middleware/connectDB";
-import authMiddleware from "../../../middleware/authMiddleware";
 
 
 const Products  = async (req, res) => {
@@ -9,7 +8,7 @@ const Products  = async (req, res) => {
         return getAllProducts(req, res)
     }
     if(req.method === "POST") {
-        return  authMiddleware(addProduct)(req, res)
+        return  addProduct(req, res)
     }
 }
 
@@ -47,8 +46,8 @@ async function getAllProducts(req, res) {
 
 async function addProduct(req, res) {
     try {
-        const user = req.user;
-        if(user.role !== 'admin') {
+        const {role} = req.headers;
+        if(role !== 'admin') {
             return res.status(401).send({ error: 'Not authorized' });
         }
         const { images,title, price, category,mrp,discount } = req.body;

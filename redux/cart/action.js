@@ -18,13 +18,13 @@ const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzliMThiMDdhMTE2
 
 export const getCart = () => async (dispatch) => {
     dispatch({ type: GET_CART_LOADING });
-    // console.log("hello from getCart:")
+    console.log("hello from getCart:" ,JSON.parse(localStorage.getItem('user')).id)
     try {
-        let res = await axios.get(`https://medspharma.netlify.app/api/carts`, {
+        let res = await axios.get(`/api/carts`, {
 
         headers : {
             'Content-Type': 'application/json',
-            token
+            userId :JSON.parse(localStorage.getItem('user')).id,
         }
     });
         let data = res.data;
@@ -38,7 +38,7 @@ export const getCart = () => async (dispatch) => {
 export const deleteCart = (_id) => async (dispatch) => {
     dispatch({ type: DELETE_CART_LOADING });
     try {
-        let res = await axios.delete(`https://medspharma.netlify.app/api/carts/${_id}`, {
+        let res = await axios.delete(`/api/carts/${_id}`, {
             headers : {
                 'Content-Type': 'application/json',
                 token
@@ -54,7 +54,7 @@ export const patchCart = (_id,quantity ) => async (dispatch) => {
     
     dispatch({ type: PATCH_CART_LOADING });
     try {
-        let res = await axios.put(`https://medspharma.netlify.app/api/carts/${_id}`, {quantity},
+        let res = await axios.put(`/api/carts/${_id}`, {quantity},
         {
             headers : {
                 'Content-Type': 'application/json',
@@ -73,14 +73,16 @@ export const patchCart = (_id,quantity ) => async (dispatch) => {
 
 //adding item inside Cart
 export const addItemCart = (payload) => async (dispatch) => {
+    // console.log('userId: ', userId);
     dispatch({ type: ADD_ITEM_CART_TO_CART_LOADING });
     try {
-        let res = await axios.post(`https://medspharma.netlify.app/api/carts/`, payload , {
+        let res = await axios.post(`/api/carts/`, payload , {
             headers : {
                 'Content-Type': 'application/json',
-                token
+                
             }
         });
+        // console.log('res: ', res);
         dispatch({ type: ADD_ITEM_CART_TO_CART_SUCCESS, payload: {
             message:res.data.message,
             data :res.data.newCartItem

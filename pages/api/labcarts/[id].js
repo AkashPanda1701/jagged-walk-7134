@@ -1,21 +1,20 @@
 import Labcart from "../../../models/labcart.model";
 import Labtest from "../../../models/labtest.model";
 import connectDB from "../../../middleware/connectDB";
-import authMiddleware from "../../../middleware/authMiddleware";
 
 const LabcartItems = async (req, res) => {
 await connectDB();
 if(req.method === "PUT") {
-    return  authMiddleware(updateLabcartItems)(req, res)
+    return  updateLabcartItems(req, res)
 }
 if(req.method === "DELETE") {
-    return  authMiddleware(deleteLabcartItem)(req, res)
+    return  deleteLabcartItem(req, res)
 }
 }
 
 
 async function updateLabcartItems(req, res) {
-    const userId = req.userId
+    const {userid:userId} = req.headers
     try {
         const { id } = req.query;
         const LabcartItem = await Labcart.findById(id);
@@ -38,7 +37,7 @@ async function updateLabcartItems(req, res) {
 }
 
 async function deleteLabcartItem(req, res) {
-    const userId = req.userId
+    const {userid:userId} = req.headers
     try {
         const { id } = req.query;
         const LabcartItem = await Labcart.findById(id);

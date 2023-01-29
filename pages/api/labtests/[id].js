@@ -1,6 +1,5 @@
 import Labtest from "../../../models/labtest.model";
 import connectDB from "../../../middleware/connectDB";
-import authMiddleware from "../../../middleware/authMiddleware";
 
 const SingleLabtest  = async (req, res) => {
     await connectDB();
@@ -8,10 +7,10 @@ const SingleLabtest  = async (req, res) => {
         return  getSingleLabtest(req, res)
 }
     if(req.method === "PUT") {
-        return  authMiddleware(updateLabtest)(req, res)
+        return  updateLabtest(req, res)
     }
     if(req.method === "DELETE") {
-        return  authMiddleware(deleteLabtest)(req, res)
+        return  deleteLabtest(req, res)
     }
 }
 
@@ -31,8 +30,8 @@ async function getSingleLabtest(req, res) {
 
 async function updateLabtest(req, res) {
     try {
-        const user = req.user;
-        if(user.role !== 'admin') {
+        const {role} = req.headers;
+        if(role !== 'admin') {
             return res.status(401).send({ error: 'Not authorized' });
         }
         const { id } = req.query;
@@ -48,8 +47,8 @@ async function updateLabtest(req, res) {
 
     async function deleteLabtest(req, res) {
         try {
-            const user = req.user;
-            if(user.role !== 'admin') {
+            const {role} = req.headers;
+            if(role !== 'admin') {
                 return res.status(401).send({ error: 'Not authorized' });
             }
             const { id } = req.query;

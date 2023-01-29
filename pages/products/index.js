@@ -25,6 +25,7 @@ export default function Products(params) {
   const [page , setPage] = useState(1);
   const dispatch = useDispatch();
   let { query :{category} } = useRouter();
+  console.log('category: ', category);
   const [price , setPrice] = useState('');
   const [orderBy , setOrderBy] = useState('');
   

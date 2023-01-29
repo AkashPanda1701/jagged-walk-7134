@@ -39,15 +39,20 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCart } from "../../redux/cart/action";
+import { setSession } from "../../redux/auth/action";
+import { useSession } from "next-auth/react";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const dispatch = useDispatch();
   const {data} = useSelector(state => state.cart)
-
+  const authState = useSelector(state => state.auth)
+  const { data: session } = useSession();
+  // console.log('session: ', session);
+  
   useEffect(() => {
-    dispatch(getCart())
-  }, [ dispatch])
+    dispatch(setSession());
+  }, [dispatch]);
 
   return (
     <>
@@ -118,10 +123,8 @@ export default function Navbar() {
           >
             <Box display="flex" gap={{ base: 0, md: 3 }}>
               <Text mt="5px">
-                <Link href='/admin'>
                 <FaRegUser />
-
-</Link>
+                
               </Text>
               <Login />
             </Box>
@@ -196,7 +199,7 @@ export default function Navbar() {
                       <Link href='/products?category=healthcare'>
                       <Tab>Health care</Tab>
                       </Link>
-                      <Link href='/products?category=Health-Food-Drinks'>
+                      <Link href='/products?category=food&drinks'>
                       <Tab>Health Food & Drinks</Tab>
                       </Link>
                     </TabList>
@@ -371,7 +374,7 @@ const MobileNavItem = ({ label, children, href }) => {
       <Flex
         py={2}
         as={Link}
-        href={href ?? "#"}
+        href={href ? href : "#"}
         justify={"space-between"}
         align={"center"}
         _hover={{
@@ -441,33 +444,33 @@ const NAV_ITEMS = [
     children: [
       {
         label: "Personal care",
-        href: "/products/personalcare",
+        href: "/products?category=personalcare",
       },
       {
         label: "Health care",
-        href: "/procucts/healthcare",
+        href: "/procucts?category=healthcare",
       },
       {
         label: "Home care",
-        href: "/procucts/homecare",
+        href: "/procucts?category=homecare",
       },
       {
         label: "Skin care",
-        href: "/procucts/skincare",
+        href: "/procucts?category=skincare",
       },
       {
         label: "Health Food & Drinks",
-        href: "/procucts/food&drinks",
+        href: "/procucts?category=Health-Food-Drinks",
       },
     ],
   },
 
   {
     label: "Health Blogs",
-    href: "#",
+    href: "/procucts?category=healthcare",
   },
   {
     label: "Value Store",
-    href: "#",
+    href: "/products?category=all",
   },
 ];
