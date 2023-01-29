@@ -28,7 +28,7 @@ export const getCart = () => async (dispatch) => {
         }
     });
         let data = res.data;
-        // console.log('res: ', res);
+        console.log('res: ', res);
         dispatch({ type: GET_CART_SUCCESS, payload: data.carts });
     } catch (e) {
         dispatch({ type: GET_CART_ERROR });
