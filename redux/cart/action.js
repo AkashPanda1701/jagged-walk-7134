@@ -18,13 +18,13 @@ const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzliMThiMDdhMTE2
 
 export const getCart = () => async (dispatch) => {
     dispatch({ type: GET_CART_LOADING });
-    console.log("hello from getCart:" ,JSON.parse(localStorage.getItem('user')).id)
+    // console.log("hello from getCart:" ,JSON.parse(localStorage.getItem('user')).id)
     try {
         let res = await axios.get(`/api/carts`, {
 
         headers : {
             'Content-Type': 'application/json',
-            userId :JSON.parse(localStorage.getItem('user')).id,
+            // userId :JSON.parse(localStorage.getItem('user')).id,
         }
     });
         let data = res.data;
