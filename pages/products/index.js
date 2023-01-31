@@ -176,7 +176,8 @@ export default function Products(params) {
                   );
                 })}
             </Grid>
-            
+            {
+              data.length==20 &&
             <Flex justifyContent='center' alignItems='center' mt='5' mb='5'>
             <Button onClick={()=>{
               if(data.length<20){
@@ -205,6 +206,7 @@ export default function Products(params) {
               }
             }}>Next</Button>
             </Flex>
+        }
           </Box>
         </Stack>
       </Center>
