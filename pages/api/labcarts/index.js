@@ -1,24 +1,23 @@
 import User from "../../../models/user.model";
 import Labcart from "../../../models/labcart.model";
 import connectDB from "../../../middleware/connectDB";
-import authMiddleware from "../../../middleware/authMiddleware";
 
 const LabcartItems = async (req, res) => {
 await connectDB();
 if(req.method === "GET") {
-    return  authMiddleware(getLabcartItems)(req, res)
+    return  getLabcartItems(req, res)
 }
 if(req.method === "POST") {
-    return  authMiddleware(addLabcartItem)(req, res)
+    return  addLabcartItem(req, res)
 }
 if(req.method === "DELETE") {
-    return  authMiddleware(deleteLabcartItem)(req, res)
+    return  deleteLabcartItem(req, res)
 }
 }
 
 
 async function getLabcartItems(req, res) {
-    const userId = req.userId 
+    const {userid:userId} = req.headers
     try {
     const Labcarts = await Labcart.find({userId}).populate('testId').select('-userId');
     return res.status(200).send({ Labcarts });
@@ -30,8 +29,7 @@ async function getLabcartItems(req, res) {
 }
 
 async function addLabcartItem(req, res) {
-
-    const userId = req.userId
+    const {userid:userId} = req.headers
     console.log('userId: ', userId);
     try {
         const { testId, patients, appointmentDate } = req.body;
@@ -54,7 +52,7 @@ async function addLabcartItem(req, res) {
 }
 
 async function deleteLabcartItem(req, res) {
-    const userId = req.userId
+    const {userid:userId} = req.headers
     try {
         await Labcart.deleteMany({userId});
         return res.status(200).send({ message:`All Tests Booked from the Labcart` });

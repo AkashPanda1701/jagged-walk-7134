@@ -1,6 +1,7 @@
 import { Box, Button, Center, Flex, Image, Img, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
+// import  Link  from "react-router-dom";
 
 function SimilarProduct({ prod }) {
   return (
@@ -31,7 +32,7 @@ function SimilarProduct({ prod }) {
             borderRadius="lg"
             border="1.5px solid #e7e6e6"
           >
-            <Img h="100%" src={prod.images[0]} w="100%" />
+            <Img h="100%" src={prod.images[0]} w='100%' />
           </Center>
           <Text
             istruncated="true"
@@ -88,6 +89,6 @@ function SimilarProduct({ prod }) {
       </Link>
     </Box>
   );
-}
+};
 
 export default SimilarProduct;

@@ -1,6 +1,5 @@
 import Product from "../../../models/product.model";
 import connectDB from "../../../middleware/connectDB";
-import authMiddleware from "../../../middleware/authMiddleware";
 
 const SingleProduct  = async (req, res) => {
     await connectDB();
@@ -8,10 +7,10 @@ const SingleProduct  = async (req, res) => {
         return  getSingleProduct(req, res)
 }
     if(req.method === "PUT") {
-        return  authMiddleware(updateProduct)(req, res)
+        return  updateProduct(req, res)
     }
     if(req.method === "DELETE") {
-        return  authMiddleware(deleteProduct)(req, res)
+        return  deleteProduct(req, res)
     }
 }
 
@@ -31,8 +30,8 @@ async function getSingleProduct(req, res) {
 
 async function updateProduct(req, res) {
     try {
-        const user = req.user;
-        if(user.role !== 'admin') {
+        const {role} = req.headers;
+        if(role !== 'admin') {
             return res.status(401).send({ error: 'Not authorized' });
         }
         const { id } = req.query;
@@ -48,8 +47,8 @@ async function updateProduct(req, res) {
 
     async function deleteProduct(req, res) {
         try {
-            const user = req.user;
-            if(user.role !== 'admin') {
+            const {role} = req.headers;
+            if(role !== 'admin') {
                 return res.status(401).send({ error: 'Not authorized' });
             }
             const { id } = req.query;

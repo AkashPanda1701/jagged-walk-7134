@@ -25,6 +25,7 @@ import LoadingItem from "../../components/Cartcheckout/LoadingItem";
 import ApplyCoupons from "../../components/Cartcheckout/ApplyCoupons";
 import Footer from "../../components/Mainfooter/footer";
 import Navbar from "../../components/Navbar/Navbar";
+import { getCart } from "../../redux/cart/action";
 
 
 export default function Cart() {
@@ -36,8 +37,13 @@ export default function Cart() {
 
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((store) => store.cart);
+    const authState = useSelector((store) => store.auth);
+    console.log('authState: ', authState);
     // console.log('loading, error:', loading, error)
-
+    
+    useEffect(() => {
+        dispatch(getCart());
+    }, [dispatch]);
 
     // let count = 1;
     // useEffect(() => {
