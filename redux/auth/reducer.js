@@ -1,31 +1,70 @@
 
-// Don't make any changes to this file. 
+import { LOGIN_LOADING, LOGIN_SUCCESS,
+  LOGIN_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, SIGNUP_ERROR, RESET_AUTH, SET_SESSION } from "./type";
+
+
 const initialState = {
-    signup: {
-        loading: false,
-        error: false,
-    },
-    login: {
-        loading: false,
-        error: false,
-    },
-    logout: {
-        loading: false,
-        error: false,
-    },
-    user: {
-        data: null,
-        token: null,
-        isAuthenticated: false,
+  loading: false,
+  error: false,
+  message: "",
+  user: {},
+};
 
-    },
-    }
 
-    export const authReducer = (state = initialState, { type, payload }) => {
-     
-        switch(type) {
-            
-            default : return state;
-        }
+export const authReducer = (state = initialState, { type, payload }) => {
 
-    }
+  switch (type) {
+      case LOGIN_LOADING:
+          return {
+              ...state,
+              loading: true,
+          };
+      case LOGIN_SUCCESS:
+          return {
+              ...state,
+              loading: false,
+              message: payload.message,
+              user: payload.user,
+          };
+      case LOGIN_ERROR:
+          return {
+              ...state,
+              loading: false,
+              error: true,
+          };
+      case RESET_AUTH:
+          return {
+              ...state,
+              loading: false,
+              error: false,
+              message: "",
+          };
+
+      case SIGNUP_LOADING:
+          return {
+              ...state,
+              loading: true,
+          };
+      case SIGNUP_SUCCESS:
+          return {
+              ...state,
+              loading: false,
+              message: payload.message,
+              user: payload.user,
+          };
+      case SIGNUP_ERROR:
+          return {
+              ...state,
+              loading: false,
+              error: true,
+          };
+      case SET_SESSION:
+        localStorage.setItem("user", JSON.stringify(payload));
+          return {
+              ...state,
+              user: payload,
+          };
+         default:
+          return state;
+  }
+};

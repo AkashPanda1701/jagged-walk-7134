@@ -1,21 +1,20 @@
 import Cart from "../../../models/cart.model";
 import Product from "../../../models/product.model";
 import connectDB from "../../../middleware/connectDB";
-import authMiddleware from "../../../middleware/authMiddleware";
 
 const CartItems = async (req, res) => {
 await connectDB();
 if(req.method === "PUT") {
-    return  authMiddleware(updateCartItems)(req, res)
+    return  updateCartItems(req, res)
 }
 if(req.method === "DELETE") {
-    return  authMiddleware(deleteCartItem)(req, res)
-}
+    return deleteCartItem(req, res)
 }
 
-
+}
 async function updateCartItems(req, res) {
-    const userId = req.userId
+    const {userid:userId} = req.headers
+
     try {
         const { id } = req.query;
         const cartItem = await Cart.findById(id);
@@ -37,7 +36,8 @@ async function updateCartItems(req, res) {
 }
 
 async function deleteCartItem(req, res) {
-    const userId = req.userId
+    const {userid:userId} = req.headers
+
     try {
         const { id } = req.query;
         const cartItem = await Cart.findById(id);

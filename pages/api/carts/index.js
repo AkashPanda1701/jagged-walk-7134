@@ -1,21 +1,22 @@
 import Cart from "../../../models/cart.model";
 import Product from "../../../models/product.model";
 import connectDB from "../../../middleware/connectDB";
-import authMiddleware from "../../../middleware/authMiddleware";
 
 const CartItems = async (req, res) => {
 await connectDB();
 if(req.method === "GET") {
-    return  authMiddleware(getCartItems)(req, res)
+    return getCartItems(req, res)
 }
 if(req.method === "POST") {
-    return  authMiddleware(addCartItem)(req, res)
+    return  addCartItem(req, res)
 }
 }
 
 
 async function getCartItems(req, res) {
-    const userId = req.userId 
+    const {userid:userId} = req.headers
+    console.log('userId: ', userId);
+
     try {
     const carts = await Cart.find({userId}).populate('productId').select('-userId');
     return res.status(200).send({ carts });
@@ -28,10 +29,9 @@ async function getCartItems(req, res) {
 
 async function addCartItem(req, res) {
 
-    const userId = req.userId
-    console.log('userId: ', userId);
     try {
-        const { productId, quantity } = req.body;
+        const {userId, productId, quantity } = req.body;
+        console.log('userId: ', userId);
         console.log('req.body: ', req.body);
     
         const isProductExist = await Cart.findOne({ productId, userId });

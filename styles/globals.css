@@ -1,0 +1,62 @@
+.categoriesnav{
+    
+  margin: auto;
+  gap: 54px;
+  padding: 12px;
+
+}
+
+.slideshow {
+  margin: 0 auto;
+  
+  margin-top: 20px  ;
+}
+.slideshow2 {
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 20px  ;
+}
+
+.slideshowSlider {
+  white-space: nowrap;
+  transition: ease 400ms;
+}
+.slideshowSlider2 {
+  white-space: nowrap;
+  transition: ease 400ms;
+}
+
+.slide {
+  display: inline-block;
+  width: 40%;
+}
+.slide2 {
+  display: inline-block;
+  width: 25%;
+}
+
+.container {
+   
+  margin-top: 7rem;
+  padding: 0px 14px;
+}
+
+.box {
+  background-color: #ecffec;
+  border-radius: 5px;
+}
+
+.cards {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ecffec;
+  margin-right: 16px;
+  height: 220px;
+}
+
+.cards > p {
+  text-align: center;
+  font-size: 18px;
+  color: #4f585e;
+}

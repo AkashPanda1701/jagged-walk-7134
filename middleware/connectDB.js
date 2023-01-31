@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
+mongoose.set('strictQuery', false);
 
 const connectDB = async (req, res) => {
-  return mongoose.connect('mongodb+srv://Akash:852654@cluster0.9xzz5v6.mongodb.net/pharma?retryWrites=true&w=majority')
+  return mongoose.connect(process.env.MONGODB_URL)
 };
 
 export default connectDB;

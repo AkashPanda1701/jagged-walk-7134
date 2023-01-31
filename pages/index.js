@@ -1,5 +1,6 @@
-import Navbar from "../Components/Navbar/Navbar";
-import {Homecomp} from "../Components/Home/Home"
+import Navbar from "../components/Navbar/Navbar";
+ import Homecomp from "../components/Home/Home";
+import Footer from "../components/Mainfooter/footer";
 
 
 export default function Home() {
@@ -7,6 +8,8 @@ export default function Home() {
     <>
       <Navbar />
       <Homecomp/>
+      <Footer/>
+
     </>
   );
 }

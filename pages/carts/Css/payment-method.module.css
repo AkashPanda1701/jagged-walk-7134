@@ -33,7 +33,44 @@
   font-size: 16px;
   color: white;
 }
-
+.cartTotal > div {
+  background-image: url("https://assets.pharmeasy.in/web-assets/dist/aa2e6e7f.png");
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.cartTotal > div > div {
+  border: 0px solid #ffff;
+}
+.cartTotal > div > div > h1 {
+  margin-bottom: 10px;
+  /* background-color: red; */
+}
+.paymentMethodCss {
+  padding: 5px 14px 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+}
+.addressDetails {
+  /* background-color: #10847e; */
+  padding: 24px;
+}
+.addressDetails > h1 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.addressDetails > div > p {
+  /* background-color: #10847e; */
+  font-weight: bold;
+  font-size: 16px;
+}
+.addressDetails > div > div {
+  /* background-color: rebeccapurple; */
+  padding: 12px;
+}
+.addressDetails > div:nth-child(3) {
+  margin-top: 10px;
+}
 .upi {
   display: flex;
   justify-content: flex-start;

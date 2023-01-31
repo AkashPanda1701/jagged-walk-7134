@@ -1,0 +1,65 @@
+
+.carouselHeading>h1{
+    color: #30363c;
+    font-size: 26px;
+    font-family: sans-serif;
+    margin-bottom: 30px;
+}
+.carouselContent > div:nth-child(1) {
+  padding: 22px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #e2e4e6;
+}
+.carouselContent > div:nth-child(2) {
+  padding: 12px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+.carouselContent > div:nth-child(2) > h1 {
+  color: #30363c;
+  font-size: 16px;
+  margin: 0px 0px 8px;
+}
+.carouselContent > div:nth-child(2) > h2 {
+  color: #8897a2;
+  font-size: 14px;
+  margin: 0px 0px 8px;
+  font-weight: 500;
+}
+.carouselContent > div:nth-child(2) > h2 > span {
+  text-decoration: line-through;
+}
+.carouselContent > div:nth-child(2) > h3 > span:nth-child(1) {
+    font-size: 16px;
+    color: #30363c;
+    padding: 0px 8px 0px 0px;
+    font-weight: 500;
+}
+.carouselContent > div:nth-child(2) > h3 > span:nth-child(2){
+    font-size: 14px;
+    color: #f47779;
+}
+.carouselContent>div:nth-child(3){
+    margin-top: 22px;
+}
+.carouselContent>div:nth-child(3)>button{
+    background-color: #fff;
+    border: 1px solid #10847e;
+    padding: 0px 20px;
+    font-size: 12px;
+    color: #10847e;
+    width: 136px;
+    height: 40px;
+    margin-bottom: 0px;
+}
+.carouselContent>div:nth-child(3)>button:hover{
+    background-color: #10847e;
+    color: white;
+    font-weight: bold;
+}

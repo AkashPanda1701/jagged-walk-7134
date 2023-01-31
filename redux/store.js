@@ -10,6 +10,7 @@ import {
 import { cartReducer } from './cart/reducer';
 import { productReducer } from './product/reducer';
 import { authReducer } from './auth/reducer';
+import {labcartReducer} from './labcart/reducer';
 
 import thunk from 'redux-thunk';
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     cart: cartReducer,
     product: productReducer,
     auth: authReducer,
+    labcart: labcartReducer,
 });
 
 const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
