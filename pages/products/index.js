@@ -177,7 +177,7 @@ export default function Products(params) {
                 })}
             </Grid>
             {
-              data.length==20 &&
+              category==='all' &&
             <Flex justifyContent='center' alignItems='center' mt='5' mb='5'>
             <Button onClick={()=>{
               if(data.length<20){
