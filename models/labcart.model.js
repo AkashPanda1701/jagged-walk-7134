@@ -32,5 +32,4 @@ const  labcartSchema = new mongoose.Schema({
 }
 );
 
-
 export default mongoose.models.labcart || mongoose.model('labcart', labcartSchema);

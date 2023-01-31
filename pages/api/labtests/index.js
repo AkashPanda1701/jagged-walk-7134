@@ -1,6 +1,5 @@
 import Labtest from "../../../models/labtest.model";
 import connectDB from "../../../middleware/connectDB";
-import authMiddleware from "../../../middleware/authMiddleware";
 
 export default async function LabTest(req, res) {
     await connectDB();
@@ -8,7 +7,7 @@ export default async function LabTest(req, res) {
         return getAllLabtests(req, res)
     }
     if(req.method === "POST") {
-        return  authMiddleware(addLabtest)(req, res)
+        return  addLabtest(req, res)
     }
 }
 

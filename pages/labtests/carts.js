@@ -46,11 +46,13 @@ function Cart() {
   const cancelRef = useRef();
   const toast = useToast();
 
+  const authState = useSelector(state => state.auth)
+  console.log('authState: ', authState);
 
   useEffect(() => {
-    dispatch(getLabcart());
-    
-    }, [dispatch]);
+   dispatch(getLabcart(authState.user.id))
+   }, [dispatch, authState.user])
+
   return (
     <Box>
       <Navbar />
@@ -78,7 +80,7 @@ function Cart() {
                 colorScheme="red"
                 ml={3}
                 onClick={() => {
-                    dispatch(deleteLabcart(product._id));
+                    dispatch(deleteLabcart(authState.user.id, product._id));
                   onClose();
                   toast({
                     title: `${product?.testId.testName} `,
@@ -204,7 +206,7 @@ function Cart() {
                                     });
                                 return;
                             }
-                            dispatch(updateLabcart(item._id, item.patients - 1))
+                            dispatch(updateLabcart(authState.user.id, item._id, item.patients - 1))
                             toast({
                                 title: `${item?.testId.testName} `,
                                 description: "Removed a patient.",
@@ -225,7 +227,7 @@ function Cart() {
                         </Button>
                         <Button fontSize={'30px'}
                         onClick={() => {
-                            dispatch(updateLabcart(item._id, item.patients + 1))
+                            dispatch(updateLabcart(authState.user.id, item._id, item.patients + 1))
                             toast({
                                 title: `${item?.testId.testName} `,
                                 description: "Added a patient.",
@@ -326,7 +328,7 @@ function Cart() {
                           my={4}
                           colorScheme="green"
                           onClick={() => {
-                            dispatch(testBooking());
+                            dispatch(testBooking(authState.user.id));
                             toast({
                               title: "Booking Confirmed",
                               description:

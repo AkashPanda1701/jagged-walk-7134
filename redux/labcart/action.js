@@ -1,8 +1,8 @@
 import { GET_LABCART_ERROR, GET_LABCART_LOADING, GET_LABCART_SUCCESS, POST_LABCART_ERROR, POST_LABCART_LOADING, POST_LABCART_SUCCESS,UPDATE_LABCART_LOADING ,UPDATE_LABCART_SUCCESS,UPDATE_LABCART_ERROR, DELETE_LABCART_LOADING, DELETE_LABCART_SUCCESS, DELETE_LABCART_ERROR, TEST_BOOKING_LOADING, TEST_BOOKING_SUCCESS, TEST_BOOKING_ERROR
 } from "./actionTypes";
 import axios from "axios";
-var t='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzliMThiMDdhMTE2MjdjNzFhYzEyZTAiLCJuYW1lIjoiQWthc2giLCJyb2xlIjoidXNlciIsImlhdCI6MTY3MTI4NDY0OCwiZXhwIjoxNjcxODg5NDQ4fQ.8bxKpHVjS767qUKmJ1WbI9v07cRqxev7Bb8RI9TyesQ'
-export const getLabcart = () => async ( dispatch ) => {
+
+export const getLabcart = (userid) => async ( dispatch ) => {
     
         try {
             dispatch({
@@ -12,7 +12,8 @@ export const getLabcart = () => async ( dispatch ) => {
             {
                 headers: {
                 'Content-Type': 'application/json',
-                token: t
+                // token: t
+                userid
             }});
 
             dispatch({
@@ -26,7 +27,7 @@ export const getLabcart = () => async ( dispatch ) => {
         }
 };
 
-export const postLabcart = (test) => async ( dispatch ) => {
+export const postLabcart = (userid,test) => async ( dispatch ) => {
     console.log('test: ', test);
 
     try {
@@ -36,7 +37,8 @@ export const postLabcart = (test) => async ( dispatch ) => {
         const res = await axios.post(`/api/labcarts`, test ,{
             headers: {
             'Content-Type': 'application/json',
-            token: t
+            // token: t
+            userid
         }});
         console.log('data: ', res);
         dispatch({
@@ -52,7 +54,7 @@ export const postLabcart = (test) => async ( dispatch ) => {
     }
 };
 
-export const updateLabcart = (id,patients) => async ( dispatch ) => {
+export const updateLabcart = (userid,id,patients) => async ( dispatch ) => {
 
     try {
         dispatch({
@@ -61,7 +63,8 @@ export const updateLabcart = (id,patients) => async ( dispatch ) => {
         await axios.put(`/api/labcarts/${id}`, {patients} ,{
             headers: {
             'Content-Type': 'application/json',
-            token: t
+            // token: t
+            userid
         }});
         
         dispatch({
@@ -80,7 +83,7 @@ export const updateLabcart = (id,patients) => async ( dispatch ) => {
 }
 
 
-export const deleteLabcart = (id) => async ( dispatch ) => {
+export const deleteLabcart = (userid,id) => async ( dispatch ) => {
 
     try {
         dispatch({
@@ -89,7 +92,8 @@ export const deleteLabcart = (id) => async ( dispatch ) => {
         await axios.delete(`/api/labcarts/${id}`, {
             headers: {
             'Content-Type': 'application/json',
-            token: t
+            // token: t
+            userid
         }});
         
         dispatch({
@@ -105,7 +109,7 @@ export const deleteLabcart = (id) => async ( dispatch ) => {
     }
 }
 
-export const testBooking = () => async ( dispatch ) => {
+export const testBooking = (userid) => async ( dispatch ) => {
         
             try {
                 dispatch({
@@ -114,7 +118,7 @@ export const testBooking = () => async ( dispatch ) => {
                 const res = await axios.delete(`/api/labcarts`,{
                     headers: {
                         'Content-Type': 'application/json',
-                        token: t
+                        userid
                     }});
                     console.log('res: ', res);
     

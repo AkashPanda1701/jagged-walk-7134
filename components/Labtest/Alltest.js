@@ -11,10 +11,13 @@ function Alltest({data}) {
    const toast = useToast()
    const dispatch = useDispatch();
    const {data:labcart} = useSelector(state => state.labcart)
+   console.log('labcart: ', labcart);
+   const authState = useSelector(state => state.auth)
+   console.log('authState: ', authState);
 
    useEffect(() => {
-    dispatch(getLabcart())
-    }, [dispatch])
+    dispatch(getLabcart(authState.user.id))
+    }, [dispatch, authState.user])
 
     const handleBookTest =async (testId) => {
       
@@ -28,6 +31,16 @@ function Alltest({data}) {
             position:'top'
           })
             return
+        }
+        if(date === ''){
+            toast({
+                title: "Please select date",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+                position:'top'
+              })
+                return
         }
         const textExist = labcart.find((item) => item.testId._id === testId)
         console.log('textExist: ', textExist);
@@ -57,7 +70,7 @@ function Alltest({data}) {
               return
         }
 
-        dispatch(postLabcart({testId,patients,appointmentDate:date}))
+        dispatch(postLabcart(authState.user.id,{testId,patients,appointmentDate:date}))
 
         toast({
             title: "Test added to Lab cart",
@@ -102,6 +115,16 @@ function Alltest({data}) {
                           <Text color='#a0a0a0' fontSize={'lg'}>₹{test.price}</Text>
                           <Button  ml={4} color='#10847e'  borderRadius='10px 0 0 10px' _hover={{bg:'#10847e',color:'white'}}
                           onClick={()=>{
+                            if(!authState.user && !authState.user?.role){
+                              toast({
+                                  title: "Please Login First",
+                                  status: "error",
+                                  duration: 3000,
+                                  isClosable: true,
+                                  position : 'top'
+                              })
+                              return;
+                          }
                             handleBookTest(test._id)
                           }}
                           >Book Now</Button>
