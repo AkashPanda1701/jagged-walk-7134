@@ -7,7 +7,7 @@ const initialState = {
   loading: false,
   error: false,
   message: "",
-  user: {},
+  user:{}
 };
 
 
@@ -59,10 +59,10 @@ export const authReducer = (state = initialState, { type, payload }) => {
               error: true,
           };
       case SET_SESSION:
-        localStorage.setItem("user", JSON.stringify(payload));
+        
           return {
               ...state,
-              user: payload,
+              user:payload,
           };
          default:
           return state;

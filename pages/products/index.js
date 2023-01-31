@@ -176,8 +176,13 @@ export default function Products(params) {
                   );
                 })}
             </Grid>
+            
             <Flex justifyContent='center' alignItems='center' mt='5' mb='5'>
             <Button onClick={()=>{
+              if(data.length<20){
+                setPage(1)
+                return;
+              }
               if(page==1){
                 setPage(5)
               }
@@ -187,6 +192,11 @@ export default function Products(params) {
             }}>Prev</Button>
             <Button bg='none' _hover={{bg:'none'}}>{page}</Button>
             <Button onClick={()=>{
+              console.log('data.length: ', data.length);
+              if(data.length<20){
+                setPage(1)
+                return;
+              }
               if(page==5){
                 setPage(1)
               }

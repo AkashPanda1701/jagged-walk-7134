@@ -124,7 +124,7 @@ export default function Productdetails(params) {
                                     <option value="3">3</option>
                                 </Select>
                                     <Button mt='6' onClick={() => {
-                                        if(!authState.user.role){
+                                        if(!authState.user && !authState.user?.role){
                                             toast({
                                                 title: "Please Login First",
                                                 status: "error",

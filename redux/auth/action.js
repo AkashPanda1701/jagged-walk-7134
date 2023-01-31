@@ -54,9 +54,10 @@ export const setSession = (user) => async (dispatch) => {
           payload: res.data.user,
       });
   } catch (error) {
-      dispatch({
-          type: LOGIN_ERROR,
-          payload: error.response.data.message,
-      });
+    console.log('error: ', error);
+    //   dispatch({
+    //       type: LOGIN_ERROR,
+    //       payload: error.response.data.message,
+    //   });
   }
 }

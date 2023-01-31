@@ -31,7 +31,7 @@ export default function Homecomp() {
     <>
       <Box h="50px"></Box>
       <Box width={'98%'} m="auto">
-        <Heading
+        {/* <Heading
           margin={"auto"}
           w="56%"
           as="h3"
@@ -39,10 +39,9 @@ export default function Homecomp() {
           fontWeight={600}
         >
           What are you looking for ?
-        </Heading>
-        <Box h={10}></Box>
+        </Heading> */}
         {/* // search input--------------------------- */}
-        <Box
+        {/* <Box
           borderRadius={40}
           p={1}
           margin={"auto"}
@@ -113,7 +112,7 @@ export default function Homecomp() {
               // }
             />
           </InputGroup>
-        </Box>
+        </Box> */}
 
         {/* categories     -------- */}
         <SimpleGrid

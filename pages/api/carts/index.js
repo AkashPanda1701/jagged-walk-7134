@@ -10,6 +10,9 @@ if(req.method === "GET") {
 if(req.method === "POST") {
     return  addCartItem(req, res)
 }
+if(req.method === "PATCH") {
+    return orderPlaced(req, res)
+}
 }
 
 
@@ -48,6 +51,20 @@ async function addCartItem(req, res) {
         return res.status(404).send({ message: 'Something went wrong' });
     }
 
+}
+
+async function orderPlaced(req, res) {
+    const {userid:userId} = req.body
+    console.log('req.body: ', req.body);
+    console.log('order: ', userId);
+    try {
+
+        await Cart.deleteMany({userId});
+        return res.status(200).send({ message: 'Order Placed Successfully' });
+
+    } catch (error) {
+        return res.status(404).send({ message: error.message });
+    }
 }
 
 export default CartItems;

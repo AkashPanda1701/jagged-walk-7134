@@ -12,6 +12,9 @@ import {
     PATCH_CART_ERROR,
     PATCH_CART_LOADING,
     PATCH_CART_SUCCESS,
+    PLACED_ORDER_LOADING,
+    PLACED_ORDER_SUCCESS,
+    PLACED_ORDER_ERROR,
 } from "./type";
 
 // Don't make any changes to this file.
@@ -135,6 +138,32 @@ export const cartReducer = (state = initialState, { type, payload }) => {
                 error: false,
             };
         }
+        case PLACED_ORDER_LOADING: {
+            // console.log("post loading");
+            return {
+                ...state,
+                loading: true,
+                error: false,
+            };
+        }
+        case PLACED_ORDER_SUCCESS: {
+            return {
+                ...state,
+                data: [],
+                loading: false,
+                error: false,
+                message: payload.message,
+            };
+        }
+        case PLACED_ORDER_ERROR: {
+            return {
+                ...state,
+                loading: false,
+                error: true,
+                message: payload.message,
+            };
+        }
+        
 
 
         default:

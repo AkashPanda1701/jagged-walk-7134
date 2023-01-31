@@ -13,10 +13,13 @@ import {
     PATCH_CART_ERROR,
     PATCH_CART_LOADING,
     PATCH_CART_SUCCESS,
+    PLACED_ORDER_SUCCESS,
+    PLACED_ORDER_LOADING,
+    PLACED_ORDER_ERROR,
 } from "./type";
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzliMThiMDdhMTE2MjdjNzFhYzEyZTAiLCJuYW1lIjoiQWthc2giLCJyb2xlIjoidXNlciIsImlhdCI6MTY3MTM3MDkyNiwiZXhwIjoxNjcxOTc1NzI2fQ.rZXhHX5tUkPYIxevPlgqi6mhepNupdgYSeVvmJzE484';
 
-export const getCart = () => async (dispatch) => {
+
+export const getCart = (userid) => async (dispatch) => {
     dispatch({ type: GET_CART_LOADING });
     // console.log("hello from getCart:" ,JSON.parse(localStorage.getItem('user')).id)
     try {
@@ -24,7 +27,7 @@ export const getCart = () => async (dispatch) => {
 
         headers : {
             'Content-Type': 'application/json',
-            // userId :JSON.parse(localStorage.getItem('user')).id,
+            userid
         }
     });
         let data = res.data;
@@ -35,13 +38,13 @@ export const getCart = () => async (dispatch) => {
     }
 };
 
-export const deleteCart = (_id) => async (dispatch) => {
+export const deleteCart = (userid,_id) => async (dispatch) => {
     dispatch({ type: DELETE_CART_LOADING });
     try {
         let res = await axios.delete(`/api/carts/${_id}`, {
             headers : {
                 'Content-Type': 'application/json',
-                token
+                userid
             }
         });
         dispatch({ type: DELETE_CART_SUCCESS, payload : { _id } });
@@ -50,7 +53,7 @@ export const deleteCart = (_id) => async (dispatch) => {
     }
 };
 
-export const patchCart = (_id,quantity ) => async (dispatch) => {
+export const patchCart = (userid,_id,quantity ) => async (dispatch) => {
     
     dispatch({ type: PATCH_CART_LOADING });
     try {
@@ -58,7 +61,7 @@ export const patchCart = (_id,quantity ) => async (dispatch) => {
         {
             headers : {
                 'Content-Type': 'application/json',
-                token 
+                userid 
             }
         }
         );
@@ -112,3 +115,20 @@ export const getAddress = (payload) => async (dispatch) => {
         console.log("Getaddress Error:", error);
     }
 }
+
+export const placedOrder = (userid) => async (dispatch) => {
+    dispatch({ type: PLACED_ORDER_LOADING });
+    try {
+        let res = await axios.patch(`/api/carts`,{
+            userid
+        }, {
+            headers : {
+                'Content-Type': 'application/json',
+            }
+        });
+        dispatch({ type: PLACED_ORDER_SUCCESS, payload: res.data });
+    } catch (e) {
+        dispatch({ type: PLACED_ORDER_ERROR });
+    }
+}
+    

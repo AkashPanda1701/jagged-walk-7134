@@ -40,20 +40,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCart } from "../../redux/cart/action";
 import { setSession } from "../../redux/auth/action";
-import { useSession } from "next-auth/react";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const dispatch = useDispatch();
   const {data} = useSelector(state => state.cart)
   const authState = useSelector(state => state.auth)
-  const { data: session } = useSession();
-  // console.log('session: ', session);
+  
   
   useEffect(() => {
+  
     dispatch(setSession());
   }, [dispatch]);
 
+  useEffect(() => {
+      if(authState.user){
+
+          dispatch(getCart(authState.user.id));
+      }
+  }, [dispatch, authState.user]);
   return (
     <>
       <Box>

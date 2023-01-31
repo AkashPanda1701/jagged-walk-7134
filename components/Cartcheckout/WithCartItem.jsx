@@ -27,12 +27,13 @@ export default function WithCartItem({ item }) {
     // console.log('item: ', item);
     // console.log('item:', item.price)
     const {data} = useSelector((state) => state.cart);
+    const authState= useSelector((state) => state.auth);
     const [day, setDay] = useState("");
     const [month, setMonth] = useState("");
     const toast = useToast();
     const dispatch = useDispatch();
     const { isOpen, onOpen, onClose } = useDisclosure();
-
+  
    
 
     useEffect(() => {
@@ -148,7 +149,7 @@ export default function WithCartItem({ item }) {
                                     <Button
                                         onClick={() => {
                                            
-                                         dispatch(deleteCart(item._id)); 
+                                         dispatch(deleteCart(authState.user.id,item._id)); 
                                                
                                          
                                             toast({
@@ -202,7 +203,7 @@ export default function WithCartItem({ item }) {
                                     });
                                     return;
                                 }
-                                dispatch(patchCart(item._id, item.quantity - 1));
+                                dispatch(patchCart(authState.user.id,item._id, item.quantity - 1));
                                 toast({
                                     title: `${item.productId.title} quantity decreased by 1`,
                                     status: "success",
@@ -227,7 +228,7 @@ export default function WithCartItem({ item }) {
                                     });
                                     return;
                                 }
-                                dispatch(patchCart(item._id, item.quantity + 1));
+                                dispatch(patchCart(authState.user.id, item._id, item.quantity + 1));
                                 toast({
                                     title: `${item.productId.title} quantity increased by 1`,
                                     status: "success",

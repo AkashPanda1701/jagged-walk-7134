@@ -9,11 +9,20 @@ import {
     Text,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Navbar from "../../components/Navbar/Navbar";
+import { placedOrder } from "../../redux/cart/action";
 import styles from "./Css/order-success.module.css";
 
 export default function OrderSuccess() {
+    const dispatch = useDispatch();
+    const authState = useSelector((state) => state.auth);
+    console.log('authState: ', authState);
+    const cart = useSelector((state) => state.cart);
+    console.log('cart: ', cart);
     const [flag, setFlag] = useState(true);
+   
     let id = setTimeout(() => {
         setFlag(false)
     }, 3000);
@@ -21,6 +30,12 @@ export default function OrderSuccess() {
     if (!flag) {
         clearInterval(id)
     }
+
+    useEffect(() => {
+        if (authState.user) {
+        dispatch(placedOrder(authState.user.id))
+        }
+    }, [authState.user])
 
     console.log("flag:", flag)
     if (flag) {
@@ -34,12 +49,14 @@ export default function OrderSuccess() {
         )
     } else
         return (
+            <>
+            <Navbar/>
             <Box maxW="1349px" m="auto" mt="50px">
                 <Box maxW="1024px" m="auto">
                     <Grid
 
-                        templateRows="repeat(2, 1fr)"
-                        templateColumns="repeat(5, 1fr)"
+templateRows="repeat(2, 1fr)"
+templateColumns="repeat(5, 1fr)"
                         gap="80px"
                     >
                         <GridItem colSpan={{ base: 5, sm: 5, md: 3 }}>
@@ -47,18 +64,18 @@ export default function OrderSuccess() {
                                 <Image
                                     src="https://assets.pharmeasy.in/web-assets/dist/bd093b97.svg"
                                     alt="bd093b97"
-                                />
+                                    />
                                 <Heading as="h1">Order Placed Successfully</Heading>
                                 <Box
                                     w={{ base: "", sm: "380px", md: "400px", lg: "552px" }}
                                     h="54.8px"
-                                >
+                                    >
                                     <Image
                                         w="28px"
                                         h="28px"
                                         src="https://assets.pharmeasy.in/web-assets/dist/a1d0eff8.png"
                                         alt="a1d0eff8"
-                                    />
+                                        />
                                     {/* <Heading as="h1">Yay! You have saved ₹620.56</Heading> */}
                                 </Box>
                             </Box>
@@ -69,15 +86,17 @@ export default function OrderSuccess() {
                             className={styles}
                             bg=""
                             m="auto"
-                        >
+                            >
+                            <Link href="/">
                             <Button
                                 w={{ md: "240px", lg: "360px" }}
                                 colorScheme="teal.400"
                                 className={styles.offerButton}
-                            >
+                                >
                                 {" "}
-                                <Link href="/">Go Back To Home</Link>
+                                    Go Back To Home
                             </Button>
+                                    </Link>
                         </GridItem>
                     </Grid>
 
@@ -96,7 +115,7 @@ export default function OrderSuccess() {
                                 h="50px"
                                 src="https://assets.pharmeasy.in/web-assets/dist/9ac2da37.svg?dim=0x72&dpr=1&q=100"
                                 alt=""
-                            />
+                                />
                             <Heading as="h1">1 Lakh+ Products</Heading>
                             <Text>
                                 We maintain strict quality controls on all our partner retailers,
@@ -109,7 +128,7 @@ export default function OrderSuccess() {
                                 h="50px"
                                 src="https://assets.pharmeasy.in/web-assets/dist/2f258fe0.svg?dim=0x72&dpr=1&q=100"
                                 alt=""
-                            />
+                                />
                             <Heading as="h1">Secure Payment</Heading>
                             <Text>100% secure and trusted payment protection</Text>
                         </Box>
@@ -119,7 +138,7 @@ export default function OrderSuccess() {
                                 h="50px"
                                 src="https://assets.pharmeasy.in/web-assets/dist/256fe591.svg?dim=0x72&dpr=1&q=100"
                                 alt=""
-                            />
+                                />
                             <Heading as="h1">Easy Return</Heading>
                             <Text>
                                 We have a new and dynamic return window policy for medicines and
@@ -135,7 +154,7 @@ export default function OrderSuccess() {
                         m="auto"
                         mt="20px"
                         gap={4}
-                    >
+                        >
                         <GridItem rowSpan={2} colSpan={{ base: 6, sm: 6, md: 2, lg: 2 }}  >
                             <Image maxW="210px" h="416px" src="https://assets.pharmeasy.in/web-assets/dist/34a16ae8.jpg" alt="" />
                         </GridItem>
@@ -155,5 +174,6 @@ export default function OrderSuccess() {
                     </Grid>
                 </Box>
             </Box>
+                        </>
         );
 }

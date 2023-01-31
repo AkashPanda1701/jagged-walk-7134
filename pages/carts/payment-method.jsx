@@ -32,7 +32,7 @@ const getData = async (url) => {
     return [];
   }
 };
-export default function paymentMethod() {
+export default function PaymentMethod() {
   const [dataAdd, setDataAdd] = useState([]);
   const [flag, setFlag] = useState(false);
   const [itemTotal, setItemTotal] = useState(0);
@@ -170,13 +170,15 @@ export default function paymentMethod() {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
+                    <Link href="/carts/order-success">
                       <Button
-                        colorScheme="teal.400"
+                        colorScheme="red.400"
                         className={styles.offerButton}
                       >
                         {" "}
-                        Place Order & Pay
+                      Place Order
                       </Button>
+                      </Link>
                     </AccordionPanel>
                   </AccordionItem>
 
@@ -209,13 +211,15 @@ export default function paymentMethod() {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
+                    <Link href="/carts/order-success">
                       <Button
-                        colorScheme="teal.400"
+                        colorScheme="red.400"
                         className={styles.offerButton}
                       >
                         {" "}
-                        Place Order & Pay
+                      Place Order
                       </Button>
+                      </Link>
                     </AccordionPanel>
                   </AccordionItem>
                 </Accordion>
@@ -264,13 +268,15 @@ export default function paymentMethod() {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
+                    <Link href="/carts/order-success">
                       <Button
-                        colorScheme="teal.400"
+                        colorScheme="red.400"
                         className={styles.offerButton}
                       >
                         {" "}
-                        Place Order
+                      Place Order
                       </Button>
+                      </Link>
                     </AccordionPanel>
                   </AccordionItem>
 
@@ -339,12 +345,15 @@ export default function paymentMethod() {
                         <Input w="200px" placeholder="e.g. 99xxxxxxxx @paytm" />
                       </Box>
                       <Box>
-                        <Button
-                          colorScheme="teal.400"
-                          className={styles.offerButton}
-                        >
-                          Place Order & Pay
-                        </Button>
+                      <Link href="/carts/order-success">
+                      <Button
+                        colorScheme="red.400"
+                        className={styles.offerButton}
+                      >
+                        {" "}
+                      Place Order
+                      </Button>
+                      </Link>
                       </Box>
                     </AccordionPanel>
                   </AccordionItem>
@@ -375,13 +384,15 @@ export default function paymentMethod() {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
+                    <Link href="/carts/order-success">
                       <Button
-                        colorScheme="teal.400"
+                        colorScheme="red.400"
                         className={styles.offerButton}
                       >
                         {" "}
-                        Place Order
+                      Place Order
                       </Button>
+                      </Link>
                     </AccordionPanel>
                   </AccordionItem>
 
@@ -414,13 +425,15 @@ export default function paymentMethod() {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
+                    <Link href="/carts/order-success">
                       <Button
-                        colorScheme="teal.400"
+                        colorScheme="red.400"
                         className={styles.offerButton}
                       >
                         {" "}
-                        <Link href="/carts/order-success">Place Order</Link>
+                      Place Order
                       </Button>
+                      </Link>
                     </AccordionPanel>
                   </AccordionItem>
                 </Accordion>

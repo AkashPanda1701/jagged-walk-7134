@@ -3,7 +3,7 @@ import Display from "../../components/Admin/Display"
 import ViewItem from "../../components/Admin/ViewItem"
 
 
-function admin() {
+function Admin() {
     return (
         <>  
             <SidebarWithHeader >
@@ -14,4 +14,4 @@ function admin() {
     )
 }
 
-export default admin
+export default Admin

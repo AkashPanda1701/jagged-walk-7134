@@ -31,3 +31,7 @@ export const GET_ADDRESS_SUCCESS = "get/success";
 export const GET_ADDRESS_ERROR = "get/error";
 
 export const CLEAR_CART_MESSAGE = "clear/cart/message";
+
+export const PLACED_ORDER_LOADING = "placed/order/loading";
+export const PLACED_ORDER_SUCCESS = "placed/order/success";
+export const PLACED_ORDER_ERROR = "placed/order/error";
